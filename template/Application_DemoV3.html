@@ -1,0 +1,1171 @@
+<!--
+An HTML and CSS reproduction of a complex form, i.e. the FWD life insurance application
+(ใบคำขอเอาประกันชีวิต แบบมีคำถามสุขภาพ) converted from Application_Demo.pdf.
+
+Same approach as W-8BEN.html:
+
+- Complex Layout (tables + part headings)
+- Styled Interactive Forms (text inputs in blue, real checkboxes)
+
+Form inputs use Handlebars placeholders. Text values are HTML-escaped; checkbox and radio values use the checked helper and require booleans.
+The "สำเนา" (copy) watermark is a <div class="wm"> inside each A4 page; delete those divs to remove it.
+-->
+<!DOCTYPE html>
+<html lang="th">
+    <head>
+        <title>ใบคำขอเอาประกันชีวิต แบบมีคำถามสุขภาพ</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+
+            @page {
+                size: A4 portrait;   /* 210mm x 297mm */
+                margin: 0;
+            }
+
+            @-ro-preferences {
+                page-layout: 1 page;
+                initial-zoom: fit-page;
+            }
+
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+            body {
+                font-family: "Noto Sans Thai", "Sarabun", "Tahoma", sans-serif;
+                font-size: 7.2pt;
+                line-height: 1.15;
+                margin: 0;
+                color: #000;
+            }
+            @media screen { body { background: #e9e9e9; } }
+            p {
+                margin: 0.01in;
+                padding: 0pt;
+            }
+            h1 {
+                font-size: 12pt;
+                font-weight: bold;
+                margin: 0px;
+                text-align: right;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+            td, th {
+                padding: 0pt;
+                vertical-align: top;
+            }
+            b.formCounter, strong.formCounter {
+                font-weight: bold;
+                margin-right: 2pt;
+            }
+
+            /* ---------- Pages ---------- */
+
+            .page {
+                position: relative;
+                box-sizing: border-box;
+                width: 210mm;
+                height: 297mm;
+                padding: 10mm 10mm 8mm 10mm;
+                margin: 0 auto 12pt auto;
+                background: #fff;
+                overflow: hidden;
+                page-break-after: always;
+                break-after: page;
+            }
+            .page .pg {
+                position: absolute;
+                right: 10mm;
+                bottom: 5mm;
+                margin: 0;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            .pg {
+                text-align: right;
+                font-weight: bold;
+                font-size: 8pt;
+                margin-top: 4pt;
+            }
+            @media print {
+                body { background: #fff; }
+                .page { margin: 0; }
+            }
+
+            /* ---------- Watermark "สำเนา" ---------- */
+
+            /* one watermark element inside every A4 page (real text, not a CSS background) */
+            .wm {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 190pt;
+                font-weight: bold;
+                line-height: 1;
+                color: rgba(0, 0, 0, 0.08);
+                transform: rotate(-45deg);
+                pointer-events: none;
+                user-select: none;
+                z-index: 0;
+            }
+            .page > .wm { position: absolute; z-index: 0; }
+            .page > * { position: relative; z-index: 1; }
+
+            /* ---------- Inputs ---------- */
+
+            input {-ro-pdf-format: pdf;}
+
+            input[type="radio"], input[type="checkbox"] {
+                margin: 1px;
+            }
+            input[type=checkbox] {
+                margin-right: 3pt;
+                border: 1px solid black;
+                height: 8pt;
+                width: 8pt;
+                color: #0000cc;
+                vertical-align: middle;
+            }
+            input[type=text] {
+                border: none;
+                border-bottom: 0.6px dotted black;
+                background: transparent;
+                height: 9.5pt;
+                padding: 0pt;
+                margin: 0pt 0.75pt;
+                color: #0000cc;
+                font-family: "Noto Sans Thai", "Sarabun", "Tahoma", sans-serif;
+                font-size: 7.2pt;
+                min-width: 0;
+            }
+            label.cb {
+                display: inline-flex;
+                align-items: center;
+                margin-right: 9pt;
+                white-space: nowrap;
+            }
+
+            /* one "line" of the form: label + dotted input(s) */
+            .ln {
+                display: flex;
+                align-items: flex-end;
+                gap: 3pt;
+                margin: 1.2pt 0;
+            }
+            .ln > input[type=text] { flex: 1 1 auto; }
+            .ln > input.w30  { flex: none; width: 30pt; }
+            .ln > input.w40  { flex: none; width: 40pt; }
+            .ln > input.w50  { flex: none; width: 50pt; }
+            .ln > input.w70  { flex: none; width: 70pt; }
+            .ln > input.w90  { flex: none; width: 90pt; }
+            .ln > input.w120 { flex: none; width: 120pt; }
+            .ln > input.w160 { flex: none; width: 160pt; }
+            .ln > input.w200 { flex: none; width: 200pt; }
+            .ln.ind { padding-left: 14pt; }
+            .ln > span, .ln > label { white-space: nowrap; }
+            .ln > .grow { flex: 1 1 auto; }
+            .cbrow { margin: 1.2pt 0; }
+            .cbrow.ind { padding-left: 14pt; }
+
+            /* 13 digit national id boxes */
+            .digits { display: inline-flex; align-items: center; gap: 1pt; }
+            .digits input[type=text] {
+                width: 9pt;
+                height: 11pt;
+                text-align: center;
+                border: 0.6px solid black;
+                margin: 0;
+                padding: 0;
+            }
+            .digits i { font-style: normal; padding: 0 1pt; }
+
+            .red { color: #cc0000; }
+            .note-red { color: #cc0000; font-weight: bold; }
+            .ul { text-decoration: underline; }
+            .tick { font-weight: bold; }
+
+            /* ---------- Part headings (as in W-8BEN.html) ---------- */
+
+            .partHeading td {
+                background-color: #d9d9d9;
+                font-weight: bold;
+                padding: 1.5pt 4pt;
+                border-top: 1pt solid black;
+                border-bottom: 0.5pt solid black;
+            }
+            .partHeading small { font-weight: normal; font-size: 7pt; }
+
+            /* outer box for a block of form items */
+            .box {
+                border: 1pt solid black;
+                border-top: none;
+                padding: 1pt 5pt 2pt 5pt;
+            }
+            .box.top { border-top: 1pt solid black; }
+            .sub { border-top: 0.5pt solid black; margin-top: 2pt; padding-top: 1pt; }
+
+            /* ---------- Generic grid table ---------- */
+
+            table.grid { margin: 3pt 0; }
+            table.grid th {
+                background: #d9d9d9;
+                font-weight: normal;
+                text-align: center;
+                border: 0.5pt solid black;
+                padding: 1.5pt 3pt;
+                vertical-align: middle;
+            }
+            table.grid td {
+                border: 0.5pt solid black;
+                padding: 0 2pt;
+                height: 11.5pt;
+                vertical-align: middle;
+            }
+            table.grid td input[type=text] {
+                width: 100%;
+                box-sizing: border-box;
+                border: none;
+                height: 12pt;
+            }
+            table.grid td.c { text-align: center; }
+
+            /* ---------- Page 1 header ---------- */
+
+            #t1 { margin-bottom: 3pt; }
+            #t1 .logo {
+                font-size: 26pt;
+                font-weight: 900;
+                color: #e87722;
+                letter-spacing: -1pt;
+                line-height: 1;
+            }
+            #t1 .logo small {
+                display: block;
+                font-size: 9pt;
+                font-weight: normal;
+                color: #000;
+                letter-spacing: 0;
+            }
+            #t1 .addr {
+                font-size: 5.6pt;
+                line-height: 1.25;
+            }
+            #t1 .appno {
+                font-size: 9pt;
+                font-weight: bold;
+            }
+            #t1 .appno input[type=text] { font-weight: normal; font-size: 8pt; width: 100pt; }
+            #warn {
+                border: 0.5pt solid black;
+                border-bottom: none;
+            }
+            #warn td { padding: 2pt 4pt; }
+            #warn .red { font-size: 7.2pt; }
+            #agent td { padding: 2pt 4pt; }
+
+            /* ---------- Insurance plan table ---------- */
+            .refund label.cb { white-space: normal; align-items: flex-start; }
+            .amt { text-align: right !important; }
+            table.grid td input.amt { text-align: right; }
+
+        </style>
+    </head>
+    <body>
+
+        <!--=======================================================
+                              PAGE 1 / 6
+        ========================================================-->
+        <div class="page" id="p1">
+            <div class="wm">สำเนา</div>
+
+            <!--************************ Heading ************************-->
+            <table id="t1">
+                <tr>
+                    <td style="width: 3.4in;">
+                        <div class="logo">FWD<small>insurance</small></div>
+                        <div class="addr">
+                     
+                        </div>
+                    </td>
+                    <td>
+                        <h1>ใบคำขอเอาประกันชีวิต แบบมีคำถามสุขภาพ</h1>
+                        <div class="appno" style="text-align: right; margin-top: 4pt;">
+                            ใบคำขอเอาประกันชีวิตเลขที่ <input type="text" value="{{applicationId}}" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!--List of Notes / Agent-->
+            <table id="warn">
+                <tr>
+                    <td style="width: 52%; border-right: 0.5pt solid black;" class="red">
+                        <b class="ul">คำเตือน</b> ของสำนักงานคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัย
+                        ผู้ขอเอาประกันภัยต้องตอบคำถามตามความเป็นจริงทุกข้อ การปกปิดข้อเท็จจริงใดๆ
+                        อาจเป็นเหตุให้บริษัทผู้รับประกันชีวิตปฏิเสธไม่จ่ายเงินค่าสินไหมทดแทนตามสัญญา
+                        ประกันชีวิตตามประมวลกฎหมายแพ่งและพาณิชย์มาตรา 865
+                    </td>
+                    <td id="agent">
+                        <div class="ln"><span>ชื่อตัวแทน/นายหน้า</span><input type="text" value="{{agent.fullName}}" /></div>
+                        <div class="ln"><span>ใบอนุญาตเลขที่</span><input type="text"  value="{{agent.licenseNumber}}" /><span>รหัสตัวแทน/นายหน้า</span><input type="text" class="w50" value="{{agent.code}}" /></div>
+                        <div class="ln"><span>ชื่อหน่วย</span><input type="text"  value="{{agent.unitName}}" /><span>รหัสหน่วย</span><input type="text" class="w40" value="{{agent.unitCode}}" /><span>สาขา</span><input type="text" class="w40" value="{{agent.branch}}" /></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="border-top: 0.5pt solid black; border-bottom: 0.5pt solid black;">
+                        <table><tr>
+                            <td style="width: 52%;">ข้อ 1 – 5 : สำหรับแบบที่ไม่ต้องตอบคำถามสุขภาพ<br />ข้อ 1 – 16.ก) : สำหรับแบบที่ต้องตอบคำถามสุขภาพอย่างย่อ</td>
+                            <td>ข้อ 1 – 18 : สำหรับกรณีมีประกันสุขภาพ</td>
+                        </tr></table>
+                    </td>
+                </tr>
+            </table>
+
+            <!--************************ Part 1 ************************-->
+            <table id="t2">
+                <tr class="partHeading"><td>ส่วนที่ 1 &nbsp;คำถามเกี่ยวกับข้อมูลส่วนบุคคลของ <u>ผู้ขอเอาประกันภัย</u> และรายละเอียดการขอเอาประกันภัย</td></tr>
+            </table>
+
+            <div class="box">
+                <!-- 1 -->
+                <div class="ln"><b class="formCounter">1.</b><span>ชื่อและนามสกุล</span><input type="text" value="{{applicant.fullName}}" /><span>ชื่อและนามสกุลเดิม</span><input type="text"  value="{{applicant.previousFullName}}" /></div>
+                <div class="ln ind">
+                    <span>เพศ</span>
+                    <label class="cb"><input type="checkbox"  {{checked applicant.gender.male}} />ชาย</label>
+                    <label class="cb"><input type="checkbox"  {{checked applicant.gender.female}} />หญิง</label>
+                    <span>เกิดวันที่</span><input type="text" class="w30" value="{{applicant.birthDate.day}}" />
+                    <span>เดือน</span><input type="text" class="w70" value="{{applicant.birthDate.month}}" />
+                    <span>พ.ศ.</span><input type="text" class="w40" value="{{applicant.birthDate.buddhistYear}}" />
+                    <span>อายุ</span><input type="text" class="w30" value="{{applicant.age}}" /><span>ปี</span>
+                    <span>สัญชาติ</span><input type="text" class="w70" value="{{applicant.nationality}}" />
+                </div>
+                <div class="ln ind">
+                    <span>เลขประจำตัวประชาชน</span>
+                    <span class="digits">
+                        <input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 0}}" /><i>-</i><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 1}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 2}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 3}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 4}}" /><i>-</i><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 5}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 6}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 7}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 8}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 9}}" /><i>-</i><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 10}}" /><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 11}}" /><i>-</i><input type="text" maxlength="1" value="{{digit applicant.identification.nationalId 12}}" />
+                    </span>
+                </div>
+                <div class="ln ind">
+                    <span>เอกสารที่ใช้แสดงตน</span>
+                    <label class="cb"><input type="checkbox"  {{checked applicant.identification.documentTypes.nationalId}} />บัตรประจำตัวประชาชน</label>
+                    <span>วันบัตรหมดอายุ</span><input type="text" class="w70" value="{{applicant.identification.documentExpiryDate}}" />
+                    <label class="cb" style="margin-left: 8pt;"><input type="checkbox"  {{checked applicant.identification.documentTypes.birthCertificate}} />สูติบัตร/ทะเบียนบ้าน (กรณีผู้เยาว์ที่ยังไม่มีบัตรประชาชน)</label>
+                </div>
+                <div class="ln ind" style="padding-left: 70pt;">
+                    <label class="cb"><input type="checkbox"  {{checked applicant.identification.documentTypes.passport}} />หนังสือเดินทาง เลขที่</label><input type="text" class="w120"  value="{{applicant.identification.passportNumber}}" />
+                    <span>วันหมดอายุ</span><input type="text" class="w90"  value="{{applicant.identification.passportExpiryDate}}" />
+                </div>
+                <div class="cbrow ind">
+                    <span>สถานภาพ</span>&nbsp;
+                    <label class="cb"><input type="checkbox"  {{checked applicant.maritalStatus.single}} />โสด</label>
+                    <label class="cb"><input type="checkbox"  {{checked applicant.maritalStatus.married}} />สมรส</label>
+                    <label class="cb"><input type="checkbox"  {{checked applicant.maritalStatus.widowed}} />หม้าย</label>
+                    <label class="cb"><input type="checkbox"  {{checked applicant.maritalStatus.divorced}} />หย่า</label>
+                </div>
+                <div class="ln ind"><span>ชื่อและนามสกุล ภรรยา / สามี</span><input type="text"  value="{{applicant.spouse.fullName}}" /><span>เลขประจำตัวประชาชน</span><input type="text" class="w120"  value="{{applicant.spouse.nationalId}}" /></div>
+
+                <!-- 2 -->
+                <div class="sub">
+                    <div class="ln"><b class="formCounter">2.</b><b>ก) ที่อยู่ปัจจุบัน</b><input type="text" value="{{applicant.addresses.current.addressLine}}" /></div>
+                    <div class="ln ind"><span>แขวง/ตำบล</span><input type="text" value="{{applicant.addresses.current.subdistrict}}" /><span>เขต/อำเภอ</span><input type="text" value="{{applicant.addresses.current.district}}" /><span>จังหวัด</span><input type="text" value="{{applicant.addresses.current.province}}" /><span>รหัสไปรษณีย์</span><input type="text" class="w40" value="{{applicant.addresses.current.postalCode}}" /><span>ประเทศ</span><input type="text" class="w40" value="{{applicant.addresses.current.country}}" /></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ข) ที่อยู่ตามทะเบียนบ้าน</b><input type="text" value="{{applicant.addresses.registered.addressLine}}" /></div>
+                    <div class="ln ind"><span>แขวง/ตำบล</span><input type="text" value="{{applicant.addresses.registered.subdistrict}}" /><span>เขต/อำเภอ</span><input type="text" value="{{applicant.addresses.registered.district}}" /><span>จังหวัด</span><input type="text" value="{{applicant.addresses.registered.province}}" /><span>รหัสไปรษณีย์</span><input type="text" class="w40" value="{{applicant.addresses.registered.postalCode}}" /><span>ประเทศ</span><input type="text" class="w40" value="{{applicant.addresses.registered.country}}" /></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ค) สถานที่ทำงาน</b><input type="text" value="{{applicant.addresses.work.addressLine}}" /></div>
+                    <div class="ln ind"><span>แขวง/ตำบล</span><input type="text" value="{{applicant.addresses.work.subdistrict}}" /><span>เขต/อำเภอ</span><input type="text" value="{{applicant.addresses.work.district}}" /><span>จังหวัด</span><input type="text" value="{{applicant.addresses.work.province}}" /><span>รหัสไปรษณีย์</span><input type="text" class="w40" value="{{applicant.addresses.work.postalCode}}" /><span>ประเทศ</span><input type="text" class="w40" value="{{applicant.addresses.work.country}}" /></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ง) </b><span>โทรศัพท์บ้าน</span><input type="text" value="{{applicant.phone.home}}" /><span>โทรศัพท์มือถือ</span><input type="text" value="{{applicant.phone.mobile}}" /><span>โทรศัพท์ที่ทำงาน</span><input type="text"  value="{{applicant.phone.work}}" /><span>อีเมล</span><input type="text" class="w160" value="{{applicant.email}}" /></div>
+                    <div class="cbrow" style="padding-left: 10pt;">
+                        <b>จ) สถานที่ติดต่อ</b>&nbsp;
+                        <label class="cb"><input type="checkbox"  {{checked applicant.contactAddress.current}} />ที่อยู่ปัจจุบัน</label>
+                        <label class="cb"><input type="checkbox"  {{checked applicant.contactAddress.registered}} />ที่อยู่ตามทะเบียนบ้าน</label>
+                        <label class="cb"><input type="checkbox"  {{checked applicant.contactAddress.work}} />สถานที่ทำงาน</label>
+                    </div>
+                    <div style="padding-left: 10pt;"><b>ฉ) วิธีการรับกรมธรรม์ (กรุณาเลือกเพียงข้อใดข้อหนึ่ง)</b></div>
+                    <div class="cbrow ind">
+                        <label class="cb"><input type="checkbox"  {{checked applicant.delivery.policy.paper}} />แบบกระดาษ</label>
+                        <label class="cb"><input type="checkbox"  {{checked applicant.delivery.policy.electronic}} />รับกรมธรรม์ทางอิเล็กทรอนิกส์ กรณีไม่ระบุอีเมล บริษัทฯจะจัดส่งให้ในแบบกระดาษแทน</label>
+                    </div>
+                    <div style="padding-left: 10pt;"><b>ช) วิธีการรับเอกสารแสดงทางการรับเงิน และ/หรือเอกสารอื่นที่เกี่ยวข้องนอกจากกรมธรรม์ประกันภัย (กรุณาเลือกเพียงข้อใดข้อหนึ่ง)</b></div>
+                    <div class="cbrow ind">
+                        <label class="cb"><input type="checkbox"  {{checked applicant.delivery.relatedDocuments.paper}} />แบบกระดาษ</label>
+                        <label class="cb"><input type="checkbox"  {{checked applicant.delivery.relatedDocuments.electronic}} />รับเอกสารทางอิเล็กทรอนิกส์ กรณีไม่ระบุอีเมล บริษัทฯจะจัดส่งให้ในแบบกระดาษแทน</label>
+                    </div>
+                    <div style="padding-left: 10pt;"><b>หมายเหตุ</b> สำหรับเอกสารที่บริษัทฯไม่สามารถออกเป็นแบบอิเล็กทรอนิกส์ได้ บริษัทฯจะจัดส่งในแบบกระดาษ</div>
+                </div>
+
+                <!-- 3 -->
+                <div class="sub">
+                    <div class="ln"><b class="formCounter">3.</b><b>ก) อาชีพประจำ</b><input type="text" value="{{applicant.occupation.primary.name}}" /><span>ตำแหน่ง</span><input type="text" class="w90"  value="{{applicant.occupation.primary.position}}" /><span>ลักษณะงานที่ทำ</span><input type="text" class="w120"  value="{{applicant.occupation.primary.duties}}" /></div>
+                    <div class="ln ind"><span>ลักษณะธุรกิจ</span><input type="text"  value="{{applicant.occupation.primary.businessType}}" /><span>รายได้ต่อปี</span><input type="text" class="w90 amt" value="{{applicant.occupation.primary.annualIncome}}" /><span>บาท</span></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ข) อาชีพอื่นๆ (ถ้ามี)</b><input type="text"  value="{{applicant.occupation.secondary.name}}" /><span>ตำแหน่ง</span><input type="text" class="w90"  value="{{applicant.occupation.secondary.position}}" /><span>ลักษณะงานที่ทำ</span><input type="text" class="w120"  value="{{applicant.occupation.secondary.duties}}" /></div>
+                    <div class="ln ind"><span>ลักษณะธุรกิจ</span><input type="text"  value="{{applicant.occupation.secondary.businessType}}" /><span>รายได้ต่อปี</span><input type="text" class="w90 amt"  value="{{applicant.occupation.secondary.annualIncome}}" /><span>บาท</span></div>
+                    <div class="cbrow" style="padding-left: 10pt;">
+                        <b>ท่านใช้รถจักรยานยนต์ในการทำงานหรือไม่</b>&nbsp;
+                        <label class="cb"><input type="checkbox"  {{checked applicant.occupation.motorcycleUsage.no}} />ไม่ใช้</label>
+                        <label class="cb"><input type="checkbox"  {{checked applicant.occupation.motorcycleUsage.yes}} />ใช้</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <table id="t3" style="border: 1pt solid black; border-top: 0.5pt solid black; table-layout: fixed;">
+                <tr>
+                    <td style="width: 55%; border-right: 0.5pt solid black; padding: 2pt 5pt;">
+                        <div><b class="formCounter">4.</b><b>แบบประกันภัย เบี้ยประกันภัยและวิธีการชำระเบี้ยประกันภัย</b></div>
+                        <div class="ln" style="margin-top: 3pt;"><b style="flex: 1 1 auto;">แบบประกันภัย</b><span style="width: 78pt; text-align: center;">จำนวนเงินเอาประกันภัย (บาท)</span><span style="width: 78pt; text-align: center;">เบี้ยประกันภัย (บาท)</span></div>
+                        <div class="ln"><input type="text" value="{{policy.mainPlan.name}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;" value="{{policy.mainPlan.sumAssured}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;" value="{{policy.mainPlan.premium}}" /></div>
+                        <div class="ln"><span>รหัส</span><input type="text" class="w50" value="{{policy.mainPlan.code}}" /><span>ระยะเวลาเอาประกันภัย</span><input type="text" class="w30" value="{{policy.mainPlan.coverageTermYears}}" /><span>ปี</span></div>
+                        <div class="ln"><span>ระยะเวลาชำระเบี้ยประกันภัย</span><input type="text" class="w30" value="{{policy.mainPlan.premiumTermYears}}" /><span>ปี</span></div>
+                        <div class="cbrow"><b>ชนิด</b>&nbsp;<label class="cb"><input type="checkbox"  {{checked policy.mainPlan.withDividend}} />มีเงินปันผล</label><label class="cb"><input type="checkbox"  {{checked policy.mainPlan.withoutDividend}} />ไม่มีเงินปันผล</label></div>
+                        <div class="ln" style="margin-top: 4pt;"><b style="flex: 1 1 auto;">สัญญาเพิ่มเติม</b><span style="width: 78pt; text-align: center;">จำนวนเงินผลประโยชน์ (บาท)</span><span style="width: 78pt; text-align: center;">เบี้ยประกันภัย (บาท)</span></div>
+                        <div class="ln"><input type="text" value="{{policy.riders.rider1.name}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;" value="{{policy.riders.rider1.benefitAmount}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;" value="{{policy.riders.rider1.premium}}" /></div>
+                        <div class="ln"><input type="text"  value="{{policy.riders.rider2.name}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;"  value="{{policy.riders.rider2.benefitAmount}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;"  value="{{policy.riders.rider2.premium}}" /></div>
+                        <div class="ln"><input type="text"  value="{{policy.riders.rider3.name}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;"  value="{{policy.riders.rider3.benefitAmount}}" /><input type="text" class="w70 amt" style="margin-left: 8pt;"  value="{{policy.riders.rider3.premium}}" /></div>
+                        <div class="ln"><span style="flex: 1 1 auto; text-align: right;">เบี้ยประกันภัยรวม (บาท)</span><input type="text" class="w70 amt" style="margin-left: 8pt;" value="{{policy.totalPremium}}" /></div>
+                    </td>
+                    <td style="padding: 2pt 5pt;" class="refund">
+                        <div><b>กรณีมีเงินคืนตามสัญญา</b></div>
+                        <div class="cbrow"><label class="cb"><input type="checkbox"  {{checked policy.refund.bankTransfer}} />โอนเข้าบัญชีธนาคาร</label><input type="text" style="width: 60pt;"  value="{{policy.refund.bankName}}" /></div>
+                        <div class="ln"><span>เลขที่บัญชี</span><input type="text"  value="{{policy.refund.bankAccountNumber}}" /><span>ชื่อบัญชี</span><input type="text"  value="{{policy.refund.bankAccountName}}" /></div>
+                        <div class="red" style="text-align: center;">(กรุณาแนบสำเนาหน้าบัญชีธนาคาร)</div>
+                        <div class="cbrow"><label class="cb"><input type="checkbox"  {{checked policy.refund.promptPay}} />โอนผ่านพร้อมเพย์ตามเลขประจำตัวประชาชนของผู้ขอเอาประกันภัย</label></div>
+                        <div class="cbrow"><label class="cb"><input type="checkbox"  {{checked policy.refund.applyToPremium}} />นำไปชำระเบี้ยประกันภัย</label></div>
+                        <div class="cbrow"><label class="cb"><input type="checkbox"  {{checked policy.refund.accumulateWithCompany}} />คงไว้กับบริษัทเพื่อการสะสม</label></div>
+                        <div class="note-red ul">กรณีที่ไม่เลือกวิธีใดวิธีหนึ่งข้างต้น จะคงไว้กับบริษัทเพื่อการสะสม*</div>
+                        <div class="red" style="margin-top: 2pt;">* กรณีที่แบบประกันภัยหรือเงื่อนไขของบริษัทไม่อนุญาตให้คงเงินคืนตามสัญญาไว้กับบริษัทเพื่อการสะสม บริษัทจะจ่ายคืนเป็นเช็ค</div>
+                        <div style="margin-top: 2pt;">บริษัทกำหนดอัตราดอกเบี้ยที่จ่ายให้กับเงินคืนตามสัญญาที่สะสมไว้กับบริษัทในแต่ละปีโดยการประกาศเป็นคราวๆไป</div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="box" style="border-top: 0.5pt solid black;">
+                <div class="cbrow">
+                    <b>งวดการชำระเบี้ยประกันภัย</b>&nbsp;
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentFrequency.monthly}} />รายเดือน</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentFrequency.quarterly}} />ราย 3 เดือน</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentFrequency.semiAnnual}} />ราย 6 เดือน</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentFrequency.annual}} />รายปี</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentFrequency.single}} />ชำระเบี้ยประกันภัยครั้งเดียว</label>
+                </div>
+                <div class="ln"><b>จำนวนเงินที่ชำระพร้อมใบคำขอนี้</b><input type="text" class="w160 amt" value="{{policy.initialPaymentAmount}}" /><span>บาท</span><b>ใบรับเงินชั่วคราวเลขที่</b><input type="text"  value="{{policy.temporaryReceiptNumber}}" /></div>
+                <div class="ln">
+                    <span>ชำระเป็น</span>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentMethod.cash}} />เงินสด</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentMethod.cheque}} />เช็ค</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentMethod.creditCard}} />บัตรเครดิต</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.paymentMethod.companyBankTransfer}} />โอนเข้าบัญชีบริษัท</label>
+                    <span>เลขที่บัญชี</span><input type="text"  value="{{policy.companyBank.accountNumber}}" /><span>ธนาคาร</span><input type="text"  value="{{policy.companyBank.bank}}" /><span>สาขา</span><input type="text"  value="{{policy.companyBank.branch}}" />
+                </div>
+                <div><span class="red"><b class="ul">คำเตือน</b> หากมีการชำระเบี้ยประกันภัยงวดแรก ผู้ขอเอาประกันภัยต้องได้รับใบรับเงินชั่วคราว/เอกสารแสดงการรับเงินตามเลขที่ที่ระบุข้างต้น สำหรับการชำระเงินสำหรับเบี้ยประกันภัยงวดถัดไป ผู้ขอเอาประกันภัยต้องได้รับใบเสร็จรับเงินเบี้ยประกันภัย/เอกสารแสดงการรับเงินจากบริษัท</span></div>
+                <div class="cbrow">
+                    <b>ผู้ชำระเบี้ยประกันภัย</b>&nbsp;
+                    <label class="cb"><input type="checkbox"  {{checked policy.premiumPayer.applicant}} />ตนเอง</label>
+                    <label class="cb"><input type="checkbox"  {{checked policy.premiumPayer.other}} />บุคคลอื่น</label> (ตอบคำถามเกี่ยวกับข้อมูลส่วนบุคคลของผู้ชำระเบี้ยประกันภัย <b>ส่วนที่ 4</b>)
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="box" style="border-top: 0.5pt solid black;">
+                <div><b class="formCounter">5.</b><b>ผู้รับประโยชน์</b> ถ้ามิได้ระบุร้อยละของผลประโยชน์ของผู้รับประโยชน์ ให้ถือว่าแบ่งเท่าๆกัน<br />
+                    (กรณีผู้ขอเอาประกันภัยอายุต่ำกว่า 16 ปี ผู้รับประโยชน์ตามกรมธรรม์คือผู้ชำระเบี้ยประกันภัย ตามข้อ 19 ดังนั้นไม่ต้องระบุผู้รับประโยชน์)</div>
+                <table class="grid">
+                    <tr>
+                        <th style="width: 20%;">ชื่อ และนามสกุลผู้รับประโยชน์</th>
+                        <th style="width: 5%;">อายุ</th>
+                        <th style="width: 20%;">เลขที่บัตรประชาชน/หนังสือเดินทาง/<br />เอกสารที่หน่วยงานของรัฐออกให้</th>
+                        <th style="width: 12%;">ความสัมพันธ์</th>
+                        <th>ที่อยู่</th>
+                        <th style="width: 10%;">ร้อยละของผลประโยชน์</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="{{beneficiaries.primary.fullName}}" /></td>
+                        <td><input type="text" style="text-align: center;" value="{{beneficiaries.primary.age}}" /></td>
+                        <td><input type="text" style="text-align: center;" value="{{beneficiaries.primary.identityNumber}}" /></td>
+                        <td><input type="text" value="{{beneficiaries.primary.relationship}}" /></td>
+                        <td><input type="text" value="{{beneficiaries.primary.address}}" /></td>
+                        <td><input type="text" style="text-align: center;" value="{{beneficiaries.primary.benefitPercent}}" /></td>
+                    </tr>
+                    <tr><td><input type="text"  value="{{beneficiaries.secondary.fullName}}" /></td><td><input type="text"  value="{{beneficiaries.secondary.age}}" /></td><td><input type="text"  value="{{beneficiaries.secondary.identityNumber}}" /></td><td><input type="text"  value="{{beneficiaries.secondary.relationship}}" /></td><td><input type="text"  value="{{beneficiaries.secondary.address}}" /></td><td><input type="text"  value="{{beneficiaries.secondary.benefitPercent}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{beneficiaries.tertiary.fullName}}" /></td><td><input type="text"  value="{{beneficiaries.tertiary.age}}" /></td><td><input type="text"  value="{{beneficiaries.tertiary.identityNumber}}" /></td><td><input type="text"  value="{{beneficiaries.tertiary.relationship}}" /></td><td><input type="text"  value="{{beneficiaries.tertiary.address}}" /></td><td><input type="text"  value="{{beneficiaries.tertiary.benefitPercent}}" /></td></tr>
+                </table>
+            </div>
+            <div class="pg">1/6</div>
+        </div>
+
+        <!--=======================================================
+                              PAGE 2 / 6
+        ========================================================-->
+        <div class="page" id="p2">
+            <div class="wm">สำเนา</div>
+
+            <div class="box top">
+                <!-- 6 -->
+                <div class="cbrow"><b class="formCounter">6.</b><b>ท่านมีประกันชีวิตหรือประกันสุขภาพหรือประกันอุบัติเหตุ หรือกำลังขอเอาประกันภัยดังกล่าวไว้กับบริษัทนี้หรือบริษัทอื่นหรือไม่</b>
+                    <br /><label class="cb" style="margin-left: 14pt;"><input type="checkbox"  {{checked sections.part1.field135}} />ไม่มี</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part1.field136}} />มี</label> ถ้า <b>มี</b> โปรดระบุรายละเอียด <span class="note-red">หากเนื้อที่ระบุคำตอบมีไม่เพียงพอ โปรดระบุรายละเอียดในบันทึกเพิ่มเติมข้อมูลใบคำขอเอาประกันภัย</span>
+                </div>
+                <table class="grid">
+                    <tr>
+                        <th rowspan="2" style="width: 20%;">บริษัท</th>
+                        <th colspan="3">จำนวนเงินเอาประกันภัย (บาท)</th>
+                        <th rowspan="2" style="width: 9%;">เงินชดเชย<br />รายวัน</th>
+                        <th rowspan="2" style="width: 24%;">ขณะนี้สัญญา<br />มีผลบังคับหรือไม่</th>
+                    </tr>
+                    <tr>
+                        <th style="width: 11%;">ชีวิต</th>
+                        <th style="width: 11%;">โรคร้ายแรง</th>
+                        <th style="width: 11%;">อุบัติเหตุ</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="{{sections.part1.field137}}" /></td>
+                        <td><input type="text" class="amt"  value="{{sections.part1.field138}}" /></td>
+                        <td><input type="text" class="amt" value="{{sections.part1.field139}}" /></td>
+                        <td><input type="text" class="amt"  value="{{sections.part1.field140}}" /></td>
+                        <td><input type="text" class="amt" value="{{sections.part1.field141}}" /></td>
+                        <td class="c"><label class="cb"><input type="checkbox"  {{checked sections.part1.field142}} />มี</label><label class="cb"><input type="checkbox"  {{checked sections.part1.field143}} />ไม่มี</label><label class="cb" style="margin-right: 0;"><input type="checkbox"  {{checked sections.part1.field144}} />กำลังสมัคร</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text"  value="{{sections.part1.field145}}" /></td>
+                        <td><input type="text" class="amt"  value="{{sections.part1.field146}}" /></td>
+                        <td><input type="text" class="amt"  value="{{sections.part1.field147}}" /></td>
+                        <td><input type="text" class="amt"  value="{{sections.part1.field148}}" /></td>
+                        <td><input type="text" class="amt"  value="{{sections.part1.field149}}" /></td>
+                        <td class="c"><label class="cb"><input type="checkbox"  {{checked sections.part1.field150}} />มี</label><label class="cb"><input type="checkbox"  {{checked sections.part1.field151}} />ไม่มี</label><label class="cb" style="margin-right: 0;"><input type="checkbox"  {{checked sections.part1.field152}} />กำลังสมัคร</label></td>
+                    </tr>
+                </table>
+
+                <!-- 7 -->
+                <div class="sub">
+                    <div><b class="formCounter">7.</b><b>ท่านเคยถูกปฏิเสธ เลื่อนการรับประกันภัย เพิ่มอัตราเบี้ยประกันภัย เปลี่ยนแปลงเงื่อนไขสำหรับการขอเอาประกันภัยหรือการขอกลับคืนสู่สถานะเดิม หรือการขอต่ออายุของกรมธรรม์ จากบริษัทนี้หรือบริษัทอื่นหรือไม่</b>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field153}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part1.field154}} />เคย</label> ถ้าเคย โปรดระบุรายละเอียด</div>
+                    <div class="ln ind"><span>ชื่อบริษัท</span><input type="text" value="{{sections.part1.field155}}" /><span>สาเหตุ</span><input type="text" value="{{sections.part1.field156}}" /><span>เมื่อ</span><input type="text" class="w70" value="{{sections.part1.field157}}" /></div>
+                    <div class="ln ind"><span>ชื่อบริษัท</span><input type="text"  value="{{sections.part1.field158}}" /><span>สาเหตุ</span><input type="text"  value="{{sections.part1.field159}}" /><span>เมื่อ</span><input type="text" class="w70"  value="{{sections.part1.field160}}" /></div>
+                </div>
+
+                <!-- 8 -->
+                <div class="sub cbrow">
+                    <b class="formCounter">8.</b><b>ท่านเคยมีส่วนเกี่ยวข้องกับการค้ายาเสพติดหรือเคยต้องโทษเกี่ยวกับคดียาเสพติดหรือไม่</b>
+                    <span style="float: right;"><label class="cb"><input type="checkbox"  {{checked sections.part1.field161}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part1.field162}} />เคย</label></span>
+                </div>
+
+                <!-- 9 -->
+                <div class="sub">
+                    <div><b class="formCounter">9.</b><b>ท่านเสพหรือเคยเสพยาเสพติด หรือสารเสพติด หรือไม่</b></div>
+                    <div class="ln ind" style="flex-wrap: wrap;">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field163}} />ไม่เสพ/ไม่เคย</label>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field164}} />เสพ/เคยเสพ</label>
+                        <span>ชนิด</span><input type="text" class="w70" value="{{sections.part1.field165}}" />
+                        <span>ปริมาณ</span><input type="text" class="w70" value="{{sections.part1.field166}}" />
+                        <span>ความถี่</span><input type="text" class="w30" value="{{sections.part1.field167}}" /><span>ครั้ง/สัปดาห์</span>
+                        <span>เสพมานาน</span><input type="text" class="w30" value="{{sections.part1.field168}}" /><span>ปี /เลิกเสพเมื่อ</span><input type="text" class="w70" value="{{sections.part1.field169}}" />
+                    </div>
+                </div>
+
+                <!-- 10 -->
+                <div class="sub">
+                    <div><b class="formCounter">10.</b><b>ท่านดื่มหรือเคยดื่มเครื่องดื่มที่มีแอลกอฮอล์เป็นประจำหรือไม่</b></div>
+                    <div class="ln ind" style="flex-wrap: wrap;">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field170}} />ไม่ดื่ม/ไม่เคย</label>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field171}} />ดื่ม/เคยดื่ม</label>
+                        <span>ชนิด</span><input type="text" class="w70" value="{{sections.part1.field172}}" />
+                        <span>ปริมาณ</span><input type="text" class="w30" value="{{sections.part1.field173}}" /><span>ขวด/ครั้ง</span>
+                        <span>ความถี่</span><input type="text" class="w30" value="{{sections.part1.field174}}" /><span>ครั้ง/สัปดาห์</span>
+                        <span>ดื่มมานาน</span><input type="text" class="w30" value="{{sections.part1.field175}}" /><span>ปี /เลิกดื่มเมื่อ</span><input type="text" class="w70" value="{{sections.part1.field176}}" />
+                    </div>
+                </div>
+
+                <!-- 11 -->
+                <div class="sub">
+                    <div><b class="formCounter">11.</b><b>ท่านสูบหรือเคยสูบบุหรี่ หรือยาสูบชนิดอื่นหรือไม่</b></div>
+                    <div class="ln ind" style="flex-wrap: wrap;">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field177}} />ไม่สูบ/ไม่เคย</label>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field178}} />สูบ/เคยสูบ</label>
+                        <span>ปริมาณ</span><input type="text" class="w40" value="{{sections.part1.field179}}" /><span>มวน/วัน</span>
+                        <span>สูบมานาน</span><input type="text" class="w40" value="{{sections.part1.field180}}" /><span>ปี / เลิกสูบเมื่อ</span><input type="text" class="w90" value="{{sections.part1.field181}}" />
+                    </div>
+                </div>
+
+                <!-- 12 -->
+                <div class="sub">
+                    <div class="ln"><b class="formCounter">12.</b><span>ส่วนสูง</span><input type="text" class="w40" value="{{sections.part1.field182}}" /><span>ซ.ม. น้ำหนัก</span><input type="text" class="w40" value="{{sections.part1.field183}}" /><span>ก.ก. ในรอบ 6 เดือนที่ผ่านมาน้ำหนักตัวของท่านเปลี่ยนแปลงหรือไม่</span></div>
+                    <div class="ln ind">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field184}} />ไม่เปลี่ยน</label>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part1.field185}} />เปลี่ยน</label>
+                        <span>เพิ่มขึ้น</span><input type="text" class="w40"  value="{{sections.part1.field186}}" /><span>ก.ก. ลดลง</span><input type="text" class="w40" value="{{sections.part1.field187}}" /><span>ก.ก. สาเหตุที่น้ำหนักเปลี่ยนแปลง</span><input type="text" value="{{sections.part1.field188}}" />
+                    </div>
+                </div>
+                <div class="red sub">ส่วนที่ 2, 3, 4, และ 5 หากเนื้อที่ระบุคำตอบมีไม่เพียงพอ โปรดระบุรายละเอียดในบันทึกเพิ่มเติมข้อมูลใบคำขอเอาประกันภัย</div>
+            </div>
+
+            <!-- Part 2 -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 2</u> คำถามเกี่ยวกับสุขภาพของบุคคลในครอบครัวของ <u>ผู้ขอเอาประกันภัย</u></td></tr>
+            </table>
+            <div class="box">
+                <div><b class="formCounter">13.</b>บิดา มารดา พี่น้องร่วมบิดาและ/หรือมารดา ของท่านเคยได้รับการวินิจฉัยจากแพทย์ว่าเป็นหรือเคยเป็นโรคหัวใจ โรคหลอดเลือด โรคมะเร็ง โรคเบาหวาน โรคไต โรคความดันโลหิตสูง การพยายามฆ่าตัวตายหรืออาการป่วยทางจิต โรคเลือด โรคไวรัสตับอักเสบ หรือไม่ ถ้า <b>เป็น</b> โปรดระบุ</div>
+                <div class="ln ind">
+                    <label class="cb"><input type="checkbox"  {{checked sections.part2.field001}} />ไม่เป็น</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part2.field002}} />เป็น</label>
+                    <span>ถ้าเป็นโปรดระบุรายละเอียดเฉพาะ <b>ชื่อโรค</b> ที่บุคคลในครอบครัวท่านเป็นหรือเคยเป็น</span><input type="text" value="{{sections.part2.field003}}" />
+                </div>
+                <div class="sub">
+                    <div><b class="formCounter">14.</b><b>ภรรยา/สามีของท่านเป็นโรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง หรือ ไวรัสตับอักเสบหรือไม่</b> (กรณีที่ไม่มี ภรรยา/สามี ไม่ต้องตอบ)</div>
+                    <div class="cbrow ind">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part2.field004}} />ไม่เป็น</label>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part2.field005}} />เป็น</label> หาก <b>เป็น</b> กรุณาทำเครื่องหมาย <span class="tick">☑</span>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part2.field006}} />โรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง</label>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part2.field007}} />ไวรัสตับอักเสบ</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Part 3 -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 3</u> คำถามเกี่ยวกับประวัติการเจ็บป่วยหรือการรักษาโรคของ <u>ผู้ขอเอาประกันภัย</u></td></tr>
+            </table>
+            <div class="box">
+                <div><b class="formCounter">15.</b><b>ท่านเคยมี หรือกำลังมีอาการดังต่อไปนี้หรือไม่</b></div>
+                <div class="cbrow ind"><b>ก) คลำพบก้อนเนื้อ</b> &nbsp;
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field001}} />ไม่เคย/ไม่มี</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field002}} />เคย/มี</label> โปรดระบุรายละเอียดในตารางด้านล่าง</div>
+                <div class="cbrow ind"><b>ข) มีอาการดังต่อไปนี้ในระหว่าง 6 เดือนที่ผ่านมา</b> &nbsp;
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field003}} />ไม่มี</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field004}} />มี</label></div>
+                <div class="cbrow ind">กรุณาทำเครื่องหมาย <span class="tick">☑</span> และให้ระบุอาการและการรักษาตามรายละเอียดด้านล่าง (ตอบได้มากกว่า 1 ข้อ)</div>
+                <div class="cbrow ind">
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field005}} />อาการอ่อนเพลีย</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field006}} />น้ำหนักลด</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field007}} />ท้องเดินเรื้อรัง</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field008}} />ไข้เรื้อรัง</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field009}} />โรคผิวหนังเรื้อรัง</label>
+                </div>
+                <table class="grid">
+                    <tr><th style="width: 40%;">อาการ</th><th style="width: 22%;">วัน / เดือน / ปี ที่เริ่มมีอาการ</th><th>อาการปัจจุบัน</th></tr>
+                    <tr><td><input type="text" value="{{sections.part3.field010}}" /></td><td><input type="text" value="{{sections.part3.field011}}" /></td><td><input type="text" value="{{sections.part3.field012}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field013}}" /></td><td><input type="text"  value="{{sections.part3.field014}}" /></td><td><input type="text"  value="{{sections.part3.field015}}" /></td></tr>
+                </table>
+
+                <div class="sub"><span class="ind">ค)</span> ในระหว่าง 5 ปีที่ผ่านมา ท่านเคยได้รับการตรวจสุขภาพ หรือการตรวจเพื่อวินิจฉัยโรค เช่น การตรวจเลือด การตรวจชิ้นเนื้อ ความดันโลหิต การตรวจปัสสาวะ การตรวจเอ็กซเรย์ การตรวจคลื่นไฟฟ้าหัวใจ การตรวจด้วยเครื่องมือพิเศษ หรือการตรวจแบบอื่นหรือไม่
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field016}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part3.field017}} />เคย</label> โปรดระบุรายละเอียด</div>
+                <table class="grid">
+                    <tr>
+                        <th style="width: 18%;">โรค</th>
+                        <th style="width: 15%;">วัน/เดือน/ปี ที่ได้รับ<br />การตรวจ/รักษา</th>
+                        <th style="width: 22%;">ผลการตรวจ/รักษา</th>
+                        <th style="width: 25%;">สถานพยาบาลที่ตรวจ/รักษา (หาก<br />ระบุชื่อแพทย์ได้โปรดระบุ)</th>
+                        <th>ข้อสังเกตโดยแพทย์</th>
+                    </tr>
+                    <tr><td><input type="text" value="{{sections.part3.field018}}" /></td><td><input type="text" value="{{sections.part3.field019}}" /></td><td><input type="text" value="{{sections.part3.field020}}" /></td><td><input type="text" value="{{sections.part3.field021}}" /></td><td><input type="text" value="{{sections.part3.field022}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field023}}" /></td><td><input type="text"  value="{{sections.part3.field024}}" /></td><td><input type="text"  value="{{sections.part3.field025}}" /></td><td><input type="text"  value="{{sections.part3.field026}}" /></td><td><input type="text"  value="{{sections.part3.field027}}" /></td></tr>
+                </table>
+
+                <div class="sub"><span class="ind">ง)</span> ในระหว่าง 5 ปีที่ผ่านมา ท่านเคย บาดเจ็บ เจ็บป่วยจนต้องเข้ารับการรักษาในโรงพยาบาล ได้รับการผ่าตัด การแนะนำจากแพทย์แผนปัจจุบันหรือแพทย์ทางเลือกเพื่อรักษาที่มิได้ระบุไว้ข้างต้น
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field028}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part3.field029}} />เคย</label> โปรดระบุรายละเอียด</div>
+                <table class="grid">
+                    <tr>
+                        <th style="width: 18%;">อาการ</th>
+                        <th style="width: 18%;">วัน/เดือน/ปี ที่ได้รับการตรวจ/รักษา</th>
+                        <th style="width: 20%;">ผลการตรวจ/รักษา</th>
+                        <th>สถานพยาบาลที่ตรวจ/รักษา (หากระบุชื่อแพทย์ได้โปรดระบุ)</th>
+                    </tr>
+                    <tr><td><input type="text" value="{{sections.part3.field030}}" /></td><td><input type="text" value="{{sections.part3.field031}}" /></td><td><input type="text" value="{{sections.part3.field032}}" /></td><td><input type="text" value="{{sections.part3.field033}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field034}}" /></td><td><input type="text"  value="{{sections.part3.field035}}" /></td><td><input type="text"  value="{{sections.part3.field036}}" /></td><td><input type="text"  value="{{sections.part3.field037}}" /></td></tr>
+                </table>
+
+                <div class="sub"><b class="formCounter">16.</b><b>ท่านเคยได้รับการวินิจฉัย หรือรับการรักษาหรือตั้งข้อสังเกตโดยแพทย์ว่าป่วยเป็นโรคตามรายการท้ายคำถามนี้หรือไม่</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field038}} />ไม่เคย/ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part3.field039}} />เคย/มี</label>
+                    หาก <b>เคย/มี</b> กรุณาทำเครื่องหมาย <span class="tick">☑</span> และระบุโรคและการรักษาตามรายละเอียด ในข้อ 16.ค) (ตอบได้มากกว่า 1 ข้อ)</div>
+                <div class="ind"><b>16.ก) สำหรับการขอเอาประกันภัยหลัก และสัญญาเพิ่มเติมเกี่ยวกับโรคร้ายแรง</b></div>
+                <table class="grid" style="margin-top: 2pt;">
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field040}} />โรคหอบหืด</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field041}} />โรคความดันโลหิตสูง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field042}} />โรคเลือด</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field043}} />โรคชัก</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field044}} />โรคตับหรือทางเดินน้ำดี</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field045}} />โรควัณโรค</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field046}} />โรคหลอดเลือดในสมอง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field047}} />โรคหลอดเลือด</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field048}} />โรคไต</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field049}} />โรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field050}} />โรคหัวใจ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field051}} />โรคเบาหวาน</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field052}} />โรคมะเร็ง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field053}} />โรคจิต</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field054}} />โรคเก๊าท์</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field055}} />โรคปอดหรือปอดอักเสบ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field056}} />โรคเอสแอลอี</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field057}} />พิการทางร่างกาย</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field058}} />โรคพาร์กินสัน</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field059}} />โรคอัมพฤกษ์หรืออัมพาต</label></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="pg">2/6</div>
+        </div>
+
+        <!--=======================================================
+                              PAGE 3 / 6
+        ========================================================-->
+        <div class="page" id="p3">
+            <div class="wm">สำเนา</div>
+
+            <div class="box top">
+                <div><b>16.ข) ข้อ 16.ข) และ ข้อ 17. สำหรับการขอเอาประกันภัยสัญญาเพิ่มเติมเกี่ยวกับสุขภาพ</b></div>
+                <table class="grid" style="margin-top: 2pt;">
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field060}} />สายตาพิการ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field061}} />ดีซ่าน</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field062}} />โรคประสาท</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field063}} />ติดเชื้อในหูชั้นกลาง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field064}} />ถุงน้ำดีอักเสบ</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field065}} />โรคจอประสาทตา</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field066}} />ม้ามโต</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field067}} />โรคซึมเศร้า</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field068}} />ต่อมทอนซิลอักเสบเรื้อรัง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field069}} />ไส้เลื่อน</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field070}} />โรคต้อหิน</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field071}} />โรคตับอ่อนอักเสบ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field072}} />ออทิสติก</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field073}} />ไซนัสอักเสบ</label></td>
+                        <td style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field074}} />โรคความจำเสื่อม</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field075}} />โรคแผลในทางเดินอาหาร</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field076}} />สมาธิสั้น</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field077}} />หลอดลมอักเสบเรื้อรัง</label></td>
+                        <td style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field078}} />โรคไทรอยด์</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field079}} />โรคข้ออักเสบ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field080}} />ภูมิแพ้</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field081}} />ปวดศีรษะไมเกรน</label></td>
+                        <td style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field082}} />โรคปอดอุดกั้นเรื้อรัง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field083}} />โรคหนังแข็ง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field084}} />กรดไหลย้อน</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field085}} />กระดูกสันหลังเคลื่อน</label></td>
+                        <td style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field086}} />โรคถุงลมโป่งพอง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field087}} />โรคต่อมน้ำเหลืองโต</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field088}} />นิ่ว</label></td>
+                        <td style="border: none;" colspan="2"><label class="cb"><input type="checkbox"  {{checked sections.part3.field089}} />หมอนรองกระดูกเคลื่อนหรือทับเส้นประสาท</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field090}} />ภาวะหยุดหายใจขณะหลับ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field091}} />เนื้องอก ก้อนหรือถุงน้ำ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field092}} />ริดสีดวงทวาร</label></td>
+                        <td style="border: none;" colspan="2"><label class="cb"><input type="checkbox"  {{checked sections.part3.field093}} />เส้นเอ็นอักเสบเรื้อรัง</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field094}} />โรคเส้นเลือดหัวใจตีบ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field095}} />โรคกามโรค (ภายใน 2 ปี)</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field096}} />ฝีคันฑสูตร</label></td>
+                        <td style="border: none;" colspan="2"><label class="cb"><input type="checkbox"  {{checked sections.part3.field097}} />เส้นประสาทอักเสบหรือถูกเบียดทับ</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field098}} />โรคพิษสุราเรื้อรัง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field099}} />ดาวน์ซินโดรม</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field100}} />ข้อเสื่อม</label></td>
+                        <td style="border: none;" colspan="2"><label class="cb"><input type="checkbox"  {{checked sections.part3.field101}} />เยื่อบุโพรงมดลูกเจริญผิดที่</label></td>
+                    </tr>
+                </table>
+
+                <div class="sub"><b>16.ค) รายละเอียดของข้อ 16.ก) และ 16.ข)</b></div>
+                <table class="grid">
+                    <tr>
+                        <th style="width: 20%;">โรค</th>
+                        <th style="width: 28%;">วัน/เดือน/ปีที่รักษา ที่ได้รับการวินิจฉัย/<br />การรักษา/ตั้งข้อสังเกตโดยแพทย์ (ให้ระบุ<br />ว่าเป็นการได้รับการวินิจฉัย หรือการ<br />รักษา หรือตั้งข้อสังเกตโดยแพทย์)</th>
+                        <th style="width: 28%;">ผลการวินิจฉัย/การรักษา/การตั้ง<br />ข้อสังเกตโดยแพทย์ และอาการปัจจุบัน</th>
+                        <th>สถานพยาบาลที่วินิจฉัย/รักษา/ตั้ง<br />ข้อสังเกตโดยแพทย์ (หากระบุชื่อ<br />แพทย์ได้โปรดระบุ)</th>
+                    </tr>
+                    <tr><td><input type="text" value="{{sections.part3.field102}}" /></td><td><input type="text" value="{{sections.part3.field103}}" /></td><td><input type="text" value="{{sections.part3.field104}}" /></td><td><input type="text" value="{{sections.part3.field105}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field106}}" /></td><td><input type="text"  value="{{sections.part3.field107}}" /></td><td><input type="text"  value="{{sections.part3.field108}}" /></td><td><input type="text"  value="{{sections.part3.field109}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field110}}" /></td><td><input type="text"  value="{{sections.part3.field111}}" /></td><td><input type="text"  value="{{sections.part3.field112}}" /></td><td><input type="text"  value="{{sections.part3.field113}}" /></td></tr>
+                </table>
+
+                <!-- 17 -->
+                <div class="sub"><b class="formCounter">17.</b><b>ท่านเคยมี หรือกำลังมีอาการดังต่อไปนี้หรือไม่</b>
+                    <label class="cb" style="margin-left: 60pt;"><input type="checkbox"  {{checked sections.part3.field114}} />ไม่เคย/ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part3.field115}} />เคย/มี</label></div>
+                <div class="ind">หาก <b>เคยมี หรือกำลังมี</b> กรุณาทำเครื่องหมาย <span class="tick">☑</span> และให้ระบุอาการและการรักษาตามรายละเอียดด้านล่าง (ตอบได้มากกว่า 1 ข้อ)</div>
+                <table class="grid" style="margin-top: 2pt;">
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field116}} />การมองเห็นผิดปกติ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field117}} />มีพัฒนาการช้า</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field118}} />เหนื่อยง่ายผิดปกติ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field119}} />ปวดท้องเรื้อรัง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field120}} />อาเจียนหรือถ่ายเป็นเลือด</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field121}} />กล้ามเนื้ออ่อนแรง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field122}} />ปวดศีรษะรุนแรงเรื้อรัง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field123}} />เจ็บหรือแน่นหน้าอก</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field124}} />ท้องมาน</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field125}} />ท้องเสียเรื้อรัง</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field126}} />การเคลื่อนไหวของร่างกายผิดปกติ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field127}} />ไอเรื้อรัง</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field128}} />ใจสั่น</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field129}} />มีเลือดปนในปัสสาวะ</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field130}} />ปวดข้อเรื้อรัง</label></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field131}} />ร่างกายสูญเสียประสาทรับความรู้สึก</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field132}} />ไอเป็นเลือด</label></td>
+                        <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part3.field133}} />จ้ำเลือด</label></td>
+                        <td style="border: none;" colspan="2"><label class="cb"><input type="checkbox"  {{checked sections.part3.field134}} />เคยพยายามทำร้ายร่างกายตนเอง</label></td>
+                    </tr>
+                </table>
+                <div class="ln"><b>เฉพาะสตรี</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field135}} />กำลังตั้งครรภ์</label><input type="text" class="w40"  value="{{sections.part3.field136}}" /><span>เดือน</span>
+                    <label class="cb" style="margin-left: 8pt;"><input type="checkbox"  {{checked sections.part3.field137}} />โรคแทรกซ้อนในการตั้งครรภ์และคลอดบุตร</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part3.field138}} />เลือดออกผิดปกติทางช่องคลอด</label>
+                </div>
+                <table class="grid">
+                    <tr><th style="width: 40%;">อาการ</th><th style="width: 22%;">วัน / เดือน / ปี ที่เริ่มมีอาการ</th><th>อาการปัจจุบัน</th></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field139}}" /></td><td><input type="text"  value="{{sections.part3.field140}}" /></td><td><input type="text"  value="{{sections.part3.field141}}" /></td></tr>
+                    <tr><td><input type="text"  value="{{sections.part3.field142}}" /></td><td><input type="text"  value="{{sections.part3.field143}}" /></td><td><input type="text"  value="{{sections.part3.field144}}" /></td></tr>
+                </table>
+
+                <!-- 18 -->
+                <div class="ln"><b class="formCounter">18.</b><span>กรณีต้องการแจ้งรายละเอียดเพิ่มเติมของผู้เอาประกันภัย</span><input type="text"  value="{{sections.part3.field145}}" /></div>
+                <div class="ln"><input type="text"  value="{{sections.part3.field146}}" /></div>
+            </div>
+
+            <!-- Part 4 -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 4</u> คำถามเกี่ยวกับข้อมูลส่วนบุคคลของ <u>ผู้ชำระเบี้ยประกันภัย</u> สำหรับผู้ขอเอาประกันภัยที่ไม่ได้ชำระเบี้ยด้วยตนเอง<br />
+                    หรือผู้ขอเอาประกันภัยอายุต่ำกว่า 16 ปี <small>(กรณีผู้ขอเอาประกันภัยอายุต่ำกว่า 16 ปี ผู้ชำระเบี้ยประกันภัย คือผู้แทนโดยชอบธรรมหรือผู้ใช้อำนาจปกครองของผู้เยาว์ที่ขอเอาประกันภัยซึ่งเป็นผู้มีสิทธิ เป็นผู้รับประโยชน์ตามกรมธรรม์ และเป็นผู้ให้ถ้อยแถลงข้อมูลเกี่ยวกับผู้เยาว์ที่ขอเอาประกันภัย)</small></td></tr>
+            </table>
+            <div class="box">
+                <div class="ln"><b class="formCounter">19.</b><b>ชื่อและนามสกุล</b><input type="text"  value="{{sections.part4.field001}}" /><span>ชื่อและนามสกุลเดิม</span><input type="text"  value="{{sections.part4.field002}}" /></div>
+                <div class="ln ind">
+                    <span>เพศ</span><label class="cb"><input type="checkbox"  {{checked sections.part4.field003}} />ชาย</label><label class="cb"><input type="checkbox"  {{checked sections.part4.field004}} />หญิง</label>
+                    <span>เกิดวันที่</span><input type="text" class="w30"  value="{{sections.part4.field005}}" /><span>เดือน</span><input type="text" class="w70"  value="{{sections.part4.field006}}" /><span>พ.ศ.</span><input type="text" class="w40"  value="{{sections.part4.field007}}" /><span>อายุ</span><input type="text" class="w30"  value="{{sections.part4.field008}}" /><span>ปี</span><span>สัญชาติ</span><input type="text" class="w70"  value="{{sections.part4.field009}}" />
+                </div>
+                <div class="ln ind">
+                    <span>เลขประจำตัวประชาชน</span>
+                    <span class="digits"><input type="text" maxlength="1"  value="{{sections.part4.field010}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field011}}" /><input type="text" maxlength="1"  value="{{sections.part4.field012}}" /><input type="text" maxlength="1"  value="{{sections.part4.field013}}" /><input type="text" maxlength="1"  value="{{sections.part4.field014}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field015}}" /><input type="text" maxlength="1"  value="{{sections.part4.field016}}" /><input type="text" maxlength="1"  value="{{sections.part4.field017}}" /><input type="text" maxlength="1"  value="{{sections.part4.field018}}" /><input type="text" maxlength="1"  value="{{sections.part4.field019}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field020}}" /><input type="text" maxlength="1"  value="{{sections.part4.field021}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field022}}" /></span>
+                    <span>ความสัมพันธ์กับผู้ขอเอาประกันภัย</span><input type="text"  value="{{sections.part4.field023}}" />
+                </div>
+                <div class="ln ind">
+                    <span>เอกสารที่ใช้แสดงตน</span><label class="cb"><input type="checkbox"  {{checked sections.part4.field024}} />บัตรประจำตัวประชาชน</label><span>วันบัตรหมดอายุ</span><input type="text" class="w90"  value="{{sections.part4.field025}}" />
+                </div>
+                <div class="ln ind" style="padding-left: 70pt;"><label class="cb"><input type="checkbox"  {{checked sections.part4.field026}} />หนังสือเดินทาง เลขที่</label><input type="text" class="w120"  value="{{sections.part4.field027}}" /><span>วันหมดอายุ</span><input type="text" class="w90"  value="{{sections.part4.field028}}" /></div>
+                <div class="cbrow ind"><span>สถานภาพ</span>&nbsp;<label class="cb"><input type="checkbox"  {{checked sections.part4.field029}} />โสด</label><label class="cb"><input type="checkbox"  {{checked sections.part4.field030}} />สมรส</label><label class="cb"><input type="checkbox"  {{checked sections.part4.field031}} />หม้าย</label><label class="cb"><input type="checkbox"  {{checked sections.part4.field032}} />หย่า</label></div>
+                <div class="ln ind"><span>ชื่อและนามสกุล ภรรยา / สามี</span><input type="text"  value="{{sections.part4.field033}}" /><span>เลขประจำตัวประชาชน</span>
+                    <span class="digits"><input type="text" maxlength="1"  value="{{sections.part4.field034}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field035}}" /><input type="text" maxlength="1"  value="{{sections.part4.field036}}" /><input type="text" maxlength="1"  value="{{sections.part4.field037}}" /><input type="text" maxlength="1"  value="{{sections.part4.field038}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field039}}" /><input type="text" maxlength="1"  value="{{sections.part4.field040}}" /><input type="text" maxlength="1"  value="{{sections.part4.field041}}" /><input type="text" maxlength="1"  value="{{sections.part4.field042}}" /><input type="text" maxlength="1"  value="{{sections.part4.field043}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field044}}" /><input type="text" maxlength="1"  value="{{sections.part4.field045}}" /><i>-</i><input type="text" maxlength="1"  value="{{sections.part4.field046}}" /></span></div>
+
+                <div class="sub">
+                    <div class="ln"><b class="formCounter">20.</b><b>ก) ที่อยู่ปัจจุบัน</b><input type="text"  value="{{sections.part4.field047}}" /></div>
+                    <div class="ln ind"><span>แขวง/ตำบล</span><input type="text"  value="{{sections.part4.field048}}" /><span>เขต/อำเภอ</span><input type="text"  value="{{sections.part4.field049}}" /><span>จังหวัด</span><input type="text"  value="{{sections.part4.field050}}" /><span>รหัสไปรษณีย์</span><input type="text" class="w40"  value="{{sections.part4.field051}}" /><span>ประเทศ</span><input type="text" class="w40"  value="{{sections.part4.field052}}" /></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ข) ที่อยู่ตามทะเบียนบ้าน</b><input type="text"  value="{{sections.part4.field053}}" /></div>
+                    <div class="ln ind"><span>แขวง/ตำบล</span><input type="text"  value="{{sections.part4.field054}}" /><span>เขต/อำเภอ</span><input type="text"  value="{{sections.part4.field055}}" /><span>จังหวัด</span><input type="text"  value="{{sections.part4.field056}}" /><span>รหัสไปรษณีย์</span><input type="text" class="w40"  value="{{sections.part4.field057}}" /><span>ประเทศ</span><input type="text" class="w40"  value="{{sections.part4.field058}}" /></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ค) สถานที่ทำงาน</b><input type="text"  value="{{sections.part4.field059}}" /></div>
+                    <div class="ln ind"><span>แขวง/ตำบล</span><input type="text"  value="{{sections.part4.field060}}" /><span>เขต/อำเภอ</span><input type="text"  value="{{sections.part4.field061}}" /><span>จังหวัด</span><input type="text"  value="{{sections.part4.field062}}" /><span>รหัสไปรษณีย์</span><input type="text" class="w40"  value="{{sections.part4.field063}}" /><span>ประเทศ</span><input type="text" class="w40"  value="{{sections.part4.field064}}" /></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ง) </b><span>โทรศัพท์บ้าน</span><input type="text"  value="{{sections.part4.field065}}" /><span>โทรศัพท์มือถือ</span><input type="text"  value="{{sections.part4.field066}}" /><span>โทรศัพท์ที่ทำงาน</span><input type="text"  value="{{sections.part4.field067}}" /><span>อีเมล</span><input type="text"  value="{{sections.part4.field068}}" /></div>
+                </div>
+                <div class="sub">
+                    <div class="ln"><b class="formCounter">21.</b><b>ก) อาชีพประจำ</b><input type="text"  value="{{sections.part4.field069}}" /><span>ตำแหน่ง</span><input type="text" class="w90"  value="{{sections.part4.field070}}" /><span>ลักษณะงานที่ทำ</span><input type="text" class="w120"  value="{{sections.part4.field071}}" /></div>
+                    <div class="ln ind"><span>ลักษณะธุรกิจ</span><input type="text"  value="{{sections.part4.field072}}" /><span>รายได้ต่อปี</span><input type="text" class="w90 amt"  value="{{sections.part4.field073}}" /><span>บาท</span></div>
+                    <div class="ln" style="padding-left: 10pt;"><b>ข) อาชีพอื่นๆ (ถ้ามี)</b><input type="text"  value="{{sections.part4.field074}}" /><span>ตำแหน่ง</span><input type="text" class="w90"  value="{{sections.part4.field075}}" /><span>ลักษณะงานที่ทำ</span><input type="text" class="w120"  value="{{sections.part4.field076}}" /></div>
+                    <div class="ln ind"><span>ลักษณะธุรกิจ</span><input type="text"  value="{{sections.part4.field077}}" /><span>รายได้ต่อปี</span><input type="text" class="w90 amt"  value="{{sections.part4.field078}}" /><span>บาท</span></div>
+                    <div class="cbrow" style="padding-left: 10pt;"><b>ท่านใช้รถจักรยานยนต์ในการทำงานหรือไม่</b>&nbsp;<label class="cb"><input type="checkbox"  {{checked sections.part4.field079}} />ไม่ใช้</label><label class="cb"><input type="checkbox"  {{checked sections.part4.field080}} />ใช้</label></div>
+                </div>
+            </div>
+            <div class="pg">3/6</div>
+        </div>
+
+        <!--=======================================================
+                              PAGE 4 / 6
+        ========================================================-->
+        <div class="page" id="p4">
+            <div class="wm">สำเนา</div>
+
+            <!-- Part 5 -->
+            <table>
+                <tr class="partHeading" style="border-top: 1pt solid black;"><td><u>ส่วนที่ 5</u> คำถามเกี่ยวกับ <u>ผู้ชำระเบี้ยประกันภัย</u>กรณีซื้อสัญญาเพิ่มเติมผู้ชำระเบี้ย</td></tr>
+            </table>
+            <div class="box">
+                <div><b class="formCounter">22.</b><b>ท่านเคยถูกปฏิเสธ เลื่อนการรับประกันภัย เพิ่มอัตราเบี้ยประกันภัย เปลี่ยนแปลงเงื่อนไขสำหรับการขอเอาประกันภัยหรือการขอกลับคืนสู่สถานะเดิม หรือการขอต่ออายุของกรมธรรม์ จากบริษัทนี้หรือบริษัทอื่นหรือไม่</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part5.field001}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field002}} />เคย</label> ถ้า <b>เคย</b> โปรดระบุรายละเอียด</div>
+                <div class="ln ind"><span>ชื่อบริษัท</span><input type="text"  value="{{sections.part5.field003}}" /><span>สาเหตุ</span><input type="text"  value="{{sections.part5.field004}}" /><span>เมื่อ</span><input type="text" class="w70"  value="{{sections.part5.field005}}" /></div>
+                <div class="ln ind"><span>ชื่อบริษัท</span><input type="text"  value="{{sections.part5.field006}}" /><span>สาเหตุ</span><input type="text"  value="{{sections.part5.field007}}" /><span>เมื่อ</span><input type="text" class="w70"  value="{{sections.part5.field008}}" /></div>
+
+                <div class="sub cbrow"><b class="formCounter">23.</b><b>ท่านเคยมีส่วนเกี่ยวข้องกับการค้ายาเสพติดหรือเคยต้องโทษเกี่ยวกับคดียาเสพติดหรือไม่</b>
+                    <span style="float: right;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field009}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field010}} />เคย</label></span></div>
+
+                <div class="sub">
+                    <div><b class="formCounter">24.</b><b>ท่านเสพหรือเคยเสพยาเสพติด หรือสารเสพติด หรือไม่</b></div>
+                    <div class="ln ind" style="flex-wrap: wrap;">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part5.field011}} />ไม่เสพ/ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field012}} />เสพ/เคยเสพ</label>
+                        <span>ชนิด</span><input type="text" class="w70"  value="{{sections.part5.field013}}" /><span>ปริมาณ</span><input type="text" class="w70"  value="{{sections.part5.field014}}" /><span>ความถี่</span><input type="text" class="w30"  value="{{sections.part5.field015}}" /><span>ครั้ง/สัปดาห์</span><span>เสพมานาน</span><input type="text" class="w30"  value="{{sections.part5.field016}}" /><span>ปี /เลิกเสพเมื่อ</span><input type="text" class="w70"  value="{{sections.part5.field017}}" />
+                    </div>
+                </div>
+                <div class="sub">
+                    <div><b class="formCounter">25.</b><b>ท่านดื่มหรือเคยดื่มเครื่องดื่มที่มีแอลกอฮอล์เป็นประจำหรือไม่</b></div>
+                    <div class="ln ind" style="flex-wrap: wrap;">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part5.field018}} />ไม่ดื่ม/ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field019}} />ดื่ม/เคยดื่ม</label>
+                        <span>ชนิด</span><input type="text" class="w70"  value="{{sections.part5.field020}}" /><span>ปริมาณ</span><input type="text" class="w30"  value="{{sections.part5.field021}}" /><span>ขวด/ครั้ง</span><span>ความถี่</span><input type="text" class="w30"  value="{{sections.part5.field022}}" /><span>ครั้ง/สัปดาห์</span><span>ดื่มมานาน</span><input type="text" class="w30"  value="{{sections.part5.field023}}" /><span>ปี /เลิกดื่มเมื่อ</span><input type="text" class="w70"  value="{{sections.part5.field024}}" />
+                    </div>
+                </div>
+                <div class="sub">
+                    <div><b class="formCounter">26.</b><b>ท่านสูบหรือเคยสูบบุหรี่ หรือยาสูบชนิดอื่นหรือไม่</b></div>
+                    <div class="ln ind" style="flex-wrap: wrap;">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part5.field025}} />ไม่สูบ/ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field026}} />สูบ/เคยสูบ</label>
+                        <span>ปริมาณ</span><input type="text" class="w40"  value="{{sections.part5.field027}}" /><span>มวน/วัน</span><span>สูบมานาน</span><input type="text" class="w40"  value="{{sections.part5.field028}}" /><span>ปี / เลิกสูบเมื่อ</span><input type="text" class="w90"  value="{{sections.part5.field029}}" />
+                    </div>
+                </div>
+                <div class="sub">
+                    <div class="ln"><b class="formCounter">27.</b><span>ส่วนสูง</span><input type="text" class="w40"  value="{{sections.part5.field030}}" /><span>ซ.ม. น้ำหนัก</span><input type="text" class="w40"  value="{{sections.part5.field031}}" /><span>ก.ก. ในรอบ 6 เดือนที่ผ่านมาน้ำหนักตัวของท่านเปลี่ยนแปลงหรือไม่</span></div>
+                    <div class="ln ind">
+                        <label class="cb"><input type="checkbox"  {{checked sections.part5.field032}} />ไม่เปลี่ยน</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field033}} />เปลี่ยน</label>
+                        <span>เพิ่มขึ้น</span><input type="text" class="w40"  value="{{sections.part5.field034}}" /><span>ก.ก. ลดลง</span><input type="text" class="w40"  value="{{sections.part5.field035}}" /><span>ก.ก. สาเหตุที่น้ำหนักเปลี่ยนแปลง</span><input type="text"  value="{{sections.part5.field036}}" />
+                    </div>
+                </div>
+
+                <div class="sub">
+                    <div><b class="formCounter">28.</b><b>ท่านเคยได้รับการวินิจฉัย หรือรับการรักษา หรือตั้งข้อสังเกตโดยแพทย์ว่าป่วยเป็นโรคตามรายการท้ายคำถามนี้หรือไม่</b>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part5.field037}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field038}} />เคย</label>
+                        ถ้า <b>เคย</b> กรุณาทำเครื่องหมาย <span class="tick">☑</span> และระบุรายละเอียด (ตอบได้มากกว่า 1 ข้อ)</div>
+                    <table class="grid" style="margin-top: 2pt;">
+                        <tr>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field039}} />โรคหอบหืด</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field040}} />โรคความดันโลหิตสูง</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field041}} />โรคเลือด</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field042}} />โรคชัก</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field043}} />โรคตับหรือทางเดินน้ำดี</label></td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field044}} />โรควัณโรค</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field045}} />โรคหลอดเลือดในสมอง</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field046}} />โรคหลอดเลือด</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field047}} />โรคไต</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field048}} />โรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง</label></td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field049}} />โรคหัวใจ</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field050}} />โรคเบาหวาน</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field051}} />โรคมะเร็ง</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field052}} />โรคจิต</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field053}} />โรคเก๊าท์</label></td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field054}} />โรคปอดหรือปอดอักเสบ</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field055}} />โรคเอสแอลอี</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field056}} />พิการทางร่างกาย</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field057}} />โรคพาร์กินสัน</label></td>
+                            <td style="border: none;"><label class="cb"><input type="checkbox"  {{checked sections.part5.field058}} />โรคอัมพฤกษ์หรืออัมพาต</label></td>
+                        </tr>
+                    </table>
+                    <table class="grid">
+                        <tr>
+                            <th style="width: 20%;">โรค</th>
+                            <th style="width: 30%;">วัน/เดือน/ปีที่รักษา ที่ได้รับการวินิจฉัย/การรักษา/ตั้ง<br />ข้อสังเกตโดยแพทย์ (ให้ระบุว่าเป็นการได้รับการ<br />วินิจฉัย หรือการรักษา หรือตั้งข้อสังเกตโดยแพทย์)</th>
+                            <th style="width: 22%;">ผลการวินิจฉัย/การรักษา/<br />การตั้งข้อสังเกตโดย<br />แพทย์ และอาการปัจจุบัน</th>
+                            <th>สถานพยาบาลที่วินิจฉัย/รักษา/<br />ตั้งข้อสังเกตโดยแพทย์ (หาก<br />ระบุชื่อแพทย์ได้โปรดระบุ)</th>
+                        </tr>
+                        <tr><td><input type="text"  value="{{sections.part5.field059}}" /></td><td><input type="text"  value="{{sections.part5.field060}}" /></td><td><input type="text"  value="{{sections.part5.field061}}" /></td><td><input type="text"  value="{{sections.part5.field062}}" /></td></tr>
+                        <tr><td><input type="text"  value="{{sections.part5.field063}}" /></td><td><input type="text"  value="{{sections.part5.field064}}" /></td><td><input type="text"  value="{{sections.part5.field065}}" /></td><td><input type="text"  value="{{sections.part5.field066}}" /></td></tr>
+                    </table>
+                </div>
+
+                <div class="sub">
+                    <div><b class="formCounter">29.</b><b>ในระหว่าง 5 ปีที่ผ่านมา ท่านเคยได้รับการตรวจสุขภาพ หรือการตรวจเพื่อวินิจฉัยโรค เช่น การตรวจชิ้นเนื้อ การตรวจเอ็กซเรย์ การตรวจคลื่นไฟฟ้าหัวใจ การตรวจเลือดหรือการตรวจด้วยเครื่องมือพิเศษ หรือไม่</b>
+                        <label class="cb"><input type="checkbox"  {{checked sections.part5.field067}} />ไม่เคย</label><label class="cb"><input type="checkbox"  {{checked sections.part5.field068}} />เคย</label> โปรดระบุรายละเอียด</div>
+                    <table class="grid">
+                        <tr>
+                            <th style="width: 20%;">โรค</th>
+                            <th style="width: 20%;">วัน/เดือน/ปีที่ได้รับการตรวจ/<br />รักษา</th>
+                            <th style="width: 20%;">ผลการตรวจ/รักษา</th>
+                            <th style="width: 20%;">สถานพยาบาลที่ตรวจ/<br />รักษา (หากระบุชื่อแพทย์<br />ได้โปรดระบุ)</th>
+                            <th>ข้อสังเกตโดยแพทย์</th>
+                        </tr>
+                        <tr><td><input type="text"  value="{{sections.part5.field069}}" /></td><td><input type="text"  value="{{sections.part5.field070}}" /></td><td><input type="text"  value="{{sections.part5.field071}}" /></td><td><input type="text"  value="{{sections.part5.field072}}" /></td><td><input type="text"  value="{{sections.part5.field073}}" /></td></tr>
+                        <tr><td><input type="text"  value="{{sections.part5.field074}}" /></td><td><input type="text"  value="{{sections.part5.field075}}" /></td><td><input type="text"  value="{{sections.part5.field076}}" /></td><td><input type="text"  value="{{sections.part5.field077}}" /></td><td><input type="text"  value="{{sections.part5.field078}}" /></td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Part 6 : FATCA -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 6</u> การรับรองสถานะเพื่อปฏิบัติตามกฎหมายว่าด้วยการปฏิบัติการตามความตกลงระหว่างรัฐบาลแห่งราชอาณาจักรไทยกับรัฐบาลแห่งประเทศสหรัฐอเมริกาเพื่อความร่วมมือในการปรับปรุงการปฏิบัติตามการภาษีอากรระหว่างประเทศ (กฎหมาย FATCA) ของผู้ขอเอาประกันภัย ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย (กรณีผู้ขอเอาประกันภัยยังไม่บรรลุนิติภาวะ และไม่ได้เป็นผู้ชำระเบี้ยประกันภัยด้วยตนเอง)</td></tr>
+            </table>
+            <div class="box">
+                <div><b>1. การรับรองสถานะ</b></div>
+                <div class="ind"><b>ก.</b> ท่านมีสัญชาติ ประเทศที่เกิด ที่เกี่ยวข้องกับประเทศสหรัฐอเมริกาหรือไม่</div>
+                <div class="cbrow ind"><b>ผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field001}} />ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field002}} />มี</label> โปรดระบุ</div>
+                <div class="cbrow" style="padding-left: 90pt;">
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field003}} />ถือสัญชาติอเมริกัน</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field004}} />เกิดในประเทศสหรัฐอเมริกา</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field005}} />ถือสัญชาติอเมริกันและเกิดในประเทศสหรัฐอเมริกา</label>
+                </div>
+                <div class="cbrow ind"><b>ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field006}} />ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field007}} />มี</label> โปรดระบุ</div>
+                <div class="cbrow" style="padding-left: 90pt;">
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field008}} />ถือสัญชาติอเมริกัน</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field009}} />เกิดในประเทศสหรัฐอเมริกา</label>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field010}} />ถือสัญชาติอเมริกันและเกิดในประเทศสหรัฐอเมริกา</label>
+                </div>
+                <div class="ind"><b>ข.</b> ท่านเป็นหรือเคยเป็นผู้ถือบัตรประจำตัวผู้มีถิ่นที่อยู่ถาวรอย่างถูกกฎหมายในประเทศสหรัฐอเมริกา (Green card) หรือไม่</div>
+                <div class="cbrow ind"><b>ผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field011}} />ไม่เป็น</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field012}} />เป็น</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field013}} />เคยเป็นและสิ้นผลบังคับ</label></div>
+                <div class="ln" style="padding-left: 90pt;"><span>กรณีเป็นหรือเคยเป็น โปรดระบุเลขที่</span><input type="text" class="w120" value="{{sections.part6.field014}}" /><span>วันบัตรหมดอายุ</span><input type="text" class="w90" value="{{sections.part6.field015}}" /></div>
+                <div class="cbrow ind"><b>ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field016}} />ไม่เป็น</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field017}} />เป็น</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field018}} />เคยเป็นและสิ้นผลบังคับ</label></div>
+                <div class="ln" style="padding-left: 90pt;"><span>กรณีเป็นหรือเคยเป็น โปรดระบุเลขที่</span><input type="text" class="w120"  value="{{sections.part6.field019}}" /><span>วันบัตรหมดอายุ</span><input type="text" class="w90"  value="{{sections.part6.field020}}" /></div>
+                <div class="ind"><b>ค.</b> ท่านมีหน้าที่เสียภาษีให้แก่กรมสรรพากรของประเทศสหรัฐอเมริกาหรือไม่</div>
+                <div class="cbrow ind"><b>ผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field021}} />ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field022}} />มี</label>
+                    &nbsp; <b>ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field023}} />ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field024}} />มี</label></div>
+                <div class="ind"><b>ง.</b> ท่านมีสถานะเป็นผู้มีถิ่นที่อยู่ในประเทศสหรัฐอเมริกาเพื่อวัตถุประสงค์ในการเก็บภาษีอากรของประเทศสหรัฐอเมริกาใช่หรือไม่ (เช่น มีถิ่นที่อยู่ในประเทศสหรัฐอเมริกาอย่างน้อย 183 วันในปีปฏิทินที่ผ่านมา)</div>
+                <div class="cbrow ind"><b>ผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field025}} />ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field026}} />มี</label>
+                    &nbsp; <b>ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย</b>
+                    <label class="cb"><input type="checkbox"  {{checked sections.part6.field027}} />ไม่มี</label><label class="cb"><input type="checkbox"  {{checked sections.part6.field028}} />มี</label></div>
+            </div>
+            <div class="pg">4/6</div>
+        </div>
+
+        <!--=======================================================
+                              PAGE 5 / 6
+        ========================================================-->
+        <div class="page" id="p5">
+            <div class="wm">สำเนา</div>
+
+            <div class="box top">
+                <div><b>2. คำรับรอง</b></div>
+                <p>(1) ข้าพเจ้ารับทราบว่า บริษัทประกันชีวิต (“บริษัท”) มีข้อผูกพันหรือต้องปฏิบัติตามกฎหมาย FATCA</p>
+                <p>(2) ข้าพเจ้ารับทราบว่าบริษัทจำเป็นต้องเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลใดๆ ของข้าพเจ้า ที่บริษัทมีหน้าที่ต้องเปิดเผยต่อหน่วยงานภาครัฐในประเทศหรือต่างประเทศเพื่อปฏิบัติตามกฎหมาย FATCA</p>
+                <p>(3) ข้าพเจ้าจะให้ข้อมูลเพิ่มเติมตามที่บริษัทร้องขอเพื่อปฏิบัติตามกฎหมาย FATCA เป็นหนังสือภายในระยะเวลาที่กำหนด</p>
+                <p>(4) ข้าพเจ้าจะแจ้งให้บริษัททราบกรณีมีการเปลี่ยนแปลงสถานะหรือข้อมูลใดๆ ที่ข้าพเจ้าเคยแจ้งไว้กับบริษัทไว้ก่อนหน้านี้ หากสถานะหรือข้อมูลที่เปลี่ยนแปลงนั้นมีความเกี่ยวข้องกับประเทศสหรัฐอเมริกา ภายในระยะเวลา 30 วันนับแต่วันที่มีการเปลี่ยนแปลงสถานะหรือข้อมูล</p>
+                <p>(5) ในกรณีที่ข้าพเจ้าไม่เปิดเผยข้อมูลตาม (3) และ (4) ข้าพเจ้าให้สิทธิกับบริษัทในการรายงานข้อมูลของข้าพเจ้าไปยังหน่วยงานภาครัฐในประเทศหรือต่างประเทศเพื่อปฏิบัติตามกฎหมาย FATCA</p>
+            </div>
+
+            <!-- Part 7 -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 7</u> การแจ้งความประสงค์ในการใช้สิทธิขอยกเว้นภาษีเงินได้ตามกฎหมายว่าด้วยภาษีอากรของ <u>ผู้ขอเอาประกันภัย</u></td></tr>
+            </table>
+            <div class="box">
+                <div class="cbrow"><label class="cb" style="white-space: normal; align-items: flex-start;"><input type="checkbox"  {{checked sections.part7.field001}} /><b>ข้าพเจ้ามีความประสงค์ และยินยอมให้บริษัทประกันชีวิตส่งและเปิดเผยข้อมูลเกี่ยวกับเบี้ยประกันภัยต่อกรมสรรพากรตามหลักเกณฑ์วิธีการที่กรมสรรพากรกำหนด</b></label></div>
+                <div class="ln ind"><span>หากผู้ขอเอาประกันภัยเป็นชาวต่างชาติ (Non-Thai Residence) ซึ่งเป็นผู้มีหน้าที่ต้องเสียภาษีเงินได้ตามกฎหมายว่าด้วยภาษีอากร โปรดระบุเลขประจำตัวผู้เสียภาษีที่ได้รับจากกรมสรรพากร เลขที่</span><input type="text" class="w160"  value="{{sections.part7.field002}}" /></div>
+                <div class="cbrow"><label class="cb"><input type="checkbox"  {{checked sections.part7.field003}} /><b>ข้าพเจ้าไม่มีความประสงค์</b></label></div>
+            </div>
+
+            <!-- Part 8 -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 8</u> ข้อความยืนยันถ้อยแถลงหรือคำตอบในใบคำขอเอาประกันชีวิตของผู้ขอเอาประกันภัย และ/หรือ ผู้ชำระเบี้ยประกันภัย (กรณีซื้อสัญญาเพิ่มเติมการคุ้มครองผู้ชำระเบี้ยประกันภัย) / ผู้แทนโดยชอบธรรมและการให้ความยินยอม</td></tr>
+            </table>
+            <div class="box" style="font-size: 7.4pt;">
+                <p>1.ข้าพเจ้าขอยืนยันว่าคำตอบทุกข้อในใบคำขอเอาประกันชีวิตนี้ รวมถึงถ้อยแถลงที่ได้ตอบกับแพทย์ผู้ตรวจสุขภาพเป็นความจริงทุกประการ ซึ่งข้าพเจ้าเข้าใจดีว่า หากข้าพเจ้าไม่แถลงข้อความจริง บริษัทอาจจะปฏิเสธการรับประกันภัยและปฏิเสธการจ่ายเงินตามกรมธรรม์ประกันภัย</p>
+                <p>2.ข้าพเจ้า และ/หรือผู้แทนโดยชอบธรรม ยินยอมให้แพทย์หรือบริษัทประกันภัย หรือสถานพยาบาล หรือบุคคลอื่นใด ซึ่งมีข้อมูลสุขภาพ ความพิการ พฤติกรรมทางเพศ ข้อมูลชีวภาพ ข้อมูลพันธุกรรม เชื้อชาติ ของข้าพเจ้า และ/หรือผู้เยาว์ ที่ผ่านมา หรือจะมีขึ้นต่อไปในอนาคต สามารถเปิดเผยข้อมูลดังกล่าว ให้แก่บริษัทหรือผู้แทนของบริษัท เพื่อการขอเอาประกันภัย การพิจารณารับประกันภัย หรือการจ่ายเงินตามกรมธรรม์ประกันภัยได้</p>
+                <p>3.ข้าพเจ้า และ/หรือผู้แทนโดยชอบธรรม ยินยอมให้บริษัทเก็บรวบรวม ใช้ หรือเปิดเผย ข้อมูลสุขภาพ ความพิการ พฤติกรรมทางเพศ ข้อมูลชีวภาพ ข้อมูลพันธุกรรม เชื้อชาติ ของข้าพเจ้า และ/หรือผู้เยาว์ต่อบริษัทประกันภัยอื่น บริษัทนายหน้าประกันภัยต่อ บริษัทประกันภัยต่อ หน่วยงานที่มีอำนาจตามกฎหมาย สถานพยาบาล แพทย์ บุคลากรทางการแพทย์ ตัวแทนประกันชีวิต หรือนายหน้าประกันชีวิต เพื่อการขอเอาประกันภัย การพิจารณารับประกันภัย หรือการจ่ายเงินตามกรมธรรม์ประกันภัย</p>
+                <p>4.ข้าพเจ้าเข้าใจดีว่า หากข้าพเจ้าเพิกถอนความยินยอมตามข้อ 2. หรือข้อ 3. ที่ให้ไว้กับบริษัท จะมีผลกระทบต่อการพิจารณารับประกันภัย การจ่ายเงินตามกรมธรรม์ประกันภัย หรือการให้บริการใดๆ ที่เกี่ยวข้องกับกรมธรรม์ประกันภัย อันจะส่งผลให้บริษัทไม่สามารถปฏิบัติตามเงื่อนไขในกรมธรรม์ประกันภัย ซึ่งจะมีผลทำให้ข้าพเจ้าไม่ได้รับความคุ้มครองตามกรมธรรม์ประกันภัย</p>
+                <p>5.ข้าพเจ้ารับทราบว่า บริษัทจะเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอนข้อมูลส่วนบุคคล รวมถึงข้อมูลที่อ่อนไหวของข้าพเจ้า เพื่อการขอเอาประกันภัย การพิจารณารับประกันภัย การจ่ายเงินตามกรมธรรม์ประกันภัย ตามนโยบายคุ้มครองข้อมูลส่วนบุคคลของบริษัทที่ปรากฏใน <b>www.fwd.co.th</b> รวมทั้งรับทราบว่า บริษัทจะเปิดเผยข้อมูลส่วนบุคคลของข้าพเจ้าแก่สำนักงานคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัย (สำนักงาน คปภ.) เพื่อประโยชน์ในการกำกับดูแลและส่งเสริมธุรกิจประกันภัยตามกฎหมายว่าด้วยประกันชีวิตและกฎหมายว่าด้วยคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัย รายละเอียดการเก็บรวบรวม ใช้และเปิดเผยของสำนักงาน คปภ. ปรากฏตามนโยบายคุ้มครองข้อมูลส่วนบุคคลของสำนักงาน คปภ. ตามที่ปรากฏบนเว็บไซต์ <b>www.oic.or.th</b></p>
+                <p>6.เมื่อข้าพเจ้าเปิดเผยข้อมูลส่วนบุคคลของบุคคลอื่นใดนอกจากของข้าพเจ้าให้แก่บริษัทเพื่อการขอเอาประกันภัย การพิจารณารับประกันภัย หรือการจ่ายเงินตามกรมธรรม์ประกันภัย</p>
+                <p style="padding-left: 12pt;">(1) ข้าพเจ้ารับรองและรับประกันว่าได้ตรวจสอบความถูกต้องและความสมบูรณ์ของข้อมูลส่วนบุคคลของบุคคลอื่นที่ข้าพเจ้าให้แก่บริษัทและจะแจ้งบริษัท หากมีการเปลี่ยนแปลงใดๆ ในข้อมูลส่วนบุคคลของบุคคลอื่นที่ได้ให้ไว้ (หากมี)</p>
+                <p style="padding-left: 12pt;">(2) ข้าพเจ้ารับรองและรับประกันว่า ข้าพเจ้าได้รับความยินยอมหรือสามารถอาศัยฐานทางกฎหมายอื่นสำหรับการเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอนข้อมูลส่วนบุคคลของบุคคลอื่นนั้นตามกฎหมายที่ใช้บังคับ</p>
+                <p style="padding-left: 12pt;">(3) ข้าพเจ้ารับรองและรับประกันว่า ข้าพเจ้าได้แจ้งนโยบายคุ้มครองข้อมูลส่วนบุคคลของบริษัทแก่บุคคลอื่นนั้นแล้ว <b>www.fwd.co.th</b> ซึ่งมีการแจ้งวัตถุประสงค์ในการเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอนข้อมูลส่วนบุคคลต่อสำนักงานคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัย (สำนักงาน คปภ.) เพื่อประโยชน์ในการกำกับดูแลและส่งเสริมธุรกิจประกันภัยตามกฎหมายว่าด้วยประกันชีวิตและกฎหมายว่าด้วยคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัย ซึ่งสำนักงาน คปภ. จะเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอนข้อมูลส่วนบุคคลของบุคคลอื่นตามนโยบายคุ้มครองข้อมูลส่วนบุคคลของสำนักงาน คปภ. ตามที่ปรากฏบนเว็บไซต์ <b>www.oic.or.th</b></p>
+            </div>
+            <div class="pg">5/6</div>
+        </div>
+
+        <!--=======================================================
+                              PAGE 6 / 6
+        ========================================================-->
+        <div class="page" id="p6">
+            <div class="wm">สำเนา</div>
+
+            <div class="box top" style="font-size: 7.4pt;">
+                <p style="padding-left: 12pt;">(4) ข้าพเจ้ารับรองและรับประกันว่าบริษัทและสำนักงานคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัยสามารถเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอนข้อมูลส่วนบุคคลของบุคคลอื่นนั้นตามวัตถุประสงค์ที่กำหนดไว้ในนโยบายคุ้มครองข้อมูลส่วนบุคคลของบริษัทและสำนักงานคณะกรรมการกำกับและส่งเสริมการประกอบธุรกิจประกันภัยที่เกี่ยวข้อง ซึ่งอาจมีการแก้ไขเป็นครั้งคราว รวมถึงวัตถุประสงค์ทั้งหมดที่กำหนดไว้ในเอกสารฉบับนี้ และที่เกี่ยวข้องกับการเอาประกันภัย</p>
+                <table style="margin-top: 22pt; text-align: center;" id="t7">
+                    <tr>
+                        <td style="width: 50%; padding: 0 12pt;">
+                            <div style="border-top: 0.6px dotted black; margin: 0 6pt;"></div>
+                            <div class="ln" style="justify-content: center;"><span>(</span><input type="text" style="flex: 0 0 60%; text-align: center;" value="{{applicant.fullName}}" /><span>)</span></div>
+                            <div>ผู้ขอเอาประกันภัย</div>
+                        </td>
+                        <td style="width: 50%; padding: 0 12pt;">
+                            <div style="border-top: 0.6px dotted black; margin: 0 6pt;"></div>
+                            <div class="ln" style="justify-content: center;"><span>(</span><input type="text" style="flex: 0 0 60%; text-align: center;"  value="{{sections.part8.field002}}" /><span>)</span></div>
+                            <div>ผู้ชำระเบี้ยประกันภัย/ผู้ให้ความยินยอมในฐานะ<br />ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครอง<br />ของผู้ขอเอาประกันภัย<br />(กรณีผู้ขอเอาประกันภัยยังไม่บรรลุนิติภาวะ)</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Part 9 -->
+            <table>
+                <tr class="partHeading"><td><u>ส่วนที่ 9</u> คำเตือน</td></tr>
+            </table>
+            <div class="box" style="font-size: 7.4pt;">
+                <p>1.หากท่านยกเลิกกรมธรรม์ประกันภัยก่อนครบกำหนดสัญญา ผลประโยชน์ที่ท่านได้รับจะเป็นไปตามตารางมูลค่าเวนคืนในกรมธรรม์ประกันภัย (ถ้ามี) ซึ่งอาจน้อยกว่าเบี้ยประกันภัยที่ชำระไว้</p>
+                <p>2.ก่อนลงลายมือชื่อให้ท่านกรุณาตรวจสอบความถูกต้องของคำตอบทุกข้ออีกครั้งหนึ่ง เพื่อความสมบูรณ์ของสัญญาประกันภัย</p>
+                <p>3.หากท่านประสงค์จะยกเลิกกรมธรรม์ประกันภัยนี้ด้วยเหตุผลใดก็ตาม ท่านสามารถส่งคืนกรมธรรม์ประกันภัยมายังบริษัทภายในระยะเวลา 15 วัน นับแต่วันที่ได้รับกรมธรรม์ประกันภัยจากทางบริษัท เว้นแต่บริษัทได้ออกกรมธรรม์ประกันภัยโดยใช้วิธีการทางอิเล็กทรอนิกส์ ผู้เอาประกันภัยไม่ต้องส่งคืนกรมธรรม์ประกันภัย และบริษัทจะคืนเบี้ยประกันภัยที่เหลือหลังจากหักค่าตรวจสุขภาพตามที่จ่ายจริงและค่าใช้จ่ายของบริษัทฉบับละ 500 บาท เว้นแต่เป็นการเสนอขายกรมธรรม์ประกันภัยโดยใช้วิธีการทางอิเล็กทรอนิกส์ บริษัทจะคืนเบี้ยประกันภัยเต็มจำนวนโดยไม่หักค่าใช้จ่ายใดๆทั้งสิ้น การคืนค่าเบี้ยประกันภัยบริษัทจะดำเนินการให้แล้วเสร็จภายใน 15 วัน นับแต่วันที่บริษัทได้รับการขอใช้สิทธิยกเลิกกรมธรรม์ประกันภัย อย่างไรก็ตาม ในกรณีที่ท่านได้ใช้สิทธิเรียกร้องค่าสินไหมทดแทนแล้ว ท่านไม่มีสิทธิยกเลิกกรมธรรม์ประกันภัย</p>
+                <p style="margin-top: 3pt;">ข้าพเจ้าได้อ่านและตกลงตามข้อความในเอกสารฉบับนี้แล้ว รวมทั้งรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคลของบริษัทและสำนักงาน คปภ. แล้ว จึงลงลายมือชื่อไว้ด้านล่างนี้</p>
+
+                <div class="ln" style="margin-top: 6pt;"><b>เขียนที่</b><input type="text" style="flex: 1 1 55%;"  value="{{sections.part9.field001}}" /><b>วันที่</b><input type="text" class="w40" style="text-align: center;" value="{{sections.part9.field002}}" /><b>เดือน</b><input type="text" class="w90" style="text-align: center;" value="{{sections.part9.field003}}" /><b>พ.ศ.</b><input type="text" class="w50" style="text-align: center;" value="{{sections.part9.field004}}" /></div>
+
+                <table style="margin-top: 14pt; text-align: center;">
+                    <tr>
+                        <td style="width: 50%; padding: 0 8pt;">
+                            <div class="ln"><span>(ลงชื่อ)</span><input type="text"  value="{{sections.part9.field005}}" /></div>
+                            <div class="ln" style="justify-content: center;"><span>(</span><input type="text" style="flex: 0 0 70%; text-align: center;" value="{{agent.fullName}}" /><span>)</span></div>
+                            <div>พยาน / นายหน้าประกันชีวิต/ ตัวแทนประกันชีวิต</div>
+                        </td>
+                        <td style="width: 50%; padding: 0 8pt;">
+                            <div class="ln"><span>(ลงชื่อ)</span><input type="text"  value="{{sections.part9.field007}}" /></div>
+                            <div class="ln" style="justify-content: center;"><span>(</span><input type="text" style="flex: 0 0 70%; text-align: center;" value="{{applicant.fullName}}" /><span>)</span></div>
+                            <div>ผู้ขอเอาประกันภัย</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 14pt 8pt 0 8pt;">
+                            <div class="ln"><span>(ลงชื่อ)</span><input type="text"  value="{{sections.part9.field009}}" /></div>
+                            <div class="ln" style="justify-content: center;"><span>(</span><input type="text" style="flex: 0 0 70%; text-align: center;"  value="{{sections.part9.field010}}" /><span>)</span></div>
+                            <div>พยาน</div>
+                        </td>
+                        <td style="padding: 14pt 8pt 0 8pt;">
+                            <div class="ln"><span>(ลงชื่อ)</span><input type="text"  value="{{sections.part9.field011}}" /></div>
+                            <div class="ln" style="justify-content: center;"><span>(</span><input type="text" style="flex: 0 0 70%; text-align: center;"  value="{{sections.part9.field012}}" /><span>)</span></div>
+                            <div>ผู้ให้ความยินยอมในฐานะ<br />ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครอง<br />ของผู้ขอเอาประกันภัย<br />(กรณีผู้ขอเอาประกันภัยยังไม่บรรลุนิติภาวะ)</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table style="margin-top: 4pt;">
+                <tr>
+                    <td style="text-align: center; font-size: 7pt;"><b>กรุณาเซ็นชื่อกำกับตรงที่มีการแก้ไข ขีดฆ่า ขูดลบข้อความ</b></td>
+                </tr>
+            </table>
+            <div class="pg">6/6</div>
+        </div>
+
+    </body>
+</html>

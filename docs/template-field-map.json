@@ -1,0 +1,4989 @@
+{
+  "template": "Application_DemoV3.html",
+  "inputCount": 551,
+  "fields": [
+    {
+      "inputIndex": 1,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "applicationId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "align: right; } สำเนา FWD insurance ใบคำขอเอาประกันชีวิต แบบมีคำถามสุขภาพ ใบคำขอเอาประกันชีวิตเลขที่"
+    },
+    {
+      "inputIndex": 2,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "agent.fullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "่จ่ายเงินค่าสินไหมทดแทนตามสัญญา ประกันชีวิตตามประมวลกฎหมายแพ่งและพาณิชย์มาตรา 865 ชื่อตัวแทน/นายหน้า"
+    },
+    {
+      "inputIndex": 3,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "agent.licenseNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ใบอนุญาตเลขที่"
+    },
+    {
+      "inputIndex": 4,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "agent.code",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัสตัวแทน/นายหน้า"
+    },
+    {
+      "inputIndex": 5,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "agent.unitName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ชื่อหน่วย"
+    },
+    {
+      "inputIndex": 6,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "agent.unitCode",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัสหน่วย"
+    },
+    {
+      "inputIndex": 7,
+      "section": "header",
+      "fieldNumber": null,
+      "path": "agent.branch",
+      "type": "string",
+      "page": 1,
+      "labelHint": "สาขา"
+    },
+    {
+      "inputIndex": 8,
+      "section": "part1",
+      "fieldNumber": 1,
+      "path": "applicant.fullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "คำถามเกี่ยวกับข้อมูลส่วนบุคคลของ ผู้ขอเอาประกันภัย และรายละเอียดการขอเอาประกันภัย 1. ชื่อและนามสกุล"
+    },
+    {
+      "inputIndex": 9,
+      "section": "part1",
+      "fieldNumber": 2,
+      "path": "applicant.previousFullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ชื่อและนามสกุลเดิม"
+    },
+    {
+      "inputIndex": 10,
+      "section": "part1",
+      "fieldNumber": 3,
+      "path": "applicant.gender.male",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ชาย"
+    },
+    {
+      "inputIndex": 11,
+      "section": "part1",
+      "fieldNumber": 4,
+      "path": "applicant.gender.female",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "หญิง เกิดวันที่"
+    },
+    {
+      "inputIndex": 12,
+      "section": "part1",
+      "fieldNumber": 5,
+      "path": "applicant.birthDate.day",
+      "type": "string",
+      "page": 1,
+      "labelHint": "หญิง เกิดวันที่"
+    },
+    {
+      "inputIndex": 13,
+      "section": "part1",
+      "fieldNumber": 6,
+      "path": "applicant.birthDate.month",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เดือน"
+    },
+    {
+      "inputIndex": 14,
+      "section": "part1",
+      "fieldNumber": 7,
+      "path": "applicant.birthDate.buddhistYear",
+      "type": "string",
+      "page": 1,
+      "labelHint": "พ.ศ."
+    },
+    {
+      "inputIndex": 15,
+      "section": "part1",
+      "fieldNumber": 8,
+      "path": "applicant.age",
+      "type": "string",
+      "page": 1,
+      "labelHint": "อายุ"
+    },
+    {
+      "inputIndex": 16,
+      "section": "part1",
+      "fieldNumber": 9,
+      "path": "applicant.nationality",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ปี สัญชาติ"
+    },
+    {
+      "inputIndex": 17,
+      "section": "part1",
+      "fieldNumber": 10,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เลขประจำตัวประชาชน",
+      "digitIndex": 0
+    },
+    {
+      "inputIndex": 18,
+      "section": "part1",
+      "fieldNumber": 11,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 18",
+      "digitIndex": 1
+    },
+    {
+      "inputIndex": 19,
+      "section": "part1",
+      "fieldNumber": 12,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 19",
+      "digitIndex": 2
+    },
+    {
+      "inputIndex": 20,
+      "section": "part1",
+      "fieldNumber": 13,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 20",
+      "digitIndex": 3
+    },
+    {
+      "inputIndex": 21,
+      "section": "part1",
+      "fieldNumber": 14,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 21",
+      "digitIndex": 4
+    },
+    {
+      "inputIndex": 22,
+      "section": "part1",
+      "fieldNumber": 15,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 22",
+      "digitIndex": 5
+    },
+    {
+      "inputIndex": 23,
+      "section": "part1",
+      "fieldNumber": 16,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 23",
+      "digitIndex": 6
+    },
+    {
+      "inputIndex": 24,
+      "section": "part1",
+      "fieldNumber": 17,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 24",
+      "digitIndex": 7
+    },
+    {
+      "inputIndex": 25,
+      "section": "part1",
+      "fieldNumber": 18,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 25",
+      "digitIndex": 8
+    },
+    {
+      "inputIndex": 26,
+      "section": "part1",
+      "fieldNumber": 19,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 26",
+      "digitIndex": 9
+    },
+    {
+      "inputIndex": 27,
+      "section": "part1",
+      "fieldNumber": 20,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 27",
+      "digitIndex": 10
+    },
+    {
+      "inputIndex": 28,
+      "section": "part1",
+      "fieldNumber": 21,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 28",
+      "digitIndex": 11
+    },
+    {
+      "inputIndex": 29,
+      "section": "part1",
+      "fieldNumber": 22,
+      "path": "applicant.identification.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 29",
+      "digitIndex": 12
+    },
+    {
+      "inputIndex": 30,
+      "section": "part1",
+      "fieldNumber": 23,
+      "path": "applicant.identification.documentTypes.nationalId",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "บัตรประจำตัวประชาชน วันบัตรหมดอายุ"
+    },
+    {
+      "inputIndex": 31,
+      "section": "part1",
+      "fieldNumber": 24,
+      "path": "applicant.identification.documentExpiryDate",
+      "type": "string",
+      "page": 1,
+      "labelHint": "บัตรประจำตัวประชาชน วันบัตรหมดอายุ"
+    },
+    {
+      "inputIndex": 32,
+      "section": "part1",
+      "fieldNumber": 25,
+      "path": "applicant.identification.documentTypes.birthCertificate",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "สูติบัตร/ทะเบียนบ้าน (กรณีผู้เยาว์ที่ยังไม่มีบัตรประชาชน)"
+    },
+    {
+      "inputIndex": 33,
+      "section": "part1",
+      "fieldNumber": 26,
+      "path": "applicant.identification.documentTypes.passport",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "หนังสือเดินทาง เลขที่"
+    },
+    {
+      "inputIndex": 34,
+      "section": "part1",
+      "fieldNumber": 27,
+      "path": "applicant.identification.passportNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "หนังสือเดินทาง เลขที่"
+    },
+    {
+      "inputIndex": 35,
+      "section": "part1",
+      "fieldNumber": 28,
+      "path": "applicant.identification.passportExpiryDate",
+      "type": "string",
+      "page": 1,
+      "labelHint": "วันหมดอายุ"
+    },
+    {
+      "inputIndex": 36,
+      "section": "part1",
+      "fieldNumber": 29,
+      "path": "applicant.maritalStatus.single",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "โสด"
+    },
+    {
+      "inputIndex": 37,
+      "section": "part1",
+      "fieldNumber": 30,
+      "path": "applicant.maritalStatus.married",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "สมรส"
+    },
+    {
+      "inputIndex": 38,
+      "section": "part1",
+      "fieldNumber": 31,
+      "path": "applicant.maritalStatus.widowed",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "หม้าย"
+    },
+    {
+      "inputIndex": 39,
+      "section": "part1",
+      "fieldNumber": 32,
+      "path": "applicant.maritalStatus.divorced",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "หย่า ชื่อและนามสกุล ภรรยา / สามี"
+    },
+    {
+      "inputIndex": 40,
+      "section": "part1",
+      "fieldNumber": 33,
+      "path": "applicant.spouse.fullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "หย่า ชื่อและนามสกุล ภรรยา / สามี"
+    },
+    {
+      "inputIndex": 41,
+      "section": "part1",
+      "fieldNumber": 34,
+      "path": "applicant.spouse.nationalId",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เลขประจำตัวประชาชน"
+    },
+    {
+      "inputIndex": 42,
+      "section": "part1",
+      "fieldNumber": 35,
+      "path": "applicant.addresses.current.addressLine",
+      "type": "string",
+      "page": 1,
+      "labelHint": "2. ก) ที่อยู่ปัจจุบัน"
+    },
+    {
+      "inputIndex": 43,
+      "section": "part1",
+      "fieldNumber": 36,
+      "path": "applicant.addresses.current.subdistrict",
+      "type": "string",
+      "page": 1,
+      "labelHint": "แขวง/ตำบล"
+    },
+    {
+      "inputIndex": 44,
+      "section": "part1",
+      "fieldNumber": 37,
+      "path": "applicant.addresses.current.district",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เขต/อำเภอ"
+    },
+    {
+      "inputIndex": 45,
+      "section": "part1",
+      "fieldNumber": 38,
+      "path": "applicant.addresses.current.province",
+      "type": "string",
+      "page": 1,
+      "labelHint": "จังหวัด"
+    },
+    {
+      "inputIndex": 46,
+      "section": "part1",
+      "fieldNumber": 39,
+      "path": "applicant.addresses.current.postalCode",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัสไปรษณีย์"
+    },
+    {
+      "inputIndex": 47,
+      "section": "part1",
+      "fieldNumber": 40,
+      "path": "applicant.addresses.current.country",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ประเทศ"
+    },
+    {
+      "inputIndex": 48,
+      "section": "part1",
+      "fieldNumber": 41,
+      "path": "applicant.addresses.registered.addressLine",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ข) ที่อยู่ตามทะเบียนบ้าน"
+    },
+    {
+      "inputIndex": 49,
+      "section": "part1",
+      "fieldNumber": 42,
+      "path": "applicant.addresses.registered.subdistrict",
+      "type": "string",
+      "page": 1,
+      "labelHint": "แขวง/ตำบล"
+    },
+    {
+      "inputIndex": 50,
+      "section": "part1",
+      "fieldNumber": 43,
+      "path": "applicant.addresses.registered.district",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เขต/อำเภอ"
+    },
+    {
+      "inputIndex": 51,
+      "section": "part1",
+      "fieldNumber": 44,
+      "path": "applicant.addresses.registered.province",
+      "type": "string",
+      "page": 1,
+      "labelHint": "จังหวัด"
+    },
+    {
+      "inputIndex": 52,
+      "section": "part1",
+      "fieldNumber": 45,
+      "path": "applicant.addresses.registered.postalCode",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัสไปรษณีย์"
+    },
+    {
+      "inputIndex": 53,
+      "section": "part1",
+      "fieldNumber": 46,
+      "path": "applicant.addresses.registered.country",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ประเทศ"
+    },
+    {
+      "inputIndex": 54,
+      "section": "part1",
+      "fieldNumber": 47,
+      "path": "applicant.addresses.work.addressLine",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ค) สถานที่ทำงาน"
+    },
+    {
+      "inputIndex": 55,
+      "section": "part1",
+      "fieldNumber": 48,
+      "path": "applicant.addresses.work.subdistrict",
+      "type": "string",
+      "page": 1,
+      "labelHint": "แขวง/ตำบล"
+    },
+    {
+      "inputIndex": 56,
+      "section": "part1",
+      "fieldNumber": 49,
+      "path": "applicant.addresses.work.district",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เขต/อำเภอ"
+    },
+    {
+      "inputIndex": 57,
+      "section": "part1",
+      "fieldNumber": 50,
+      "path": "applicant.addresses.work.province",
+      "type": "string",
+      "page": 1,
+      "labelHint": "จังหวัด"
+    },
+    {
+      "inputIndex": 58,
+      "section": "part1",
+      "fieldNumber": 51,
+      "path": "applicant.addresses.work.postalCode",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัสไปรษณีย์"
+    },
+    {
+      "inputIndex": 59,
+      "section": "part1",
+      "fieldNumber": 52,
+      "path": "applicant.addresses.work.country",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ประเทศ"
+    },
+    {
+      "inputIndex": 60,
+      "section": "part1",
+      "fieldNumber": 53,
+      "path": "applicant.phone.home",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ง) โทรศัพท์บ้าน"
+    },
+    {
+      "inputIndex": 61,
+      "section": "part1",
+      "fieldNumber": 54,
+      "path": "applicant.phone.mobile",
+      "type": "string",
+      "page": 1,
+      "labelHint": "โทรศัพท์มือถือ"
+    },
+    {
+      "inputIndex": 62,
+      "section": "part1",
+      "fieldNumber": 55,
+      "path": "applicant.phone.work",
+      "type": "string",
+      "page": 1,
+      "labelHint": "โทรศัพท์ที่ทำงาน"
+    },
+    {
+      "inputIndex": 63,
+      "section": "part1",
+      "fieldNumber": 56,
+      "path": "applicant.email",
+      "type": "string",
+      "page": 1,
+      "labelHint": "อีเมล"
+    },
+    {
+      "inputIndex": 64,
+      "section": "part1",
+      "fieldNumber": 57,
+      "path": "applicant.contactAddress.current",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ที่อยู่ปัจจุบัน"
+    },
+    {
+      "inputIndex": 65,
+      "section": "part1",
+      "fieldNumber": 58,
+      "path": "applicant.contactAddress.registered",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ที่อยู่ตามทะเบียนบ้าน"
+    },
+    {
+      "inputIndex": 66,
+      "section": "part1",
+      "fieldNumber": 59,
+      "path": "applicant.contactAddress.work",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "สถานที่ทำงาน ฉ) วิธีการรับกรมธรรม์ (กรุณาเลือกเพียงข้อใดข้อหนึ่ง)"
+    },
+    {
+      "inputIndex": 67,
+      "section": "part1",
+      "fieldNumber": 60,
+      "path": "applicant.delivery.policy.paper",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "แบบกระดาษ"
+    },
+    {
+      "inputIndex": 68,
+      "section": "part1",
+      "fieldNumber": 61,
+      "path": "applicant.delivery.policy.electronic",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "รับกรมธรรม์ทางอิเล็กทรอนิกส์ กรณีไม่ระบุอีเมล บริษัทฯจะจัดส่งให้ในแบบกระดาษแทน ช) วิธีการรับเอกสารแส"
+    },
+    {
+      "inputIndex": 69,
+      "section": "part1",
+      "fieldNumber": 62,
+      "path": "applicant.delivery.relatedDocuments.paper",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "แบบกระดาษ"
+    },
+    {
+      "inputIndex": 70,
+      "section": "part1",
+      "fieldNumber": 63,
+      "path": "applicant.delivery.relatedDocuments.electronic",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "รับเอกสารทางอิเล็กทรอนิกส์ กรณีไม่ระบุอีเมล บริษัทฯจะจัดส่งให้ในแบบกระดาษแทน หมายเหตุ สำหรับเอกสารที"
+    },
+    {
+      "inputIndex": 71,
+      "section": "part1",
+      "fieldNumber": 64,
+      "path": "applicant.occupation.primary.name",
+      "type": "string",
+      "page": 1,
+      "labelHint": "หรับเอกสารที่บริษัทฯไม่สามารถออกเป็นแบบอิเล็กทรอนิกส์ได้ บริษัทฯจะจัดส่งในแบบกระดาษ 3. ก) อาชีพประจำ"
+    },
+    {
+      "inputIndex": 72,
+      "section": "part1",
+      "fieldNumber": 65,
+      "path": "applicant.occupation.primary.position",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ตำแหน่ง"
+    },
+    {
+      "inputIndex": 73,
+      "section": "part1",
+      "fieldNumber": 66,
+      "path": "applicant.occupation.primary.duties",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ลักษณะงานที่ทำ"
+    },
+    {
+      "inputIndex": 74,
+      "section": "part1",
+      "fieldNumber": 67,
+      "path": "applicant.occupation.primary.businessType",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ลักษณะธุรกิจ"
+    },
+    {
+      "inputIndex": 75,
+      "section": "part1",
+      "fieldNumber": 68,
+      "path": "applicant.occupation.primary.annualIncome",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รายได้ต่อปี"
+    },
+    {
+      "inputIndex": 76,
+      "section": "part1",
+      "fieldNumber": 69,
+      "path": "applicant.occupation.secondary.name",
+      "type": "string",
+      "page": 1,
+      "labelHint": "บาท ข) อาชีพอื่นๆ (ถ้ามี)"
+    },
+    {
+      "inputIndex": 77,
+      "section": "part1",
+      "fieldNumber": 70,
+      "path": "applicant.occupation.secondary.position",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ตำแหน่ง"
+    },
+    {
+      "inputIndex": 78,
+      "section": "part1",
+      "fieldNumber": 71,
+      "path": "applicant.occupation.secondary.duties",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ลักษณะงานที่ทำ"
+    },
+    {
+      "inputIndex": 79,
+      "section": "part1",
+      "fieldNumber": 72,
+      "path": "applicant.occupation.secondary.businessType",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ลักษณะธุรกิจ"
+    },
+    {
+      "inputIndex": 80,
+      "section": "part1",
+      "fieldNumber": 73,
+      "path": "applicant.occupation.secondary.annualIncome",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รายได้ต่อปี"
+    },
+    {
+      "inputIndex": 81,
+      "section": "part1",
+      "fieldNumber": 74,
+      "path": "applicant.occupation.motorcycleUsage.no",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ไม่ใช้"
+    },
+    {
+      "inputIndex": 82,
+      "section": "part1",
+      "fieldNumber": 75,
+      "path": "applicant.occupation.motorcycleUsage.yes",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ใช้ 4. แบบประกันภัย เบี้ยประกันภัยและวิธีการชำระเบี้ยประกันภัย แบบประกันภัย จำนวนเงินเอาประกันภัย (บ"
+    },
+    {
+      "inputIndex": 83,
+      "section": "part1",
+      "fieldNumber": 76,
+      "path": "policy.mainPlan.name",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ยประกันภัยและวิธีการชำระเบี้ยประกันภัย แบบประกันภัย จำนวนเงินเอาประกันภัย (บาท) เบี้ยประกันภัย (บาท)"
+    },
+    {
+      "inputIndex": 84,
+      "section": "part1",
+      "fieldNumber": 77,
+      "path": "policy.mainPlan.sumAssured",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 84"
+    },
+    {
+      "inputIndex": 85,
+      "section": "part1",
+      "fieldNumber": 78,
+      "path": "policy.mainPlan.premium",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัส"
+    },
+    {
+      "inputIndex": 86,
+      "section": "part1",
+      "fieldNumber": 79,
+      "path": "policy.mainPlan.code",
+      "type": "string",
+      "page": 1,
+      "labelHint": "รหัส"
+    },
+    {
+      "inputIndex": 87,
+      "section": "part1",
+      "fieldNumber": 80,
+      "path": "policy.mainPlan.coverageTermYears",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ระยะเวลาเอาประกันภัย"
+    },
+    {
+      "inputIndex": 88,
+      "section": "part1",
+      "fieldNumber": 81,
+      "path": "policy.mainPlan.premiumTermYears",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ปี ระยะเวลาชำระเบี้ยประกันภัย"
+    },
+    {
+      "inputIndex": 89,
+      "section": "part1",
+      "fieldNumber": 82,
+      "path": "policy.mainPlan.withDividend",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "มีเงินปันผล"
+    },
+    {
+      "inputIndex": 90,
+      "section": "part1",
+      "fieldNumber": 83,
+      "path": "policy.mainPlan.withoutDividend",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ไม่มีเงินปันผล สัญญาเพิ่มเติม จำนวนเงินผลประโยชน์ (บาท) เบี้ยประกันภัย (บาท)"
+    },
+    {
+      "inputIndex": 91,
+      "section": "part1",
+      "fieldNumber": 84,
+      "path": "policy.riders.rider1.name",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ไม่มีเงินปันผล สัญญาเพิ่มเติม จำนวนเงินผลประโยชน์ (บาท) เบี้ยประกันภัย (บาท)"
+    },
+    {
+      "inputIndex": 92,
+      "section": "part1",
+      "fieldNumber": 85,
+      "path": "policy.riders.rider1.benefitAmount",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 92"
+    },
+    {
+      "inputIndex": 93,
+      "section": "part1",
+      "fieldNumber": 86,
+      "path": "policy.riders.rider1.premium",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 93"
+    },
+    {
+      "inputIndex": 94,
+      "section": "part1",
+      "fieldNumber": 87,
+      "path": "policy.riders.rider2.name",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 94"
+    },
+    {
+      "inputIndex": 95,
+      "section": "part1",
+      "fieldNumber": 88,
+      "path": "policy.riders.rider2.benefitAmount",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 95"
+    },
+    {
+      "inputIndex": 96,
+      "section": "part1",
+      "fieldNumber": 89,
+      "path": "policy.riders.rider2.premium",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 96"
+    },
+    {
+      "inputIndex": 97,
+      "section": "part1",
+      "fieldNumber": 90,
+      "path": "policy.riders.rider3.name",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 97"
+    },
+    {
+      "inputIndex": 98,
+      "section": "part1",
+      "fieldNumber": 91,
+      "path": "policy.riders.rider3.benefitAmount",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 98"
+    },
+    {
+      "inputIndex": 99,
+      "section": "part1",
+      "fieldNumber": 92,
+      "path": "policy.riders.rider3.premium",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เบี้ยประกันภัยรวม (บาท)"
+    },
+    {
+      "inputIndex": 100,
+      "section": "part1",
+      "fieldNumber": 93,
+      "path": "policy.totalPremium",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เบี้ยประกันภัยรวม (บาท)"
+    },
+    {
+      "inputIndex": 101,
+      "section": "part1",
+      "fieldNumber": 94,
+      "path": "policy.refund.bankTransfer",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "โอนเข้าบัญชีธนาคาร"
+    },
+    {
+      "inputIndex": 102,
+      "section": "part1",
+      "fieldNumber": 95,
+      "path": "policy.refund.bankName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "โอนเข้าบัญชีธนาคาร"
+    },
+    {
+      "inputIndex": 103,
+      "section": "part1",
+      "fieldNumber": 96,
+      "path": "policy.refund.bankAccountNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "เลขที่บัญชี"
+    },
+    {
+      "inputIndex": 104,
+      "section": "part1",
+      "fieldNumber": 97,
+      "path": "policy.refund.bankAccountName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ชื่อบัญชี"
+    },
+    {
+      "inputIndex": 105,
+      "section": "part1",
+      "fieldNumber": 98,
+      "path": "policy.refund.promptPay",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "โอนผ่านพร้อมเพย์ตามเลขประจำตัวประชาชนของผู้ขอเอาประกันภัย"
+    },
+    {
+      "inputIndex": 106,
+      "section": "part1",
+      "fieldNumber": 99,
+      "path": "policy.refund.applyToPremium",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "นำไปชำระเบี้ยประกันภัย"
+    },
+    {
+      "inputIndex": 107,
+      "section": "part1",
+      "fieldNumber": 100,
+      "path": "policy.refund.accumulateWithCompany",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "คงไว้กับบริษัทเพื่อการสะสม กรณีที่ไม่เลือกวิธีใดวิธีหนึ่งข้างต้น จะคงไว้กับบริษัทเพื่อการสะสม* * กรณ"
+    },
+    {
+      "inputIndex": 108,
+      "section": "part1",
+      "fieldNumber": 101,
+      "path": "policy.paymentFrequency.monthly",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "รายเดือน"
+    },
+    {
+      "inputIndex": 109,
+      "section": "part1",
+      "fieldNumber": 102,
+      "path": "policy.paymentFrequency.quarterly",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ราย 3 เดือน"
+    },
+    {
+      "inputIndex": 110,
+      "section": "part1",
+      "fieldNumber": 103,
+      "path": "policy.paymentFrequency.semiAnnual",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ราย 6 เดือน"
+    },
+    {
+      "inputIndex": 111,
+      "section": "part1",
+      "fieldNumber": 104,
+      "path": "policy.paymentFrequency.annual",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "รายปี"
+    },
+    {
+      "inputIndex": 112,
+      "section": "part1",
+      "fieldNumber": 105,
+      "path": "policy.paymentFrequency.single",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ชำระเบี้ยประกันภัยครั้งเดียว จำนวนเงินที่ชำระพร้อมใบคำขอนี้"
+    },
+    {
+      "inputIndex": 113,
+      "section": "part1",
+      "fieldNumber": 106,
+      "path": "policy.initialPaymentAmount",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ชำระเบี้ยประกันภัยครั้งเดียว จำนวนเงินที่ชำระพร้อมใบคำขอนี้"
+    },
+    {
+      "inputIndex": 114,
+      "section": "part1",
+      "fieldNumber": 107,
+      "path": "policy.temporaryReceiptNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "บาท ใบรับเงินชั่วคราวเลขที่"
+    },
+    {
+      "inputIndex": 115,
+      "section": "part1",
+      "fieldNumber": 108,
+      "path": "policy.paymentMethod.cash",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "เงินสด"
+    },
+    {
+      "inputIndex": 116,
+      "section": "part1",
+      "fieldNumber": 109,
+      "path": "policy.paymentMethod.cheque",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "เช็ค"
+    },
+    {
+      "inputIndex": 117,
+      "section": "part1",
+      "fieldNumber": 110,
+      "path": "policy.paymentMethod.creditCard",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "บัตรเครดิต"
+    },
+    {
+      "inputIndex": 118,
+      "section": "part1",
+      "fieldNumber": 111,
+      "path": "policy.paymentMethod.companyBankTransfer",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "โอนเข้าบัญชีบริษัท เลขที่บัญชี"
+    },
+    {
+      "inputIndex": 119,
+      "section": "part1",
+      "fieldNumber": 112,
+      "path": "policy.companyBank.accountNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "โอนเข้าบัญชีบริษัท เลขที่บัญชี"
+    },
+    {
+      "inputIndex": 120,
+      "section": "part1",
+      "fieldNumber": 113,
+      "path": "policy.companyBank.bank",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ธนาคาร"
+    },
+    {
+      "inputIndex": 121,
+      "section": "part1",
+      "fieldNumber": 114,
+      "path": "policy.companyBank.branch",
+      "type": "string",
+      "page": 1,
+      "labelHint": "สาขา"
+    },
+    {
+      "inputIndex": 122,
+      "section": "part1",
+      "fieldNumber": 115,
+      "path": "policy.premiumPayer.applicant",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "ตนเอง"
+    },
+    {
+      "inputIndex": 123,
+      "section": "part1",
+      "fieldNumber": 116,
+      "path": "policy.premiumPayer.other",
+      "type": "boolean",
+      "page": 1,
+      "labelHint": "บุคคลอื่น (ตอบคำถามเกี่ยวกับข้อมูลส่วนบุคคลของผู้ชำระเบี้ยประกันภัย ส่วนที่ 4 ) 5. ผู้รับประโยชน์ ถ้"
+    },
+    {
+      "inputIndex": 124,
+      "section": "part1",
+      "fieldNumber": 117,
+      "path": "beneficiaries.primary.fullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "ี่บัตรประชาชน/หนังสือเดินทาง/ เอกสารที่หน่วยงานของรัฐออกให้ ความสัมพันธ์ ที่อยู่ ร้อยละของผลประโยชน์"
+    },
+    {
+      "inputIndex": 125,
+      "section": "part1",
+      "fieldNumber": 118,
+      "path": "beneficiaries.primary.age",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 125"
+    },
+    {
+      "inputIndex": 126,
+      "section": "part1",
+      "fieldNumber": 119,
+      "path": "beneficiaries.primary.identityNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 126"
+    },
+    {
+      "inputIndex": 127,
+      "section": "part1",
+      "fieldNumber": 120,
+      "path": "beneficiaries.primary.relationship",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 127"
+    },
+    {
+      "inputIndex": 128,
+      "section": "part1",
+      "fieldNumber": 121,
+      "path": "beneficiaries.primary.address",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 128"
+    },
+    {
+      "inputIndex": 129,
+      "section": "part1",
+      "fieldNumber": 122,
+      "path": "beneficiaries.primary.benefitPercent",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 129"
+    },
+    {
+      "inputIndex": 130,
+      "section": "part1",
+      "fieldNumber": 123,
+      "path": "beneficiaries.secondary.fullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 130"
+    },
+    {
+      "inputIndex": 131,
+      "section": "part1",
+      "fieldNumber": 124,
+      "path": "beneficiaries.secondary.age",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 131"
+    },
+    {
+      "inputIndex": 132,
+      "section": "part1",
+      "fieldNumber": 125,
+      "path": "beneficiaries.secondary.identityNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 132"
+    },
+    {
+      "inputIndex": 133,
+      "section": "part1",
+      "fieldNumber": 126,
+      "path": "beneficiaries.secondary.relationship",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 133"
+    },
+    {
+      "inputIndex": 134,
+      "section": "part1",
+      "fieldNumber": 127,
+      "path": "beneficiaries.secondary.address",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 134"
+    },
+    {
+      "inputIndex": 135,
+      "section": "part1",
+      "fieldNumber": 128,
+      "path": "beneficiaries.secondary.benefitPercent",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 135"
+    },
+    {
+      "inputIndex": 136,
+      "section": "part1",
+      "fieldNumber": 129,
+      "path": "beneficiaries.tertiary.fullName",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 136"
+    },
+    {
+      "inputIndex": 137,
+      "section": "part1",
+      "fieldNumber": 130,
+      "path": "beneficiaries.tertiary.age",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 137"
+    },
+    {
+      "inputIndex": 138,
+      "section": "part1",
+      "fieldNumber": 131,
+      "path": "beneficiaries.tertiary.identityNumber",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 138"
+    },
+    {
+      "inputIndex": 139,
+      "section": "part1",
+      "fieldNumber": 132,
+      "path": "beneficiaries.tertiary.relationship",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 139"
+    },
+    {
+      "inputIndex": 140,
+      "section": "part1",
+      "fieldNumber": 133,
+      "path": "beneficiaries.tertiary.address",
+      "type": "string",
+      "page": 1,
+      "labelHint": "Input 140"
+    },
+    {
+      "inputIndex": 141,
+      "section": "part1",
+      "fieldNumber": 134,
+      "path": "beneficiaries.tertiary.benefitPercent",
+      "type": "string",
+      "page": 1,
+      "labelHint": "1/6 สำเนา 6. ท่านมีประกันชีวิตหรือประกันสุขภาพหรือประกันอุบัติเหตุ หรือกำลังขอเอาประกันภัยดังกล่าวไว"
+    },
+    {
+      "inputIndex": 142,
+      "section": "part1",
+      "fieldNumber": 135,
+      "path": "sections.part1.field135",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 143,
+      "section": "part1",
+      "fieldNumber": 136,
+      "path": "sections.part1.field136",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "มี ถ้า มี โปรดระบุรายละเอียด หากเนื้อที่ระบุคำตอบมีไม่เพียงพอ โปรดระบุรายละเอียดในบันทึกเพิ่มเติมข้อ"
+    },
+    {
+      "inputIndex": 144,
+      "section": "part1",
+      "fieldNumber": 137,
+      "path": "sections.part1.field137",
+      "type": "string",
+      "page": 2,
+      "labelHint": "นวนเงินเอาประกันภัย (บาท) เงินชดเชย รายวัน ขณะนี้สัญญา มีผลบังคับหรือไม่ ชีวิต โรคร้ายแรง อุบัติเหตุ"
+    },
+    {
+      "inputIndex": 145,
+      "section": "part1",
+      "fieldNumber": 138,
+      "path": "sections.part1.field138",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 145"
+    },
+    {
+      "inputIndex": 146,
+      "section": "part1",
+      "fieldNumber": 139,
+      "path": "sections.part1.field139",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 146"
+    },
+    {
+      "inputIndex": 147,
+      "section": "part1",
+      "fieldNumber": 140,
+      "path": "sections.part1.field140",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 147"
+    },
+    {
+      "inputIndex": 148,
+      "section": "part1",
+      "fieldNumber": 141,
+      "path": "sections.part1.field141",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 148"
+    },
+    {
+      "inputIndex": 149,
+      "section": "part1",
+      "fieldNumber": 142,
+      "path": "sections.part1.field142",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "มี"
+    },
+    {
+      "inputIndex": 150,
+      "section": "part1",
+      "fieldNumber": 143,
+      "path": "sections.part1.field143",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 151,
+      "section": "part1",
+      "fieldNumber": 144,
+      "path": "sections.part1.field144",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "กำลังสมัคร"
+    },
+    {
+      "inputIndex": 152,
+      "section": "part1",
+      "fieldNumber": 145,
+      "path": "sections.part1.field145",
+      "type": "string",
+      "page": 2,
+      "labelHint": "กำลังสมัคร"
+    },
+    {
+      "inputIndex": 153,
+      "section": "part1",
+      "fieldNumber": 146,
+      "path": "sections.part1.field146",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 153"
+    },
+    {
+      "inputIndex": 154,
+      "section": "part1",
+      "fieldNumber": 147,
+      "path": "sections.part1.field147",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 154"
+    },
+    {
+      "inputIndex": 155,
+      "section": "part1",
+      "fieldNumber": 148,
+      "path": "sections.part1.field148",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 155"
+    },
+    {
+      "inputIndex": 156,
+      "section": "part1",
+      "fieldNumber": 149,
+      "path": "sections.part1.field149",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 156"
+    },
+    {
+      "inputIndex": 157,
+      "section": "part1",
+      "fieldNumber": 150,
+      "path": "sections.part1.field150",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "มี"
+    },
+    {
+      "inputIndex": 158,
+      "section": "part1",
+      "fieldNumber": 151,
+      "path": "sections.part1.field151",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 159,
+      "section": "part1",
+      "fieldNumber": 152,
+      "path": "sections.part1.field152",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "กำลังสมัคร 7. ท่านเคยถูกปฏิเสธ เลื่อนการรับประกันภัย เพิ่มอัตราเบี้ยประกันภัย เปลี่ยนแปลงเงื่อนไขสำห"
+    },
+    {
+      "inputIndex": 160,
+      "section": "part1",
+      "fieldNumber": 153,
+      "path": "sections.part1.field153",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 161,
+      "section": "part1",
+      "fieldNumber": 154,
+      "path": "sections.part1.field154",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เคย ถ้าเคย โปรดระบุรายละเอียด ชื่อบริษัท"
+    },
+    {
+      "inputIndex": 162,
+      "section": "part1",
+      "fieldNumber": 155,
+      "path": "sections.part1.field155",
+      "type": "string",
+      "page": 2,
+      "labelHint": "เคย ถ้าเคย โปรดระบุรายละเอียด ชื่อบริษัท"
+    },
+    {
+      "inputIndex": 163,
+      "section": "part1",
+      "fieldNumber": 156,
+      "path": "sections.part1.field156",
+      "type": "string",
+      "page": 2,
+      "labelHint": "สาเหตุ"
+    },
+    {
+      "inputIndex": 164,
+      "section": "part1",
+      "fieldNumber": 157,
+      "path": "sections.part1.field157",
+      "type": "string",
+      "page": 2,
+      "labelHint": "เมื่อ"
+    },
+    {
+      "inputIndex": 165,
+      "section": "part1",
+      "fieldNumber": 158,
+      "path": "sections.part1.field158",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ชื่อบริษัท"
+    },
+    {
+      "inputIndex": 166,
+      "section": "part1",
+      "fieldNumber": 159,
+      "path": "sections.part1.field159",
+      "type": "string",
+      "page": 2,
+      "labelHint": "สาเหตุ"
+    },
+    {
+      "inputIndex": 167,
+      "section": "part1",
+      "fieldNumber": 160,
+      "path": "sections.part1.field160",
+      "type": "string",
+      "page": 2,
+      "labelHint": "เมื่อ"
+    },
+    {
+      "inputIndex": 168,
+      "section": "part1",
+      "fieldNumber": 161,
+      "path": "sections.part1.field161",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 169,
+      "section": "part1",
+      "fieldNumber": 162,
+      "path": "sections.part1.field162",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เคย 9. ท่านเสพหรือเคยเสพยาเสพติด หรือสารเสพติด หรือไม่"
+    },
+    {
+      "inputIndex": 170,
+      "section": "part1",
+      "fieldNumber": 163,
+      "path": "sections.part1.field163",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เสพ/ไม่เคย"
+    },
+    {
+      "inputIndex": 171,
+      "section": "part1",
+      "fieldNumber": 164,
+      "path": "sections.part1.field164",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เสพ/เคยเสพ ชนิด"
+    },
+    {
+      "inputIndex": 172,
+      "section": "part1",
+      "fieldNumber": 165,
+      "path": "sections.part1.field165",
+      "type": "string",
+      "page": 2,
+      "labelHint": "เสพ/เคยเสพ ชนิด"
+    },
+    {
+      "inputIndex": 173,
+      "section": "part1",
+      "fieldNumber": 166,
+      "path": "sections.part1.field166",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ปริมาณ"
+    },
+    {
+      "inputIndex": 174,
+      "section": "part1",
+      "fieldNumber": 167,
+      "path": "sections.part1.field167",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ความถี่"
+    },
+    {
+      "inputIndex": 175,
+      "section": "part1",
+      "fieldNumber": 168,
+      "path": "sections.part1.field168",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ครั้ง/สัปดาห์ เสพมานาน"
+    },
+    {
+      "inputIndex": 176,
+      "section": "part1",
+      "fieldNumber": 169,
+      "path": "sections.part1.field169",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ปี /เลิกเสพเมื่อ"
+    },
+    {
+      "inputIndex": 177,
+      "section": "part1",
+      "fieldNumber": 170,
+      "path": "sections.part1.field170",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่ดื่ม/ไม่เคย"
+    },
+    {
+      "inputIndex": 178,
+      "section": "part1",
+      "fieldNumber": 171,
+      "path": "sections.part1.field171",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ดื่ม/เคยดื่ม ชนิด"
+    },
+    {
+      "inputIndex": 179,
+      "section": "part1",
+      "fieldNumber": 172,
+      "path": "sections.part1.field172",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ดื่ม/เคยดื่ม ชนิด"
+    },
+    {
+      "inputIndex": 180,
+      "section": "part1",
+      "fieldNumber": 173,
+      "path": "sections.part1.field173",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ปริมาณ"
+    },
+    {
+      "inputIndex": 181,
+      "section": "part1",
+      "fieldNumber": 174,
+      "path": "sections.part1.field174",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ขวด/ครั้ง ความถี่"
+    },
+    {
+      "inputIndex": 182,
+      "section": "part1",
+      "fieldNumber": 175,
+      "path": "sections.part1.field175",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ครั้ง/สัปดาห์ ดื่มมานาน"
+    },
+    {
+      "inputIndex": 183,
+      "section": "part1",
+      "fieldNumber": 176,
+      "path": "sections.part1.field176",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ปี /เลิกดื่มเมื่อ"
+    },
+    {
+      "inputIndex": 184,
+      "section": "part1",
+      "fieldNumber": 177,
+      "path": "sections.part1.field177",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่สูบ/ไม่เคย"
+    },
+    {
+      "inputIndex": 185,
+      "section": "part1",
+      "fieldNumber": 178,
+      "path": "sections.part1.field178",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "สูบ/เคยสูบ ปริมาณ"
+    },
+    {
+      "inputIndex": 186,
+      "section": "part1",
+      "fieldNumber": 179,
+      "path": "sections.part1.field179",
+      "type": "string",
+      "page": 2,
+      "labelHint": "สูบ/เคยสูบ ปริมาณ"
+    },
+    {
+      "inputIndex": 187,
+      "section": "part1",
+      "fieldNumber": 180,
+      "path": "sections.part1.field180",
+      "type": "string",
+      "page": 2,
+      "labelHint": "มวน/วัน สูบมานาน"
+    },
+    {
+      "inputIndex": 188,
+      "section": "part1",
+      "fieldNumber": 181,
+      "path": "sections.part1.field181",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ปี / เลิกสูบเมื่อ"
+    },
+    {
+      "inputIndex": 189,
+      "section": "part1",
+      "fieldNumber": 182,
+      "path": "sections.part1.field182",
+      "type": "string",
+      "page": 2,
+      "labelHint": "12. ส่วนสูง"
+    },
+    {
+      "inputIndex": 190,
+      "section": "part1",
+      "fieldNumber": 183,
+      "path": "sections.part1.field183",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ซ.ม. น้ำหนัก"
+    },
+    {
+      "inputIndex": 191,
+      "section": "part1",
+      "fieldNumber": 184,
+      "path": "sections.part1.field184",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เปลี่ยน"
+    },
+    {
+      "inputIndex": 192,
+      "section": "part1",
+      "fieldNumber": 185,
+      "path": "sections.part1.field185",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เปลี่ยน เพิ่มขึ้น"
+    },
+    {
+      "inputIndex": 193,
+      "section": "part1",
+      "fieldNumber": 186,
+      "path": "sections.part1.field186",
+      "type": "string",
+      "page": 2,
+      "labelHint": "เปลี่ยน เพิ่มขึ้น"
+    },
+    {
+      "inputIndex": 194,
+      "section": "part1",
+      "fieldNumber": 187,
+      "path": "sections.part1.field187",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ก.ก. ลดลง"
+    },
+    {
+      "inputIndex": 195,
+      "section": "part1",
+      "fieldNumber": 188,
+      "path": "sections.part1.field188",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ก.ก. สาเหตุที่น้ำหนักเปลี่ยนแปลง"
+    },
+    {
+      "inputIndex": 196,
+      "section": "part2",
+      "fieldNumber": 1,
+      "path": "sections.part2.field001",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เป็น"
+    },
+    {
+      "inputIndex": 197,
+      "section": "part2",
+      "fieldNumber": 2,
+      "path": "sections.part2.field002",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เป็น ถ้าเป็นโปรดระบุรายละเอียดเฉพาะ ชื่อโรค ที่บุคคลในครอบครัวท่านเป็นหรือเคยเป็น"
+    },
+    {
+      "inputIndex": 198,
+      "section": "part2",
+      "fieldNumber": 3,
+      "path": "sections.part2.field003",
+      "type": "string",
+      "page": 2,
+      "labelHint": "เป็น ถ้าเป็นโปรดระบุรายละเอียดเฉพาะ ชื่อโรค ที่บุคคลในครอบครัวท่านเป็นหรือเคยเป็น"
+    },
+    {
+      "inputIndex": 199,
+      "section": "part2",
+      "fieldNumber": 4,
+      "path": "sections.part2.field004",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เป็น"
+    },
+    {
+      "inputIndex": 200,
+      "section": "part2",
+      "fieldNumber": 5,
+      "path": "sections.part2.field005",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เป็น หาก เป็น กรุณาทำเครื่องหมาย ☑"
+    },
+    {
+      "inputIndex": 201,
+      "section": "part2",
+      "fieldNumber": 6,
+      "path": "sections.part2.field006",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง"
+    },
+    {
+      "inputIndex": 202,
+      "section": "part2",
+      "fieldNumber": 7,
+      "path": "sections.part2.field007",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไวรัสตับอักเสบ ส่วนที่ 3 คำถามเกี่ยวกับประวัติการเจ็บป่วยหรือการรักษาโรคของ ผู้ขอเอาประกันภัย 15. ท่"
+    },
+    {
+      "inputIndex": 203,
+      "section": "part3",
+      "fieldNumber": 1,
+      "path": "sections.part3.field001",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เคย/ไม่มี"
+    },
+    {
+      "inputIndex": 204,
+      "section": "part3",
+      "fieldNumber": 2,
+      "path": "sections.part3.field002",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เคย/มี โปรดระบุรายละเอียดในตารางด้านล่าง ข) มีอาการดังต่อไปนี้ในระหว่าง 6 เดือนที่ผ่านมา"
+    },
+    {
+      "inputIndex": 205,
+      "section": "part3",
+      "fieldNumber": 3,
+      "path": "sections.part3.field003",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 206,
+      "section": "part3",
+      "fieldNumber": 4,
+      "path": "sections.part3.field004",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "มี กรุณาทำเครื่องหมาย ☑ และให้ระบุอาการและการรักษาตามรายละเอียดด้านล่าง (ตอบได้มากกว่า 1 ข้อ)"
+    },
+    {
+      "inputIndex": 207,
+      "section": "part3",
+      "fieldNumber": 5,
+      "path": "sections.part3.field005",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "อาการอ่อนเพลีย"
+    },
+    {
+      "inputIndex": 208,
+      "section": "part3",
+      "fieldNumber": 6,
+      "path": "sections.part3.field006",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "น้ำหนักลด"
+    },
+    {
+      "inputIndex": 209,
+      "section": "part3",
+      "fieldNumber": 7,
+      "path": "sections.part3.field007",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ท้องเดินเรื้อรัง"
+    },
+    {
+      "inputIndex": 210,
+      "section": "part3",
+      "fieldNumber": 8,
+      "path": "sections.part3.field008",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไข้เรื้อรัง"
+    },
+    {
+      "inputIndex": 211,
+      "section": "part3",
+      "fieldNumber": 9,
+      "path": "sections.part3.field009",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคผิวหนังเรื้อรัง อาการ วัน / เดือน / ปี ที่เริ่มมีอาการ อาการปัจจุบัน"
+    },
+    {
+      "inputIndex": 212,
+      "section": "part3",
+      "fieldNumber": 10,
+      "path": "sections.part3.field010",
+      "type": "string",
+      "page": 2,
+      "labelHint": "โรคผิวหนังเรื้อรัง อาการ วัน / เดือน / ปี ที่เริ่มมีอาการ อาการปัจจุบัน"
+    },
+    {
+      "inputIndex": 213,
+      "section": "part3",
+      "fieldNumber": 11,
+      "path": "sections.part3.field011",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 213"
+    },
+    {
+      "inputIndex": 214,
+      "section": "part3",
+      "fieldNumber": 12,
+      "path": "sections.part3.field012",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 214"
+    },
+    {
+      "inputIndex": 215,
+      "section": "part3",
+      "fieldNumber": 13,
+      "path": "sections.part3.field013",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 215"
+    },
+    {
+      "inputIndex": 216,
+      "section": "part3",
+      "fieldNumber": 14,
+      "path": "sections.part3.field014",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 216"
+    },
+    {
+      "inputIndex": 217,
+      "section": "part3",
+      "fieldNumber": 15,
+      "path": "sections.part3.field015",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ค) ในระหว่าง 5 ปีที่ผ่านมา ท่านเคยได้รับการตรวจสุขภาพ หรือการตรวจเพื่อวินิจฉัยโรค เช่น การตรวจเลือด"
+    },
+    {
+      "inputIndex": 218,
+      "section": "part3",
+      "fieldNumber": 16,
+      "path": "sections.part3.field016",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 219,
+      "section": "part3",
+      "fieldNumber": 17,
+      "path": "sections.part3.field017",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เคย โปรดระบุรายละเอียด โรค วัน/เดือน/ปี ที่ได้รับ การตรวจ/รักษา ผลการตรวจ/รักษา สถานพยาบาลที่ตรวจ/รั"
+    },
+    {
+      "inputIndex": 220,
+      "section": "part3",
+      "fieldNumber": 18,
+      "path": "sections.part3.field018",
+      "type": "string",
+      "page": 2,
+      "labelHint": "รตรวจ/รักษา ผลการตรวจ/รักษา สถานพยาบาลที่ตรวจ/รักษา (หาก ระบุชื่อแพทย์ได้โปรดระบุ) ข้อสังเกตโดยแพทย์"
+    },
+    {
+      "inputIndex": 221,
+      "section": "part3",
+      "fieldNumber": 19,
+      "path": "sections.part3.field019",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 221"
+    },
+    {
+      "inputIndex": 222,
+      "section": "part3",
+      "fieldNumber": 20,
+      "path": "sections.part3.field020",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 222"
+    },
+    {
+      "inputIndex": 223,
+      "section": "part3",
+      "fieldNumber": 21,
+      "path": "sections.part3.field021",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 223"
+    },
+    {
+      "inputIndex": 224,
+      "section": "part3",
+      "fieldNumber": 22,
+      "path": "sections.part3.field022",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 224"
+    },
+    {
+      "inputIndex": 225,
+      "section": "part3",
+      "fieldNumber": 23,
+      "path": "sections.part3.field023",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 225"
+    },
+    {
+      "inputIndex": 226,
+      "section": "part3",
+      "fieldNumber": 24,
+      "path": "sections.part3.field024",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 226"
+    },
+    {
+      "inputIndex": 227,
+      "section": "part3",
+      "fieldNumber": 25,
+      "path": "sections.part3.field025",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 227"
+    },
+    {
+      "inputIndex": 228,
+      "section": "part3",
+      "fieldNumber": 26,
+      "path": "sections.part3.field026",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 228"
+    },
+    {
+      "inputIndex": 229,
+      "section": "part3",
+      "fieldNumber": 27,
+      "path": "sections.part3.field027",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ง) ในระหว่าง 5 ปีที่ผ่านมา ท่านเคย บาดเจ็บ เจ็บป่วยจนต้องเข้ารับการรักษาในโรงพยาบาล ได้รับการผ่าตัด"
+    },
+    {
+      "inputIndex": 230,
+      "section": "part3",
+      "fieldNumber": 28,
+      "path": "sections.part3.field028",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 231,
+      "section": "part3",
+      "fieldNumber": 29,
+      "path": "sections.part3.field029",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เคย โปรดระบุรายละเอียด อาการ วัน/เดือน/ปี ที่ได้รับการตรวจ/รักษา ผลการตรวจ/รักษา สถานพยาบาลที่ตรวจ/ร"
+    },
+    {
+      "inputIndex": 232,
+      "section": "part3",
+      "fieldNumber": 30,
+      "path": "sections.part3.field030",
+      "type": "string",
+      "page": 2,
+      "labelHint": "ดือน/ปี ที่ได้รับการตรวจ/รักษา ผลการตรวจ/รักษา สถานพยาบาลที่ตรวจ/รักษา (หากระบุชื่อแพทย์ได้โปรดระบุ)"
+    },
+    {
+      "inputIndex": 233,
+      "section": "part3",
+      "fieldNumber": 31,
+      "path": "sections.part3.field031",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 233"
+    },
+    {
+      "inputIndex": 234,
+      "section": "part3",
+      "fieldNumber": 32,
+      "path": "sections.part3.field032",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 234"
+    },
+    {
+      "inputIndex": 235,
+      "section": "part3",
+      "fieldNumber": 33,
+      "path": "sections.part3.field033",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 235"
+    },
+    {
+      "inputIndex": 236,
+      "section": "part3",
+      "fieldNumber": 34,
+      "path": "sections.part3.field034",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 236"
+    },
+    {
+      "inputIndex": 237,
+      "section": "part3",
+      "fieldNumber": 35,
+      "path": "sections.part3.field035",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 237"
+    },
+    {
+      "inputIndex": 238,
+      "section": "part3",
+      "fieldNumber": 36,
+      "path": "sections.part3.field036",
+      "type": "string",
+      "page": 2,
+      "labelHint": "Input 238"
+    },
+    {
+      "inputIndex": 239,
+      "section": "part3",
+      "fieldNumber": 37,
+      "path": "sections.part3.field037",
+      "type": "string",
+      "page": 2,
+      "labelHint": "16. ท่านเคยได้รับการวินิจฉัย หรือรับการรักษาหรือตั้งข้อสังเกตโดยแพทย์ว่าป่วยเป็นโรคตามรายการท้ายคำถา"
+    },
+    {
+      "inputIndex": 240,
+      "section": "part3",
+      "fieldNumber": 38,
+      "path": "sections.part3.field038",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "ไม่เคย/ไม่มี"
+    },
+    {
+      "inputIndex": 241,
+      "section": "part3",
+      "fieldNumber": 39,
+      "path": "sections.part3.field039",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "เคย/มี หาก เคย/มี กรุณาทำเครื่องหมาย ☑ และระบุโรคและการรักษาตามรายละเอียด ในข้อ 16.ค) (ตอบได้มากกว่า"
+    },
+    {
+      "inputIndex": 242,
+      "section": "part3",
+      "fieldNumber": 40,
+      "path": "sections.part3.field040",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคหอบหืด"
+    },
+    {
+      "inputIndex": 243,
+      "section": "part3",
+      "fieldNumber": 41,
+      "path": "sections.part3.field041",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคความดันโลหิตสูง"
+    },
+    {
+      "inputIndex": 244,
+      "section": "part3",
+      "fieldNumber": 42,
+      "path": "sections.part3.field042",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคเลือด"
+    },
+    {
+      "inputIndex": 245,
+      "section": "part3",
+      "fieldNumber": 43,
+      "path": "sections.part3.field043",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคชัก"
+    },
+    {
+      "inputIndex": 246,
+      "section": "part3",
+      "fieldNumber": 44,
+      "path": "sections.part3.field044",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคตับหรือทางเดินน้ำดี"
+    },
+    {
+      "inputIndex": 247,
+      "section": "part3",
+      "fieldNumber": 45,
+      "path": "sections.part3.field045",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรควัณโรค"
+    },
+    {
+      "inputIndex": 248,
+      "section": "part3",
+      "fieldNumber": 46,
+      "path": "sections.part3.field046",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคหลอดเลือดในสมอง"
+    },
+    {
+      "inputIndex": 249,
+      "section": "part3",
+      "fieldNumber": 47,
+      "path": "sections.part3.field047",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคหลอดเลือด"
+    },
+    {
+      "inputIndex": 250,
+      "section": "part3",
+      "fieldNumber": 48,
+      "path": "sections.part3.field048",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคไต"
+    },
+    {
+      "inputIndex": 251,
+      "section": "part3",
+      "fieldNumber": 49,
+      "path": "sections.part3.field049",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง"
+    },
+    {
+      "inputIndex": 252,
+      "section": "part3",
+      "fieldNumber": 50,
+      "path": "sections.part3.field050",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคหัวใจ"
+    },
+    {
+      "inputIndex": 253,
+      "section": "part3",
+      "fieldNumber": 51,
+      "path": "sections.part3.field051",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคเบาหวาน"
+    },
+    {
+      "inputIndex": 254,
+      "section": "part3",
+      "fieldNumber": 52,
+      "path": "sections.part3.field052",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคมะเร็ง"
+    },
+    {
+      "inputIndex": 255,
+      "section": "part3",
+      "fieldNumber": 53,
+      "path": "sections.part3.field053",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคจิต"
+    },
+    {
+      "inputIndex": 256,
+      "section": "part3",
+      "fieldNumber": 54,
+      "path": "sections.part3.field054",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคเก๊าท์"
+    },
+    {
+      "inputIndex": 257,
+      "section": "part3",
+      "fieldNumber": 55,
+      "path": "sections.part3.field055",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคปอดหรือปอดอักเสบ"
+    },
+    {
+      "inputIndex": 258,
+      "section": "part3",
+      "fieldNumber": 56,
+      "path": "sections.part3.field056",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคเอสแอลอี"
+    },
+    {
+      "inputIndex": 259,
+      "section": "part3",
+      "fieldNumber": 57,
+      "path": "sections.part3.field057",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "พิการทางร่างกาย"
+    },
+    {
+      "inputIndex": 260,
+      "section": "part3",
+      "fieldNumber": 58,
+      "path": "sections.part3.field058",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคพาร์กินสัน"
+    },
+    {
+      "inputIndex": 261,
+      "section": "part3",
+      "fieldNumber": 59,
+      "path": "sections.part3.field059",
+      "type": "boolean",
+      "page": 2,
+      "labelHint": "โรคอัมพฤกษ์หรืออัมพาต 2/6 สำเนา 16.ข) ข้อ 16.ข) และ ข้อ 17. สำหรับการขอเอาประกันภัยสัญญาเพิ่มเติมเกี"
+    },
+    {
+      "inputIndex": 262,
+      "section": "part3",
+      "fieldNumber": 60,
+      "path": "sections.part3.field060",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "สายตาพิการ"
+    },
+    {
+      "inputIndex": 263,
+      "section": "part3",
+      "fieldNumber": 61,
+      "path": "sections.part3.field061",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ดีซ่าน"
+    },
+    {
+      "inputIndex": 264,
+      "section": "part3",
+      "fieldNumber": 62,
+      "path": "sections.part3.field062",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคประสาท"
+    },
+    {
+      "inputIndex": 265,
+      "section": "part3",
+      "fieldNumber": 63,
+      "path": "sections.part3.field063",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ติดเชื้อในหูชั้นกลาง"
+    },
+    {
+      "inputIndex": 266,
+      "section": "part3",
+      "fieldNumber": 64,
+      "path": "sections.part3.field064",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ถุงน้ำดีอักเสบ"
+    },
+    {
+      "inputIndex": 267,
+      "section": "part3",
+      "fieldNumber": 65,
+      "path": "sections.part3.field065",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคจอประสาทตา"
+    },
+    {
+      "inputIndex": 268,
+      "section": "part3",
+      "fieldNumber": 66,
+      "path": "sections.part3.field066",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ม้ามโต"
+    },
+    {
+      "inputIndex": 269,
+      "section": "part3",
+      "fieldNumber": 67,
+      "path": "sections.part3.field067",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคซึมเศร้า"
+    },
+    {
+      "inputIndex": 270,
+      "section": "part3",
+      "fieldNumber": 68,
+      "path": "sections.part3.field068",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ต่อมทอนซิลอักเสบเรื้อรัง"
+    },
+    {
+      "inputIndex": 271,
+      "section": "part3",
+      "fieldNumber": 69,
+      "path": "sections.part3.field069",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ไส้เลื่อน"
+    },
+    {
+      "inputIndex": 272,
+      "section": "part3",
+      "fieldNumber": 70,
+      "path": "sections.part3.field070",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคต้อหิน"
+    },
+    {
+      "inputIndex": 273,
+      "section": "part3",
+      "fieldNumber": 71,
+      "path": "sections.part3.field071",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคตับอ่อนอักเสบ"
+    },
+    {
+      "inputIndex": 274,
+      "section": "part3",
+      "fieldNumber": 72,
+      "path": "sections.part3.field072",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ออทิสติก"
+    },
+    {
+      "inputIndex": 275,
+      "section": "part3",
+      "fieldNumber": 73,
+      "path": "sections.part3.field073",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ไซนัสอักเสบ"
+    },
+    {
+      "inputIndex": 276,
+      "section": "part3",
+      "fieldNumber": 74,
+      "path": "sections.part3.field074",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคความจำเสื่อม"
+    },
+    {
+      "inputIndex": 277,
+      "section": "part3",
+      "fieldNumber": 75,
+      "path": "sections.part3.field075",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคแผลในทางเดินอาหาร"
+    },
+    {
+      "inputIndex": 278,
+      "section": "part3",
+      "fieldNumber": 76,
+      "path": "sections.part3.field076",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "สมาธิสั้น"
+    },
+    {
+      "inputIndex": 279,
+      "section": "part3",
+      "fieldNumber": 77,
+      "path": "sections.part3.field077",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "หลอดลมอักเสบเรื้อรัง"
+    },
+    {
+      "inputIndex": 280,
+      "section": "part3",
+      "fieldNumber": 78,
+      "path": "sections.part3.field078",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคไทรอยด์"
+    },
+    {
+      "inputIndex": 281,
+      "section": "part3",
+      "fieldNumber": 79,
+      "path": "sections.part3.field079",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคข้ออักเสบ"
+    },
+    {
+      "inputIndex": 282,
+      "section": "part3",
+      "fieldNumber": 80,
+      "path": "sections.part3.field080",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ภูมิแพ้"
+    },
+    {
+      "inputIndex": 283,
+      "section": "part3",
+      "fieldNumber": 81,
+      "path": "sections.part3.field081",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ปวดศีรษะไมเกรน"
+    },
+    {
+      "inputIndex": 284,
+      "section": "part3",
+      "fieldNumber": 82,
+      "path": "sections.part3.field082",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคปอดอุดกั้นเรื้อรัง"
+    },
+    {
+      "inputIndex": 285,
+      "section": "part3",
+      "fieldNumber": 83,
+      "path": "sections.part3.field083",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคหนังแข็ง"
+    },
+    {
+      "inputIndex": 286,
+      "section": "part3",
+      "fieldNumber": 84,
+      "path": "sections.part3.field084",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "กรดไหลย้อน"
+    },
+    {
+      "inputIndex": 287,
+      "section": "part3",
+      "fieldNumber": 85,
+      "path": "sections.part3.field085",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "กระดูกสันหลังเคลื่อน"
+    },
+    {
+      "inputIndex": 288,
+      "section": "part3",
+      "fieldNumber": 86,
+      "path": "sections.part3.field086",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคถุงลมโป่งพอง"
+    },
+    {
+      "inputIndex": 289,
+      "section": "part3",
+      "fieldNumber": 87,
+      "path": "sections.part3.field087",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคต่อมน้ำเหลืองโต"
+    },
+    {
+      "inputIndex": 290,
+      "section": "part3",
+      "fieldNumber": 88,
+      "path": "sections.part3.field088",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "นิ่ว"
+    },
+    {
+      "inputIndex": 291,
+      "section": "part3",
+      "fieldNumber": 89,
+      "path": "sections.part3.field089",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "หมอนรองกระดูกเคลื่อนหรือทับเส้นประสาท"
+    },
+    {
+      "inputIndex": 292,
+      "section": "part3",
+      "fieldNumber": 90,
+      "path": "sections.part3.field090",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ภาวะหยุดหายใจขณะหลับ"
+    },
+    {
+      "inputIndex": 293,
+      "section": "part3",
+      "fieldNumber": 91,
+      "path": "sections.part3.field091",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เนื้องอก ก้อนหรือถุงน้ำ"
+    },
+    {
+      "inputIndex": 294,
+      "section": "part3",
+      "fieldNumber": 92,
+      "path": "sections.part3.field092",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ริดสีดวงทวาร"
+    },
+    {
+      "inputIndex": 295,
+      "section": "part3",
+      "fieldNumber": 93,
+      "path": "sections.part3.field093",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เส้นเอ็นอักเสบเรื้อรัง"
+    },
+    {
+      "inputIndex": 296,
+      "section": "part3",
+      "fieldNumber": 94,
+      "path": "sections.part3.field094",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคเส้นเลือดหัวใจตีบ"
+    },
+    {
+      "inputIndex": 297,
+      "section": "part3",
+      "fieldNumber": 95,
+      "path": "sections.part3.field095",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคกามโรค (ภายใน 2 ปี)"
+    },
+    {
+      "inputIndex": 298,
+      "section": "part3",
+      "fieldNumber": 96,
+      "path": "sections.part3.field096",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ฝีคันฑสูตร"
+    },
+    {
+      "inputIndex": 299,
+      "section": "part3",
+      "fieldNumber": 97,
+      "path": "sections.part3.field097",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เส้นประสาทอักเสบหรือถูกเบียดทับ"
+    },
+    {
+      "inputIndex": 300,
+      "section": "part3",
+      "fieldNumber": 98,
+      "path": "sections.part3.field098",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคพิษสุราเรื้อรัง"
+    },
+    {
+      "inputIndex": 301,
+      "section": "part3",
+      "fieldNumber": 99,
+      "path": "sections.part3.field099",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ดาวน์ซินโดรม"
+    },
+    {
+      "inputIndex": 302,
+      "section": "part3",
+      "fieldNumber": 100,
+      "path": "sections.part3.field100",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ข้อเสื่อม"
+    },
+    {
+      "inputIndex": 303,
+      "section": "part3",
+      "fieldNumber": 101,
+      "path": "sections.part3.field101",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เยื่อบุโพรงมดลูกเจริญผิดที่ 16.ค) รายละเอียดของข้อ 16.ก) และ 16.ข) โรค วัน/เดือน/ปีที่รักษา ที่ได้รั"
+    },
+    {
+      "inputIndex": 304,
+      "section": "part3",
+      "fieldNumber": 102,
+      "path": "sections.part3.field102",
+      "type": "string",
+      "page": 3,
+      "labelHint": "์ และอาการปัจจุบัน สถานพยาบาลที่วินิจฉัย/รักษา/ตั้ง ข้อสังเกตโดยแพทย์ (หากระบุชื่อ แพทย์ได้โปรดระบุ)"
+    },
+    {
+      "inputIndex": 305,
+      "section": "part3",
+      "fieldNumber": 103,
+      "path": "sections.part3.field103",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 305"
+    },
+    {
+      "inputIndex": 306,
+      "section": "part3",
+      "fieldNumber": 104,
+      "path": "sections.part3.field104",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 306"
+    },
+    {
+      "inputIndex": 307,
+      "section": "part3",
+      "fieldNumber": 105,
+      "path": "sections.part3.field105",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 307"
+    },
+    {
+      "inputIndex": 308,
+      "section": "part3",
+      "fieldNumber": 106,
+      "path": "sections.part3.field106",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 308"
+    },
+    {
+      "inputIndex": 309,
+      "section": "part3",
+      "fieldNumber": 107,
+      "path": "sections.part3.field107",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 309"
+    },
+    {
+      "inputIndex": 310,
+      "section": "part3",
+      "fieldNumber": 108,
+      "path": "sections.part3.field108",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 310"
+    },
+    {
+      "inputIndex": 311,
+      "section": "part3",
+      "fieldNumber": 109,
+      "path": "sections.part3.field109",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 311"
+    },
+    {
+      "inputIndex": 312,
+      "section": "part3",
+      "fieldNumber": 110,
+      "path": "sections.part3.field110",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 312"
+    },
+    {
+      "inputIndex": 313,
+      "section": "part3",
+      "fieldNumber": 111,
+      "path": "sections.part3.field111",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 313"
+    },
+    {
+      "inputIndex": 314,
+      "section": "part3",
+      "fieldNumber": 112,
+      "path": "sections.part3.field112",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 314"
+    },
+    {
+      "inputIndex": 315,
+      "section": "part3",
+      "fieldNumber": 113,
+      "path": "sections.part3.field113",
+      "type": "string",
+      "page": 3,
+      "labelHint": "17. ท่านเคยมี หรือกำลังมีอาการดังต่อไปนี้หรือไม่"
+    },
+    {
+      "inputIndex": 316,
+      "section": "part3",
+      "fieldNumber": 114,
+      "path": "sections.part3.field114",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ไม่เคย/ไม่มี"
+    },
+    {
+      "inputIndex": 317,
+      "section": "part3",
+      "fieldNumber": 115,
+      "path": "sections.part3.field115",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เคย/มี หาก เคยมี หรือกำลังมี กรุณาทำเครื่องหมาย ☑ และให้ระบุอาการและการรักษาตามรายละเอียดด้านล่าง (ต"
+    },
+    {
+      "inputIndex": 318,
+      "section": "part3",
+      "fieldNumber": 116,
+      "path": "sections.part3.field116",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "การมองเห็นผิดปกติ"
+    },
+    {
+      "inputIndex": 319,
+      "section": "part3",
+      "fieldNumber": 117,
+      "path": "sections.part3.field117",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "มีพัฒนาการช้า"
+    },
+    {
+      "inputIndex": 320,
+      "section": "part3",
+      "fieldNumber": 118,
+      "path": "sections.part3.field118",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เหนื่อยง่ายผิดปกติ"
+    },
+    {
+      "inputIndex": 321,
+      "section": "part3",
+      "fieldNumber": 119,
+      "path": "sections.part3.field119",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ปวดท้องเรื้อรัง"
+    },
+    {
+      "inputIndex": 322,
+      "section": "part3",
+      "fieldNumber": 120,
+      "path": "sections.part3.field120",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "อาเจียนหรือถ่ายเป็นเลือด"
+    },
+    {
+      "inputIndex": 323,
+      "section": "part3",
+      "fieldNumber": 121,
+      "path": "sections.part3.field121",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "กล้ามเนื้ออ่อนแรง"
+    },
+    {
+      "inputIndex": 324,
+      "section": "part3",
+      "fieldNumber": 122,
+      "path": "sections.part3.field122",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ปวดศีรษะรุนแรงเรื้อรัง"
+    },
+    {
+      "inputIndex": 325,
+      "section": "part3",
+      "fieldNumber": 123,
+      "path": "sections.part3.field123",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เจ็บหรือแน่นหน้าอก"
+    },
+    {
+      "inputIndex": 326,
+      "section": "part3",
+      "fieldNumber": 124,
+      "path": "sections.part3.field124",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ท้องมาน"
+    },
+    {
+      "inputIndex": 327,
+      "section": "part3",
+      "fieldNumber": 125,
+      "path": "sections.part3.field125",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ท้องเสียเรื้อรัง"
+    },
+    {
+      "inputIndex": 328,
+      "section": "part3",
+      "fieldNumber": 126,
+      "path": "sections.part3.field126",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "การเคลื่อนไหวของร่างกายผิดปกติ"
+    },
+    {
+      "inputIndex": 329,
+      "section": "part3",
+      "fieldNumber": 127,
+      "path": "sections.part3.field127",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ไอเรื้อรัง"
+    },
+    {
+      "inputIndex": 330,
+      "section": "part3",
+      "fieldNumber": 128,
+      "path": "sections.part3.field128",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ใจสั่น"
+    },
+    {
+      "inputIndex": 331,
+      "section": "part3",
+      "fieldNumber": 129,
+      "path": "sections.part3.field129",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "มีเลือดปนในปัสสาวะ"
+    },
+    {
+      "inputIndex": 332,
+      "section": "part3",
+      "fieldNumber": 130,
+      "path": "sections.part3.field130",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ปวดข้อเรื้อรัง"
+    },
+    {
+      "inputIndex": 333,
+      "section": "part3",
+      "fieldNumber": 131,
+      "path": "sections.part3.field131",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ร่างกายสูญเสียประสาทรับความรู้สึก"
+    },
+    {
+      "inputIndex": 334,
+      "section": "part3",
+      "fieldNumber": 132,
+      "path": "sections.part3.field132",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ไอเป็นเลือด"
+    },
+    {
+      "inputIndex": 335,
+      "section": "part3",
+      "fieldNumber": 133,
+      "path": "sections.part3.field133",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "จ้ำเลือด"
+    },
+    {
+      "inputIndex": 336,
+      "section": "part3",
+      "fieldNumber": 134,
+      "path": "sections.part3.field134",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เคยพยายามทำร้ายร่างกายตนเอง เฉพาะสตรี"
+    },
+    {
+      "inputIndex": 337,
+      "section": "part3",
+      "fieldNumber": 135,
+      "path": "sections.part3.field135",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "กำลังตั้งครรภ์"
+    },
+    {
+      "inputIndex": 338,
+      "section": "part3",
+      "fieldNumber": 136,
+      "path": "sections.part3.field136",
+      "type": "string",
+      "page": 3,
+      "labelHint": "กำลังตั้งครรภ์"
+    },
+    {
+      "inputIndex": 339,
+      "section": "part3",
+      "fieldNumber": 137,
+      "path": "sections.part3.field137",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โรคแทรกซ้อนในการตั้งครรภ์และคลอดบุตร"
+    },
+    {
+      "inputIndex": 340,
+      "section": "part3",
+      "fieldNumber": 138,
+      "path": "sections.part3.field138",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "เลือดออกผิดปกติทางช่องคลอด อาการ วัน / เดือน / ปี ที่เริ่มมีอาการ อาการปัจจุบัน"
+    },
+    {
+      "inputIndex": 341,
+      "section": "part3",
+      "fieldNumber": 139,
+      "path": "sections.part3.field139",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เลือดออกผิดปกติทางช่องคลอด อาการ วัน / เดือน / ปี ที่เริ่มมีอาการ อาการปัจจุบัน"
+    },
+    {
+      "inputIndex": 342,
+      "section": "part3",
+      "fieldNumber": 140,
+      "path": "sections.part3.field140",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 342"
+    },
+    {
+      "inputIndex": 343,
+      "section": "part3",
+      "fieldNumber": 141,
+      "path": "sections.part3.field141",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 343"
+    },
+    {
+      "inputIndex": 344,
+      "section": "part3",
+      "fieldNumber": 142,
+      "path": "sections.part3.field142",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 344"
+    },
+    {
+      "inputIndex": 345,
+      "section": "part3",
+      "fieldNumber": 143,
+      "path": "sections.part3.field143",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 345"
+    },
+    {
+      "inputIndex": 346,
+      "section": "part3",
+      "fieldNumber": 144,
+      "path": "sections.part3.field144",
+      "type": "string",
+      "page": 3,
+      "labelHint": "18. กรณีต้องการแจ้งรายละเอียดเพิ่มเติมของผู้เอาประกันภัย"
+    },
+    {
+      "inputIndex": 347,
+      "section": "part3",
+      "fieldNumber": 145,
+      "path": "sections.part3.field145",
+      "type": "string",
+      "page": 3,
+      "labelHint": "18. กรณีต้องการแจ้งรายละเอียดเพิ่มเติมของผู้เอาประกันภัย"
+    },
+    {
+      "inputIndex": 348,
+      "section": "part3",
+      "fieldNumber": 146,
+      "path": "sections.part3.field146",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ส่วนที่ 4 คำถามเกี่ยวกับข้อมูลส่วนบุคคลของ ผู้ชำระเบี้ยประกันภัย สำหรับผู้ขอเอาประกันภัยที่ไม่ได้ชำร"
+    },
+    {
+      "inputIndex": 349,
+      "section": "part4",
+      "fieldNumber": 1,
+      "path": "sections.part4.field001",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ระโยชน์ตามกรมธรรม์ และเป็นผู้ให้ถ้อยแถลงข้อมูลเกี่ยวกับผู้เยาว์ที่ขอเอาประกันภัย) 19. ชื่อและนามสกุล"
+    },
+    {
+      "inputIndex": 350,
+      "section": "part4",
+      "fieldNumber": 2,
+      "path": "sections.part4.field002",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ชื่อและนามสกุลเดิม"
+    },
+    {
+      "inputIndex": 351,
+      "section": "part4",
+      "fieldNumber": 3,
+      "path": "sections.part4.field003",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ชาย"
+    },
+    {
+      "inputIndex": 352,
+      "section": "part4",
+      "fieldNumber": 4,
+      "path": "sections.part4.field004",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "หญิง เกิดวันที่"
+    },
+    {
+      "inputIndex": 353,
+      "section": "part4",
+      "fieldNumber": 5,
+      "path": "sections.part4.field005",
+      "type": "string",
+      "page": 3,
+      "labelHint": "หญิง เกิดวันที่"
+    },
+    {
+      "inputIndex": 354,
+      "section": "part4",
+      "fieldNumber": 6,
+      "path": "sections.part4.field006",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เดือน"
+    },
+    {
+      "inputIndex": 355,
+      "section": "part4",
+      "fieldNumber": 7,
+      "path": "sections.part4.field007",
+      "type": "string",
+      "page": 3,
+      "labelHint": "พ.ศ."
+    },
+    {
+      "inputIndex": 356,
+      "section": "part4",
+      "fieldNumber": 8,
+      "path": "sections.part4.field008",
+      "type": "string",
+      "page": 3,
+      "labelHint": "อายุ"
+    },
+    {
+      "inputIndex": 357,
+      "section": "part4",
+      "fieldNumber": 9,
+      "path": "sections.part4.field009",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ปี สัญชาติ"
+    },
+    {
+      "inputIndex": 358,
+      "section": "part4",
+      "fieldNumber": 10,
+      "path": "sections.part4.field010",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เลขประจำตัวประชาชน"
+    },
+    {
+      "inputIndex": 359,
+      "section": "part4",
+      "fieldNumber": 11,
+      "path": "sections.part4.field011",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 359"
+    },
+    {
+      "inputIndex": 360,
+      "section": "part4",
+      "fieldNumber": 12,
+      "path": "sections.part4.field012",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 360"
+    },
+    {
+      "inputIndex": 361,
+      "section": "part4",
+      "fieldNumber": 13,
+      "path": "sections.part4.field013",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 361"
+    },
+    {
+      "inputIndex": 362,
+      "section": "part4",
+      "fieldNumber": 14,
+      "path": "sections.part4.field014",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 362"
+    },
+    {
+      "inputIndex": 363,
+      "section": "part4",
+      "fieldNumber": 15,
+      "path": "sections.part4.field015",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 363"
+    },
+    {
+      "inputIndex": 364,
+      "section": "part4",
+      "fieldNumber": 16,
+      "path": "sections.part4.field016",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 364"
+    },
+    {
+      "inputIndex": 365,
+      "section": "part4",
+      "fieldNumber": 17,
+      "path": "sections.part4.field017",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 365"
+    },
+    {
+      "inputIndex": 366,
+      "section": "part4",
+      "fieldNumber": 18,
+      "path": "sections.part4.field018",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 366"
+    },
+    {
+      "inputIndex": 367,
+      "section": "part4",
+      "fieldNumber": 19,
+      "path": "sections.part4.field019",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 367"
+    },
+    {
+      "inputIndex": 368,
+      "section": "part4",
+      "fieldNumber": 20,
+      "path": "sections.part4.field020",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 368"
+    },
+    {
+      "inputIndex": 369,
+      "section": "part4",
+      "fieldNumber": 21,
+      "path": "sections.part4.field021",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 369"
+    },
+    {
+      "inputIndex": 370,
+      "section": "part4",
+      "fieldNumber": 22,
+      "path": "sections.part4.field022",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 370"
+    },
+    {
+      "inputIndex": 371,
+      "section": "part4",
+      "fieldNumber": 23,
+      "path": "sections.part4.field023",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ความสัมพันธ์กับผู้ขอเอาประกันภัย"
+    },
+    {
+      "inputIndex": 372,
+      "section": "part4",
+      "fieldNumber": 24,
+      "path": "sections.part4.field024",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "บัตรประจำตัวประชาชน วันบัตรหมดอายุ"
+    },
+    {
+      "inputIndex": 373,
+      "section": "part4",
+      "fieldNumber": 25,
+      "path": "sections.part4.field025",
+      "type": "string",
+      "page": 3,
+      "labelHint": "บัตรประจำตัวประชาชน วันบัตรหมดอายุ"
+    },
+    {
+      "inputIndex": 374,
+      "section": "part4",
+      "fieldNumber": 26,
+      "path": "sections.part4.field026",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "หนังสือเดินทาง เลขที่"
+    },
+    {
+      "inputIndex": 375,
+      "section": "part4",
+      "fieldNumber": 27,
+      "path": "sections.part4.field027",
+      "type": "string",
+      "page": 3,
+      "labelHint": "หนังสือเดินทาง เลขที่"
+    },
+    {
+      "inputIndex": 376,
+      "section": "part4",
+      "fieldNumber": 28,
+      "path": "sections.part4.field028",
+      "type": "string",
+      "page": 3,
+      "labelHint": "วันหมดอายุ"
+    },
+    {
+      "inputIndex": 377,
+      "section": "part4",
+      "fieldNumber": 29,
+      "path": "sections.part4.field029",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "โสด"
+    },
+    {
+      "inputIndex": 378,
+      "section": "part4",
+      "fieldNumber": 30,
+      "path": "sections.part4.field030",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "สมรส"
+    },
+    {
+      "inputIndex": 379,
+      "section": "part4",
+      "fieldNumber": 31,
+      "path": "sections.part4.field031",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "หม้าย"
+    },
+    {
+      "inputIndex": 380,
+      "section": "part4",
+      "fieldNumber": 32,
+      "path": "sections.part4.field032",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "หย่า ชื่อและนามสกุล ภรรยา / สามี"
+    },
+    {
+      "inputIndex": 381,
+      "section": "part4",
+      "fieldNumber": 33,
+      "path": "sections.part4.field033",
+      "type": "string",
+      "page": 3,
+      "labelHint": "หย่า ชื่อและนามสกุล ภรรยา / สามี"
+    },
+    {
+      "inputIndex": 382,
+      "section": "part4",
+      "fieldNumber": 34,
+      "path": "sections.part4.field034",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เลขประจำตัวประชาชน"
+    },
+    {
+      "inputIndex": 383,
+      "section": "part4",
+      "fieldNumber": 35,
+      "path": "sections.part4.field035",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 383"
+    },
+    {
+      "inputIndex": 384,
+      "section": "part4",
+      "fieldNumber": 36,
+      "path": "sections.part4.field036",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 384"
+    },
+    {
+      "inputIndex": 385,
+      "section": "part4",
+      "fieldNumber": 37,
+      "path": "sections.part4.field037",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 385"
+    },
+    {
+      "inputIndex": 386,
+      "section": "part4",
+      "fieldNumber": 38,
+      "path": "sections.part4.field038",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 386"
+    },
+    {
+      "inputIndex": 387,
+      "section": "part4",
+      "fieldNumber": 39,
+      "path": "sections.part4.field039",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 387"
+    },
+    {
+      "inputIndex": 388,
+      "section": "part4",
+      "fieldNumber": 40,
+      "path": "sections.part4.field040",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 388"
+    },
+    {
+      "inputIndex": 389,
+      "section": "part4",
+      "fieldNumber": 41,
+      "path": "sections.part4.field041",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 389"
+    },
+    {
+      "inputIndex": 390,
+      "section": "part4",
+      "fieldNumber": 42,
+      "path": "sections.part4.field042",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 390"
+    },
+    {
+      "inputIndex": 391,
+      "section": "part4",
+      "fieldNumber": 43,
+      "path": "sections.part4.field043",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 391"
+    },
+    {
+      "inputIndex": 392,
+      "section": "part4",
+      "fieldNumber": 44,
+      "path": "sections.part4.field044",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 392"
+    },
+    {
+      "inputIndex": 393,
+      "section": "part4",
+      "fieldNumber": 45,
+      "path": "sections.part4.field045",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 393"
+    },
+    {
+      "inputIndex": 394,
+      "section": "part4",
+      "fieldNumber": 46,
+      "path": "sections.part4.field046",
+      "type": "string",
+      "page": 3,
+      "labelHint": "Input 394"
+    },
+    {
+      "inputIndex": 395,
+      "section": "part4",
+      "fieldNumber": 47,
+      "path": "sections.part4.field047",
+      "type": "string",
+      "page": 3,
+      "labelHint": "20. ก) ที่อยู่ปัจจุบัน"
+    },
+    {
+      "inputIndex": 396,
+      "section": "part4",
+      "fieldNumber": 48,
+      "path": "sections.part4.field048",
+      "type": "string",
+      "page": 3,
+      "labelHint": "แขวง/ตำบล"
+    },
+    {
+      "inputIndex": 397,
+      "section": "part4",
+      "fieldNumber": 49,
+      "path": "sections.part4.field049",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เขต/อำเภอ"
+    },
+    {
+      "inputIndex": 398,
+      "section": "part4",
+      "fieldNumber": 50,
+      "path": "sections.part4.field050",
+      "type": "string",
+      "page": 3,
+      "labelHint": "จังหวัด"
+    },
+    {
+      "inputIndex": 399,
+      "section": "part4",
+      "fieldNumber": 51,
+      "path": "sections.part4.field051",
+      "type": "string",
+      "page": 3,
+      "labelHint": "รหัสไปรษณีย์"
+    },
+    {
+      "inputIndex": 400,
+      "section": "part4",
+      "fieldNumber": 52,
+      "path": "sections.part4.field052",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ประเทศ"
+    },
+    {
+      "inputIndex": 401,
+      "section": "part4",
+      "fieldNumber": 53,
+      "path": "sections.part4.field053",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ข) ที่อยู่ตามทะเบียนบ้าน"
+    },
+    {
+      "inputIndex": 402,
+      "section": "part4",
+      "fieldNumber": 54,
+      "path": "sections.part4.field054",
+      "type": "string",
+      "page": 3,
+      "labelHint": "แขวง/ตำบล"
+    },
+    {
+      "inputIndex": 403,
+      "section": "part4",
+      "fieldNumber": 55,
+      "path": "sections.part4.field055",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เขต/อำเภอ"
+    },
+    {
+      "inputIndex": 404,
+      "section": "part4",
+      "fieldNumber": 56,
+      "path": "sections.part4.field056",
+      "type": "string",
+      "page": 3,
+      "labelHint": "จังหวัด"
+    },
+    {
+      "inputIndex": 405,
+      "section": "part4",
+      "fieldNumber": 57,
+      "path": "sections.part4.field057",
+      "type": "string",
+      "page": 3,
+      "labelHint": "รหัสไปรษณีย์"
+    },
+    {
+      "inputIndex": 406,
+      "section": "part4",
+      "fieldNumber": 58,
+      "path": "sections.part4.field058",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ประเทศ"
+    },
+    {
+      "inputIndex": 407,
+      "section": "part4",
+      "fieldNumber": 59,
+      "path": "sections.part4.field059",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ค) สถานที่ทำงาน"
+    },
+    {
+      "inputIndex": 408,
+      "section": "part4",
+      "fieldNumber": 60,
+      "path": "sections.part4.field060",
+      "type": "string",
+      "page": 3,
+      "labelHint": "แขวง/ตำบล"
+    },
+    {
+      "inputIndex": 409,
+      "section": "part4",
+      "fieldNumber": 61,
+      "path": "sections.part4.field061",
+      "type": "string",
+      "page": 3,
+      "labelHint": "เขต/อำเภอ"
+    },
+    {
+      "inputIndex": 410,
+      "section": "part4",
+      "fieldNumber": 62,
+      "path": "sections.part4.field062",
+      "type": "string",
+      "page": 3,
+      "labelHint": "จังหวัด"
+    },
+    {
+      "inputIndex": 411,
+      "section": "part4",
+      "fieldNumber": 63,
+      "path": "sections.part4.field063",
+      "type": "string",
+      "page": 3,
+      "labelHint": "รหัสไปรษณีย์"
+    },
+    {
+      "inputIndex": 412,
+      "section": "part4",
+      "fieldNumber": 64,
+      "path": "sections.part4.field064",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ประเทศ"
+    },
+    {
+      "inputIndex": 413,
+      "section": "part4",
+      "fieldNumber": 65,
+      "path": "sections.part4.field065",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ง) โทรศัพท์บ้าน"
+    },
+    {
+      "inputIndex": 414,
+      "section": "part4",
+      "fieldNumber": 66,
+      "path": "sections.part4.field066",
+      "type": "string",
+      "page": 3,
+      "labelHint": "โทรศัพท์มือถือ"
+    },
+    {
+      "inputIndex": 415,
+      "section": "part4",
+      "fieldNumber": 67,
+      "path": "sections.part4.field067",
+      "type": "string",
+      "page": 3,
+      "labelHint": "โทรศัพท์ที่ทำงาน"
+    },
+    {
+      "inputIndex": 416,
+      "section": "part4",
+      "fieldNumber": 68,
+      "path": "sections.part4.field068",
+      "type": "string",
+      "page": 3,
+      "labelHint": "อีเมล"
+    },
+    {
+      "inputIndex": 417,
+      "section": "part4",
+      "fieldNumber": 69,
+      "path": "sections.part4.field069",
+      "type": "string",
+      "page": 3,
+      "labelHint": "21. ก) อาชีพประจำ"
+    },
+    {
+      "inputIndex": 418,
+      "section": "part4",
+      "fieldNumber": 70,
+      "path": "sections.part4.field070",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ตำแหน่ง"
+    },
+    {
+      "inputIndex": 419,
+      "section": "part4",
+      "fieldNumber": 71,
+      "path": "sections.part4.field071",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ลักษณะงานที่ทำ"
+    },
+    {
+      "inputIndex": 420,
+      "section": "part4",
+      "fieldNumber": 72,
+      "path": "sections.part4.field072",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ลักษณะธุรกิจ"
+    },
+    {
+      "inputIndex": 421,
+      "section": "part4",
+      "fieldNumber": 73,
+      "path": "sections.part4.field073",
+      "type": "string",
+      "page": 3,
+      "labelHint": "รายได้ต่อปี"
+    },
+    {
+      "inputIndex": 422,
+      "section": "part4",
+      "fieldNumber": 74,
+      "path": "sections.part4.field074",
+      "type": "string",
+      "page": 3,
+      "labelHint": "บาท ข) อาชีพอื่นๆ (ถ้ามี)"
+    },
+    {
+      "inputIndex": 423,
+      "section": "part4",
+      "fieldNumber": 75,
+      "path": "sections.part4.field075",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ตำแหน่ง"
+    },
+    {
+      "inputIndex": 424,
+      "section": "part4",
+      "fieldNumber": 76,
+      "path": "sections.part4.field076",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ลักษณะงานที่ทำ"
+    },
+    {
+      "inputIndex": 425,
+      "section": "part4",
+      "fieldNumber": 77,
+      "path": "sections.part4.field077",
+      "type": "string",
+      "page": 3,
+      "labelHint": "ลักษณะธุรกิจ"
+    },
+    {
+      "inputIndex": 426,
+      "section": "part4",
+      "fieldNumber": 78,
+      "path": "sections.part4.field078",
+      "type": "string",
+      "page": 3,
+      "labelHint": "รายได้ต่อปี"
+    },
+    {
+      "inputIndex": 427,
+      "section": "part4",
+      "fieldNumber": 79,
+      "path": "sections.part4.field079",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ไม่ใช้"
+    },
+    {
+      "inputIndex": 428,
+      "section": "part4",
+      "fieldNumber": 80,
+      "path": "sections.part4.field080",
+      "type": "boolean",
+      "page": 3,
+      "labelHint": "ใช้ 3/6 สำเนา ส่วนที่ 5 คำถามเกี่ยวกับ ผู้ชำระเบี้ยประกันภัย กรณีซื้อสัญญาเพิ่มเติมผู้ชำระเบี้ย 22."
+    },
+    {
+      "inputIndex": 429,
+      "section": "part5",
+      "fieldNumber": 1,
+      "path": "sections.part5.field001",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 430,
+      "section": "part5",
+      "fieldNumber": 2,
+      "path": "sections.part5.field002",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เคย ถ้า เคย โปรดระบุรายละเอียด ชื่อบริษัท"
+    },
+    {
+      "inputIndex": 431,
+      "section": "part5",
+      "fieldNumber": 3,
+      "path": "sections.part5.field003",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เคย ถ้า เคย โปรดระบุรายละเอียด ชื่อบริษัท"
+    },
+    {
+      "inputIndex": 432,
+      "section": "part5",
+      "fieldNumber": 4,
+      "path": "sections.part5.field004",
+      "type": "string",
+      "page": 4,
+      "labelHint": "สาเหตุ"
+    },
+    {
+      "inputIndex": 433,
+      "section": "part5",
+      "fieldNumber": 5,
+      "path": "sections.part5.field005",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เมื่อ"
+    },
+    {
+      "inputIndex": 434,
+      "section": "part5",
+      "fieldNumber": 6,
+      "path": "sections.part5.field006",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ชื่อบริษัท"
+    },
+    {
+      "inputIndex": 435,
+      "section": "part5",
+      "fieldNumber": 7,
+      "path": "sections.part5.field007",
+      "type": "string",
+      "page": 4,
+      "labelHint": "สาเหตุ"
+    },
+    {
+      "inputIndex": 436,
+      "section": "part5",
+      "fieldNumber": 8,
+      "path": "sections.part5.field008",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เมื่อ"
+    },
+    {
+      "inputIndex": 437,
+      "section": "part5",
+      "fieldNumber": 9,
+      "path": "sections.part5.field009",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 438,
+      "section": "part5",
+      "fieldNumber": 10,
+      "path": "sections.part5.field010",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เคย 24. ท่านเสพหรือเคยเสพยาเสพติด หรือสารเสพติด หรือไม่"
+    },
+    {
+      "inputIndex": 439,
+      "section": "part5",
+      "fieldNumber": 11,
+      "path": "sections.part5.field011",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เสพ/ไม่เคย"
+    },
+    {
+      "inputIndex": 440,
+      "section": "part5",
+      "fieldNumber": 12,
+      "path": "sections.part5.field012",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เสพ/เคยเสพ ชนิด"
+    },
+    {
+      "inputIndex": 441,
+      "section": "part5",
+      "fieldNumber": 13,
+      "path": "sections.part5.field013",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เสพ/เคยเสพ ชนิด"
+    },
+    {
+      "inputIndex": 442,
+      "section": "part5",
+      "fieldNumber": 14,
+      "path": "sections.part5.field014",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ปริมาณ"
+    },
+    {
+      "inputIndex": 443,
+      "section": "part5",
+      "fieldNumber": 15,
+      "path": "sections.part5.field015",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ความถี่"
+    },
+    {
+      "inputIndex": 444,
+      "section": "part5",
+      "fieldNumber": 16,
+      "path": "sections.part5.field016",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ครั้ง/สัปดาห์ เสพมานาน"
+    },
+    {
+      "inputIndex": 445,
+      "section": "part5",
+      "fieldNumber": 17,
+      "path": "sections.part5.field017",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ปี /เลิกเสพเมื่อ"
+    },
+    {
+      "inputIndex": 446,
+      "section": "part5",
+      "fieldNumber": 18,
+      "path": "sections.part5.field018",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่ดื่ม/ไม่เคย"
+    },
+    {
+      "inputIndex": 447,
+      "section": "part5",
+      "fieldNumber": 19,
+      "path": "sections.part5.field019",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ดื่ม/เคยดื่ม ชนิด"
+    },
+    {
+      "inputIndex": 448,
+      "section": "part5",
+      "fieldNumber": 20,
+      "path": "sections.part5.field020",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ดื่ม/เคยดื่ม ชนิด"
+    },
+    {
+      "inputIndex": 449,
+      "section": "part5",
+      "fieldNumber": 21,
+      "path": "sections.part5.field021",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ปริมาณ"
+    },
+    {
+      "inputIndex": 450,
+      "section": "part5",
+      "fieldNumber": 22,
+      "path": "sections.part5.field022",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ขวด/ครั้ง ความถี่"
+    },
+    {
+      "inputIndex": 451,
+      "section": "part5",
+      "fieldNumber": 23,
+      "path": "sections.part5.field023",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ครั้ง/สัปดาห์ ดื่มมานาน"
+    },
+    {
+      "inputIndex": 452,
+      "section": "part5",
+      "fieldNumber": 24,
+      "path": "sections.part5.field024",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ปี /เลิกดื่มเมื่อ"
+    },
+    {
+      "inputIndex": 453,
+      "section": "part5",
+      "fieldNumber": 25,
+      "path": "sections.part5.field025",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่สูบ/ไม่เคย"
+    },
+    {
+      "inputIndex": 454,
+      "section": "part5",
+      "fieldNumber": 26,
+      "path": "sections.part5.field026",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "สูบ/เคยสูบ ปริมาณ"
+    },
+    {
+      "inputIndex": 455,
+      "section": "part5",
+      "fieldNumber": 27,
+      "path": "sections.part5.field027",
+      "type": "string",
+      "page": 4,
+      "labelHint": "สูบ/เคยสูบ ปริมาณ"
+    },
+    {
+      "inputIndex": 456,
+      "section": "part5",
+      "fieldNumber": 28,
+      "path": "sections.part5.field028",
+      "type": "string",
+      "page": 4,
+      "labelHint": "มวน/วัน สูบมานาน"
+    },
+    {
+      "inputIndex": 457,
+      "section": "part5",
+      "fieldNumber": 29,
+      "path": "sections.part5.field029",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ปี / เลิกสูบเมื่อ"
+    },
+    {
+      "inputIndex": 458,
+      "section": "part5",
+      "fieldNumber": 30,
+      "path": "sections.part5.field030",
+      "type": "string",
+      "page": 4,
+      "labelHint": "27. ส่วนสูง"
+    },
+    {
+      "inputIndex": 459,
+      "section": "part5",
+      "fieldNumber": 31,
+      "path": "sections.part5.field031",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ซ.ม. น้ำหนัก"
+    },
+    {
+      "inputIndex": 460,
+      "section": "part5",
+      "fieldNumber": 32,
+      "path": "sections.part5.field032",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เปลี่ยน"
+    },
+    {
+      "inputIndex": 461,
+      "section": "part5",
+      "fieldNumber": 33,
+      "path": "sections.part5.field033",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เปลี่ยน เพิ่มขึ้น"
+    },
+    {
+      "inputIndex": 462,
+      "section": "part5",
+      "fieldNumber": 34,
+      "path": "sections.part5.field034",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เปลี่ยน เพิ่มขึ้น"
+    },
+    {
+      "inputIndex": 463,
+      "section": "part5",
+      "fieldNumber": 35,
+      "path": "sections.part5.field035",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ก.ก. ลดลง"
+    },
+    {
+      "inputIndex": 464,
+      "section": "part5",
+      "fieldNumber": 36,
+      "path": "sections.part5.field036",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ก.ก. สาเหตุที่น้ำหนักเปลี่ยนแปลง"
+    },
+    {
+      "inputIndex": 465,
+      "section": "part5",
+      "fieldNumber": 37,
+      "path": "sections.part5.field037",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 466,
+      "section": "part5",
+      "fieldNumber": 38,
+      "path": "sections.part5.field038",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เคย ถ้า เคย กรุณาทำเครื่องหมาย ☑ และระบุรายละเอียด (ตอบได้มากกว่า 1 ข้อ)"
+    },
+    {
+      "inputIndex": 467,
+      "section": "part5",
+      "fieldNumber": 39,
+      "path": "sections.part5.field039",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคหอบหืด"
+    },
+    {
+      "inputIndex": 468,
+      "section": "part5",
+      "fieldNumber": 40,
+      "path": "sections.part5.field040",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคความดันโลหิตสูง"
+    },
+    {
+      "inputIndex": 469,
+      "section": "part5",
+      "fieldNumber": 41,
+      "path": "sections.part5.field041",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคเลือด"
+    },
+    {
+      "inputIndex": 470,
+      "section": "part5",
+      "fieldNumber": 42,
+      "path": "sections.part5.field042",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคชัก"
+    },
+    {
+      "inputIndex": 471,
+      "section": "part5",
+      "fieldNumber": 43,
+      "path": "sections.part5.field043",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคตับหรือทางเดินน้ำดี"
+    },
+    {
+      "inputIndex": 472,
+      "section": "part5",
+      "fieldNumber": 44,
+      "path": "sections.part5.field044",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรควัณโรค"
+    },
+    {
+      "inputIndex": 473,
+      "section": "part5",
+      "fieldNumber": 45,
+      "path": "sections.part5.field045",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคหลอดเลือดในสมอง"
+    },
+    {
+      "inputIndex": 474,
+      "section": "part5",
+      "fieldNumber": 46,
+      "path": "sections.part5.field046",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคหลอดเลือด"
+    },
+    {
+      "inputIndex": 475,
+      "section": "part5",
+      "fieldNumber": 47,
+      "path": "sections.part5.field047",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคไต"
+    },
+    {
+      "inputIndex": 476,
+      "section": "part5",
+      "fieldNumber": 48,
+      "path": "sections.part5.field048",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคเอดส์ (HIV) หรือภูมิคุ้มกันบกพร่อง"
+    },
+    {
+      "inputIndex": 477,
+      "section": "part5",
+      "fieldNumber": 49,
+      "path": "sections.part5.field049",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคหัวใจ"
+    },
+    {
+      "inputIndex": 478,
+      "section": "part5",
+      "fieldNumber": 50,
+      "path": "sections.part5.field050",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคเบาหวาน"
+    },
+    {
+      "inputIndex": 479,
+      "section": "part5",
+      "fieldNumber": 51,
+      "path": "sections.part5.field051",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคมะเร็ง"
+    },
+    {
+      "inputIndex": 480,
+      "section": "part5",
+      "fieldNumber": 52,
+      "path": "sections.part5.field052",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคจิต"
+    },
+    {
+      "inputIndex": 481,
+      "section": "part5",
+      "fieldNumber": 53,
+      "path": "sections.part5.field053",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคเก๊าท์"
+    },
+    {
+      "inputIndex": 482,
+      "section": "part5",
+      "fieldNumber": 54,
+      "path": "sections.part5.field054",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคปอดหรือปอดอักเสบ"
+    },
+    {
+      "inputIndex": 483,
+      "section": "part5",
+      "fieldNumber": 55,
+      "path": "sections.part5.field055",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคเอสแอลอี"
+    },
+    {
+      "inputIndex": 484,
+      "section": "part5",
+      "fieldNumber": 56,
+      "path": "sections.part5.field056",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "พิการทางร่างกาย"
+    },
+    {
+      "inputIndex": 485,
+      "section": "part5",
+      "fieldNumber": 57,
+      "path": "sections.part5.field057",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคพาร์กินสัน"
+    },
+    {
+      "inputIndex": 486,
+      "section": "part5",
+      "fieldNumber": 58,
+      "path": "sections.part5.field058",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "โรคอัมพฤกษ์หรืออัมพาต โรค วัน/เดือน/ปีที่รักษา ที่ได้รับการวินิจฉัย/การรักษา/ตั้ง ข้อสังเกตโดยแพทย์"
+    },
+    {
+      "inputIndex": 487,
+      "section": "part5",
+      "fieldNumber": 59,
+      "path": "sections.part5.field059",
+      "type": "string",
+      "page": 4,
+      "labelHint": "์ และอาการปัจจุบัน สถานพยาบาลที่วินิจฉัย/รักษา/ ตั้งข้อสังเกตโดยแพทย์ (หาก ระบุชื่อแพทย์ได้โปรดระบุ)"
+    },
+    {
+      "inputIndex": 488,
+      "section": "part5",
+      "fieldNumber": 60,
+      "path": "sections.part5.field060",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 488"
+    },
+    {
+      "inputIndex": 489,
+      "section": "part5",
+      "fieldNumber": 61,
+      "path": "sections.part5.field061",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 489"
+    },
+    {
+      "inputIndex": 490,
+      "section": "part5",
+      "fieldNumber": 62,
+      "path": "sections.part5.field062",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 490"
+    },
+    {
+      "inputIndex": 491,
+      "section": "part5",
+      "fieldNumber": 63,
+      "path": "sections.part5.field063",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 491"
+    },
+    {
+      "inputIndex": 492,
+      "section": "part5",
+      "fieldNumber": 64,
+      "path": "sections.part5.field064",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 492"
+    },
+    {
+      "inputIndex": 493,
+      "section": "part5",
+      "fieldNumber": 65,
+      "path": "sections.part5.field065",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 493"
+    },
+    {
+      "inputIndex": 494,
+      "section": "part5",
+      "fieldNumber": 66,
+      "path": "sections.part5.field066",
+      "type": "string",
+      "page": 4,
+      "labelHint": "29. ในระหว่าง 5 ปีที่ผ่านมา ท่านเคยได้รับการตรวจสุขภาพ หรือการตรวจเพื่อวินิจฉัยโรค เช่น การตรวจชิ้นเ"
+    },
+    {
+      "inputIndex": 495,
+      "section": "part5",
+      "fieldNumber": 67,
+      "path": "sections.part5.field067",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เคย"
+    },
+    {
+      "inputIndex": 496,
+      "section": "part5",
+      "fieldNumber": 68,
+      "path": "sections.part5.field068",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เคย โปรดระบุรายละเอียด โรค วัน/เดือน/ปีที่ได้รับการตรวจ/ รักษา ผลการตรวจ/รักษา สถานพยาบาลที่ตรวจ/ รั"
+    },
+    {
+      "inputIndex": 497,
+      "section": "part5",
+      "fieldNumber": 69,
+      "path": "sections.part5.field069",
+      "type": "string",
+      "page": 4,
+      "labelHint": "รวจ/ รักษา ผลการตรวจ/รักษา สถานพยาบาลที่ตรวจ/ รักษา (หากระบุชื่อแพทย์ ได้โปรดระบุ) ข้อสังเกตโดยแพทย์"
+    },
+    {
+      "inputIndex": 498,
+      "section": "part5",
+      "fieldNumber": 70,
+      "path": "sections.part5.field070",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 498"
+    },
+    {
+      "inputIndex": 499,
+      "section": "part5",
+      "fieldNumber": 71,
+      "path": "sections.part5.field071",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 499"
+    },
+    {
+      "inputIndex": 500,
+      "section": "part5",
+      "fieldNumber": 72,
+      "path": "sections.part5.field072",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 500"
+    },
+    {
+      "inputIndex": 501,
+      "section": "part5",
+      "fieldNumber": 73,
+      "path": "sections.part5.field073",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 501"
+    },
+    {
+      "inputIndex": 502,
+      "section": "part5",
+      "fieldNumber": 74,
+      "path": "sections.part5.field074",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 502"
+    },
+    {
+      "inputIndex": 503,
+      "section": "part5",
+      "fieldNumber": 75,
+      "path": "sections.part5.field075",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 503"
+    },
+    {
+      "inputIndex": 504,
+      "section": "part5",
+      "fieldNumber": 76,
+      "path": "sections.part5.field076",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 504"
+    },
+    {
+      "inputIndex": 505,
+      "section": "part5",
+      "fieldNumber": 77,
+      "path": "sections.part5.field077",
+      "type": "string",
+      "page": 4,
+      "labelHint": "Input 505"
+    },
+    {
+      "inputIndex": 506,
+      "section": "part5",
+      "fieldNumber": 78,
+      "path": "sections.part5.field078",
+      "type": "string",
+      "page": 4,
+      "labelHint": "ส่วนที่ 6 การรับรองสถานะเพื่อปฏิบัติตามกฎหมายว่าด้วยการปฏิบัติการตามความตกลงระหว่างรัฐบาลแห่งราชอาณา"
+    },
+    {
+      "inputIndex": 507,
+      "section": "part6",
+      "fieldNumber": 1,
+      "path": "sections.part6.field001",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 508,
+      "section": "part6",
+      "fieldNumber": 2,
+      "path": "sections.part6.field002",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "มี โปรดระบุ"
+    },
+    {
+      "inputIndex": 509,
+      "section": "part6",
+      "fieldNumber": 3,
+      "path": "sections.part6.field003",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ถือสัญชาติอเมริกัน"
+    },
+    {
+      "inputIndex": 510,
+      "section": "part6",
+      "fieldNumber": 4,
+      "path": "sections.part6.field004",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เกิดในประเทศสหรัฐอเมริกา"
+    },
+    {
+      "inputIndex": 511,
+      "section": "part6",
+      "fieldNumber": 5,
+      "path": "sections.part6.field005",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ถือสัญชาติอเมริกันและเกิดในประเทศสหรัฐอเมริกา ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย"
+    },
+    {
+      "inputIndex": 512,
+      "section": "part6",
+      "fieldNumber": 6,
+      "path": "sections.part6.field006",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 513,
+      "section": "part6",
+      "fieldNumber": 7,
+      "path": "sections.part6.field007",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "มี โปรดระบุ"
+    },
+    {
+      "inputIndex": 514,
+      "section": "part6",
+      "fieldNumber": 8,
+      "path": "sections.part6.field008",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ถือสัญชาติอเมริกัน"
+    },
+    {
+      "inputIndex": 515,
+      "section": "part6",
+      "fieldNumber": 9,
+      "path": "sections.part6.field009",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เกิดในประเทศสหรัฐอเมริกา"
+    },
+    {
+      "inputIndex": 516,
+      "section": "part6",
+      "fieldNumber": 10,
+      "path": "sections.part6.field010",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ถือสัญชาติอเมริกันและเกิดในประเทศสหรัฐอเมริกา ข. ท่านเป็นหรือเคยเป็นผู้ถือบัตรประจำตัวผู้มีถิ่นที่อย"
+    },
+    {
+      "inputIndex": 517,
+      "section": "part6",
+      "fieldNumber": 11,
+      "path": "sections.part6.field011",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เป็น"
+    },
+    {
+      "inputIndex": 518,
+      "section": "part6",
+      "fieldNumber": 12,
+      "path": "sections.part6.field012",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เป็น"
+    },
+    {
+      "inputIndex": 519,
+      "section": "part6",
+      "fieldNumber": 13,
+      "path": "sections.part6.field013",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เคยเป็นและสิ้นผลบังคับ กรณีเป็นหรือเคยเป็น โปรดระบุเลขที่"
+    },
+    {
+      "inputIndex": 520,
+      "section": "part6",
+      "fieldNumber": 14,
+      "path": "sections.part6.field014",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เคยเป็นและสิ้นผลบังคับ กรณีเป็นหรือเคยเป็น โปรดระบุเลขที่"
+    },
+    {
+      "inputIndex": 521,
+      "section": "part6",
+      "fieldNumber": 15,
+      "path": "sections.part6.field015",
+      "type": "string",
+      "page": 4,
+      "labelHint": "วันบัตรหมดอายุ"
+    },
+    {
+      "inputIndex": 522,
+      "section": "part6",
+      "fieldNumber": 16,
+      "path": "sections.part6.field016",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่เป็น"
+    },
+    {
+      "inputIndex": 523,
+      "section": "part6",
+      "fieldNumber": 17,
+      "path": "sections.part6.field017",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เป็น"
+    },
+    {
+      "inputIndex": 524,
+      "section": "part6",
+      "fieldNumber": 18,
+      "path": "sections.part6.field018",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "เคยเป็นและสิ้นผลบังคับ กรณีเป็นหรือเคยเป็น โปรดระบุเลขที่"
+    },
+    {
+      "inputIndex": 525,
+      "section": "part6",
+      "fieldNumber": 19,
+      "path": "sections.part6.field019",
+      "type": "string",
+      "page": 4,
+      "labelHint": "เคยเป็นและสิ้นผลบังคับ กรณีเป็นหรือเคยเป็น โปรดระบุเลขที่"
+    },
+    {
+      "inputIndex": 526,
+      "section": "part6",
+      "fieldNumber": 20,
+      "path": "sections.part6.field020",
+      "type": "string",
+      "page": 4,
+      "labelHint": "วันบัตรหมดอายุ"
+    },
+    {
+      "inputIndex": 527,
+      "section": "part6",
+      "fieldNumber": 21,
+      "path": "sections.part6.field021",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 528,
+      "section": "part6",
+      "fieldNumber": 22,
+      "path": "sections.part6.field022",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "มี ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย"
+    },
+    {
+      "inputIndex": 529,
+      "section": "part6",
+      "fieldNumber": 23,
+      "path": "sections.part6.field023",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 530,
+      "section": "part6",
+      "fieldNumber": 24,
+      "path": "sections.part6.field024",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "มี ง. ท่านมีสถานะเป็นผู้มีถิ่นที่อยู่ในประเทศสหรัฐอเมริกาเพื่อวัตถุประสงค์ในการเก็บภาษีอากรของประเทศ"
+    },
+    {
+      "inputIndex": 531,
+      "section": "part6",
+      "fieldNumber": 25,
+      "path": "sections.part6.field025",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 532,
+      "section": "part6",
+      "fieldNumber": 26,
+      "path": "sections.part6.field026",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "มี ผู้แทนโดยชอบธรรม/ผู้ใช้อำนาจปกครองของผู้ขอเอาประกันภัย"
+    },
+    {
+      "inputIndex": 533,
+      "section": "part6",
+      "fieldNumber": 27,
+      "path": "sections.part6.field027",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "ไม่มี"
+    },
+    {
+      "inputIndex": 534,
+      "section": "part6",
+      "fieldNumber": 28,
+      "path": "sections.part6.field028",
+      "type": "boolean",
+      "page": 4,
+      "labelHint": "มี 4/6 สำเนา 2. คำรับรอง (1) ข้าพเจ้ารับทราบว่า บริษัทประกันชีวิต (“บริษัท”) มีข้อผูกพันหรือต้องปฏิบ"
+    },
+    {
+      "inputIndex": 535,
+      "section": "part7",
+      "fieldNumber": 1,
+      "path": "sections.part7.field001",
+      "type": "boolean",
+      "page": 5,
+      "labelHint": "ข้าพเจ้ามีความประสงค์ และยินยอมให้บริษัทประกันชีวิตส่งและเปิดเผยข้อมูลเกี่ยวกับเบี้ยประกันภัยต่อกรมส"
+    },
+    {
+      "inputIndex": 536,
+      "section": "part7",
+      "fieldNumber": 2,
+      "path": "sections.part7.field002",
+      "type": "string",
+      "page": 5,
+      "labelHint": "งเสียภาษีเงินได้ตามกฎหมายว่าด้วยภาษีอากร โปรดระบุเลขประจำตัวผู้เสียภาษีที่ได้รับจากกรมสรรพากร เลขที่"
+    },
+    {
+      "inputIndex": 537,
+      "section": "part7",
+      "fieldNumber": 3,
+      "path": "sections.part7.field003",
+      "type": "boolean",
+      "page": 5,
+      "labelHint": "ข้าพเจ้าไม่มีความประสงค์ ส่วนที่ 8 ข้อความยืนยันถ้อยแถลงหรือคำตอบในใบคำขอเอาประกันชีวิตของผู้ขอเอาปร"
+    },
+    {
+      "inputIndex": 538,
+      "section": "part8",
+      "fieldNumber": 1,
+      "path": "applicant.fullName",
+      "type": "string",
+      "page": 6,
+      "labelHint": "็นครั้งคราว รวมถึงวัตถุประสงค์ทั้งหมดที่กำหนดไว้ในเอกสารฉบับนี้ และที่เกี่ยวข้องกับการเอาประกันภัย ("
+    },
+    {
+      "inputIndex": 539,
+      "section": "part8",
+      "fieldNumber": 2,
+      "path": "sections.part8.field002",
+      "type": "string",
+      "page": 6,
+      "labelHint": ") ผู้ขอเอาประกันภัย ("
+    },
+    {
+      "inputIndex": 540,
+      "section": "part9",
+      "fieldNumber": 1,
+      "path": "sections.part9.field001",
+      "type": "string",
+      "page": 6,
+      "labelHint": "าบนโยบายคุ้มครองข้อมูลส่วนบุคคลของบริษัทและสำนักงาน คปภ. แล้ว จึงลงลายมือชื่อไว้ด้านล่างนี้ เขียนที่"
+    },
+    {
+      "inputIndex": 541,
+      "section": "part9",
+      "fieldNumber": 2,
+      "path": "sections.part9.field002",
+      "type": "string",
+      "page": 6,
+      "labelHint": "วันที่"
+    },
+    {
+      "inputIndex": 542,
+      "section": "part9",
+      "fieldNumber": 3,
+      "path": "sections.part9.field003",
+      "type": "string",
+      "page": 6,
+      "labelHint": "เดือน"
+    },
+    {
+      "inputIndex": 543,
+      "section": "part9",
+      "fieldNumber": 4,
+      "path": "sections.part9.field004",
+      "type": "string",
+      "page": 6,
+      "labelHint": "พ.ศ."
+    },
+    {
+      "inputIndex": 544,
+      "section": "part9",
+      "fieldNumber": 5,
+      "path": "sections.part9.field005",
+      "type": "string",
+      "page": 6,
+      "labelHint": "(ลงชื่อ)"
+    },
+    {
+      "inputIndex": 545,
+      "section": "part9",
+      "fieldNumber": 6,
+      "path": "agent.fullName",
+      "type": "string",
+      "page": 6,
+      "labelHint": "("
+    },
+    {
+      "inputIndex": 546,
+      "section": "part9",
+      "fieldNumber": 7,
+      "path": "sections.part9.field007",
+      "type": "string",
+      "page": 6,
+      "labelHint": ") พยาน / นายหน้าประกันชีวิต/ ตัวแทนประกันชีวิต (ลงชื่อ)"
+    },
+    {
+      "inputIndex": 547,
+      "section": "part9",
+      "fieldNumber": 8,
+      "path": "applicant.fullName",
+      "type": "string",
+      "page": 6,
+      "labelHint": "("
+    },
+    {
+      "inputIndex": 548,
+      "section": "part9",
+      "fieldNumber": 9,
+      "path": "sections.part9.field009",
+      "type": "string",
+      "page": 6,
+      "labelHint": ") ผู้ขอเอาประกันภัย (ลงชื่อ)"
+    },
+    {
+      "inputIndex": 549,
+      "section": "part9",
+      "fieldNumber": 10,
+      "path": "sections.part9.field010",
+      "type": "string",
+      "page": 6,
+      "labelHint": "("
+    },
+    {
+      "inputIndex": 550,
+      "section": "part9",
+      "fieldNumber": 11,
+      "path": "sections.part9.field011",
+      "type": "string",
+      "page": 6,
+      "labelHint": ") พยาน (ลงชื่อ)"
+    },
+    {
+      "inputIndex": 551,
+      "section": "part9",
+      "fieldNumber": 12,
+      "path": "sections.part9.field012",
+      "type": "string",
+      "page": 6,
+      "labelHint": "("
+    }
+  ],
+  "sectionCounts": {
+    "part1": 188,
+    "part2": 7,
+    "part3": 146,
+    "part4": 80,
+    "part5": 78,
+    "part6": 28,
+    "part7": 3,
+    "part8": 2,
+    "part9": 12
+  }
+}

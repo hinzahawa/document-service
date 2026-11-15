@@ -1,78 +1,45 @@
-<<<<<<< HEAD
-# compiled output
+# Compiled output
 /dist
 /node_modules
 /build
-
-# TypeScript build cache
 *.tsbuildinfo
-=======
-# Nestjs specific
-/dist
-/node_modules
-/build
-/tmp
->>>>>>> 48b68ac3ccc5ca724856c10583ed38e0be6c7e47
 
-# Logs
+# Local generation archives contain applicant data
+/storage
+
+# Tests and coverage
+/coverage
+/.nyc_output
+
+# Logs and temporary files
 logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
+.temp
+.tmp
+/tmp
 
-<<<<<<< HEAD
-# OS
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Operating systems and editors
 .DS_Store
-
-# Tests
-/coverage
-/.nyc_output
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
+.idea
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+*.sublime-workspace
 
-# dotenv environment variable files
+# Local environment files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-=======
-# dotenv environment variable files
-.env
-.env.development
-.env.test
-.env.production
->>>>>>> 48b68ac3ccc5ca724856c10583ed38e0be6c7e47
-
-# temp directory
-.temp
-.tmp
-<<<<<<< HEAD
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-=======
->>>>>>> 48b68ac3ccc5ca724856c10583ed38e0be6c7e47
+.env.*
+!.env.example
